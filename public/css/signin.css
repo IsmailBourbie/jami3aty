@@ -1,0 +1,292 @@
+/*Override bootstrap code Start*/
+
+/*#cc5333*/
+
+* {
+    font-family: 'Lato', sans-serif;
+}
+
+html,
+body {
+    height: 100%
+}
+
+body {
+    background-image: url(../images/back5.jpeg);
+    background-size: cover;
+}
+
+.overlay {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: rgba(22, 0, 0, 0.3);
+}
+
+.container .row {
+    margin-top: 85px;
+    position: relative;
+    height: 507px;
+}
+
+.container .row > .right {
+    padding-left: 0px;
+    padding-right: 0px;
+    height: 100%;
+    background: #FFFFFF;
+}
+
+.container .row form {
+    min-height: 100%;
+    max-height: 100%;
+}
+
+/*
+.container .row form {
+    height: 100%
+}
+*/
+
+.container .input-group {
+    border-bottom: 1px solid #555555;
+    margin-top: 20px;
+}
+
+.container .feild-input input.form-control,
+.container .input-group-addon {
+    font-size: 22px;
+    border: none;
+    background: transparent;
+}
+
+.container .form-login .input-group:last-of-type {
+    font-size: 13px;
+    color: #636b6f;
+    border: none;
+    margin-top: 5px;
+    margin-bottom: 20px;
+    margin-left: 10px;
+}
+
+.container .feild-input input.form-control {
+    padding-top: 20px;
+    padding-bottom: 20px;
+    font-size: 16px;
+    box-shadow: unset;
+    width: 90%;
+}
+
+.container .form-login .feild-input {
+    text-align: center;
+}
+
+.container form .fa,
+.container form .glyphicon {
+    color: #16223d
+}
+
+.container form .feild-input .btn {
+    width: 40%;
+    margin: 20px auto;
+    background-color: #FFFFFF;
+    color: #000000;
+    border: 1px solid #72b0f7;
+    border-radius: 40px;
+    box-shadow: 0px 0px 7px #72b0f7;
+    padding: 10px 20px;
+}
+
+.container form .feild-input .btn:hover,
+.container form .footer_login button:hover,
+.container form .footer_signup button:hover {
+    background-color: #72b0f7;
+    color: #FFFFFF;
+    box-shadow: unset;
+}
+
+.container .input-group .custom-icon {
+    position: absolute;
+    right: 12px;
+    top: 10px;
+    font-size: 24px;
+    opacity: .8;
+}
+
+.container .input-group .custom-icon:hover {
+    cursor: pointer;
+    opacity: 1;
+}
+
+.container .row .left {
+    padding-right: 0px;
+    padding-left: 0px;
+    height: 100%;
+    text-align: center;
+}
+
+.container .row .left .carousel,
+.container .row .left .carousel-inner {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    height: 100%;
+}
+
+.container .row .left .carousel-indicators li {
+    width: 17px;
+    height: 17px;
+    border: 1px solid #86E2D5
+}
+
+.container .row .left .carousel-indicators li.active {
+    width: 20px;
+    height: 20px;
+    background-color: #86E2D5;
+}
+
+.container .row .left .carousel .carousel-caption {
+    top: 21%
+}
+
+.container .row .left .carousel .carousel-caption h3 {
+    font-size: 40px;
+    color: #86E2D5;
+}
+
+.container .row .left .carousel .overlay {
+    z-index: 1;
+    background-color: rgba(22, 34, 61, 0.2);
+}
+
+
+
+.container .row .left .carousel-inner .item {
+    width: 100%;
+    height: 100%
+}
+
+.container .row .left .carousel-inner .item img {
+    width: 100%;
+    height: 100%
+}
+
+
+/*Override bootstrap code End*/
+
+/*Style Login Start*/
+
+.container .form-login {
+    padding-top: 50px;
+    background-color: #FFF;
+}
+
+.container form > div {
+    padding: 0 50px;
+}
+
+.container .form-login > div:last-of-type {
+    padding: 0;
+}
+
+.container .form-signup {
+    display: none;
+    padding-top: 30px;
+    background-color: #FFF;
+}
+
+.container .form-signup > div:last-of-type {
+    padding: 0;
+}
+
+.filed_ask hr {
+    width: 70%;
+    border-color: #999
+}
+
+.filed_ask p {
+    font-size: 19px;
+}
+
+.filed_ask p span,
+.form-login .filed_ask p:last-of-type {
+    font-size: 16px;
+    color: #337ab7;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.container form .error {
+    min-height: 10px;
+    text-align: left;
+    color: #dd1037;
+    font-size: 12px;
+    margin-top: 6px;
+    margin-left: 10px;
+}
+
+.container form .footer_login {
+    position: absolute;
+    width: 100%;
+    bottom: 0;
+    text-align: right;
+}
+
+.container form .footer_login button,
+.container form .footer_signup button {
+    padding: 10px 20px;
+    border: none;
+    background-color: transparent;
+    color: #72b0f7;
+    font-size: 18px;
+}
+
+.container form .footer_signup {
+    position: absolute;
+    width: 100%;
+    bottom: 0;
+}
+
+.container form .footer_signup a button {
+    position: absolute;
+    right: 0;
+}
+
+.container form .footer_signup button i {
+    color: #72b0f7;
+}
+
+.container form .footer_signup > button:hover i {
+    color: #FFFFFF;
+}
+
+/***Responsive Start***/
+
+@media (max-width: 991px) {
+    body {
+        background: none;
+    }
+    body > .overlay {
+        display: none;
+    }
+    .container {
+        width: 100%;
+        padding: 0px;
+    }
+    .container .row {
+        height: auto;
+        margin-top: 0px
+    }
+    .container .row .left {
+        height: 400px;
+    }
+    .custom-icon[title] {
+        display: none;
+    }
+
+}
+
+/***Responsive End***/
+
+/*Style Login End*/
+
+/*Style Sign Up End */

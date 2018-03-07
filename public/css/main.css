@@ -1,0 +1,377 @@
+/* Override bootstrap code Start */
+
+/**** Navbar start ****/
+
+/**** Navbar end ****/
+
+body {
+    padding-top: 70px;
+    background-color: #FAFBFC;
+}
+
+a:hover {
+    text-decoration: none;
+}
+
+.btn:active {
+    box-shadow: unset;
+}
+
+@media (max-width: 767px) {
+
+    .col-xs-9 {
+        width: 74.8%;
+    }
+}
+
+.form-control:focus {
+    border-color: #cccccc;
+    outline: none;
+    -webkit-box-shadow: unset;
+    box-shadow: unset;
+}
+
+.navbar-default {
+    background-color: #FFFFFF;
+    border: none;
+    box-shadow: 0px 0px 40px rgba(0, 0, 0, 0.21);
+}
+
+nav .container .items_icons .logo > div {
+    padding-top: 5px
+}
+
+nav .container .items_icons .logo a {
+    font-size: 34px;
+    color: #72b0f7;
+    opacity: .89;
+}
+
+nav .container .items_icons .logo a:hover {
+    opacity: 1;
+}
+
+nav .container .items_icons .list_items .nav > li {
+    display: inline-block;
+}
+
+nav .container .items_icons .list_items ul li:not(.list_gestion) .dropdown-menu {
+    min-width: 500px;
+    padding: 0;
+}
+
+nav .container .items_icons .list_items ul li:not(.list_gestion) .dropdown-menu li {
+    border-bottom: 1px solid #AAA
+}
+
+nav .container .items_icons .list_items ul li:not(.list_gestion) .dropdown-menu li a {
+    padding: 15px;
+}
+
+nav .container .items_icons .list_items .navbar-nav > li > a {
+    color: #72b0f7;
+}
+
+nav .container .items_icons .list_items .navbar-nav > li > a i {
+    font-size: 1.8em;
+}
+
+nav .container .items_icons .list_items .navbar-nav > li > a:hover,
+nav .container .items_icons .list_items .navbar-nav > li > a:focus {
+    background-color: #72b0f7;
+    color: #FFFFFF
+}
+
+nav .container .items_icons .search_container form,
+nav .container .items_icons .search_container form .input-group {
+    width: 100%;
+    padding-top: 2px;
+}
+
+nav .container .items_icons .search_container .navbar-form {
+    border: none;
+    margin-left: 0;
+    margin-right: 0;
+}
+
+nav .container .items_icons .search_container .navbar-form .input-group-addon {
+    padding: 0px;
+    background-color: transparent;
+
+}
+
+nav .container .items_icons .search_container .navbar-form .input-group-addon button {
+    width: 100%;
+    background-color: transparent;
+    border: none;
+    height: 32px;
+}
+
+nav .container .items_icons .search_container .navbar-form input.form-control {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-right: none;
+}
+
+/*Phone respensive Start*/
+
+@media (max-width: 768px) {
+    nav .container .items_icons .list_items .navbar-nav {
+        float: right !important;
+    }
+    nav .container .items_icons .list_items .navbar-nav .open .dropdown-menu {
+        position: absolute;
+        left: -320px;
+        background-color: #e7e7e7;
+        min-width: 380px;
+    }
+    nav .container .items_icons .list_items .navbar-nav .open.messages .dropdown-menu {
+        left: -260px;
+    }
+    nav .container .items_icons .list_items .navbar-nav .open.notifications .dropdown-menu {
+        left: -205px;
+    }
+    nav .container .items_icons .logo {
+        width: 90px;
+        overflow: hidden
+    }
+}
+
+@media (max-width: 361px) {
+    nav .container .items_icons .list_items {
+        width: 69%;
+    }
+    nav .container .items_icons .list_items .navbar-nav .open .dropdown-menu {
+        min-width: 310px;
+        left: -245px;
+    }
+
+    nav .container .items_icons .list_items .navbar-nav .open.messages .dropdown-menu {
+        left: -180px;
+    }
+    nav .container .items_icons .list_items .navbar-nav .open.notifications .dropdown-menu {
+        left: -120px;
+    }
+}
+
+/*Phone respensive End*/
+
+/* Override bootstrap code End */
+
+/* Style Start */
+
+/** content page style Start **/
+
+.content-page .row {
+    margin: 0px
+}
+
+/*** Aside left style start ***/
+
+.content-page .aside-left {
+    z-index: 1010;
+    margin-right: -20px
+}
+
+.content-page .aside-left .aside-content {
+    position: fixed;
+    top: 60px;
+    left: 0;
+    padding-left: 0px;
+    padding-right: 0px;
+    height: 100%;
+    width: 24%;
+}
+
+.content-page .aside-left .my_data .user_info {
+    padding: 3px 0 0;
+    float: left;
+    width: 300px;
+}
+
+.content-page .aside-left .my_data a {
+    overflow: hidden;
+}
+
+.content-page .aside-left .my_data a .user_img {
+    float: left;
+    width: 50px;
+    position: relative;
+}
+
+.content-page .aside-left .my_data a .user_img span {
+    background-color: #67809F;
+    position: absolute;
+    width: 100%;
+    text-align: center;
+    border-radius: 15px;
+    font-size: 35px;
+    font-family: "Courier New", Courier, monospace;
+    color: #F0F0F0;
+}
+
+.content-page .aside-left .my_data a h3,
+.content-page .aside-left .my_data a p {
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+.content-page .aside-left .my_data a p {
+    font-size: 18px;
+    color: #cc5333;
+    /*Orange #f7b972*/
+}
+
+.content-page .aside-left .my_data a h3 {
+    font-weight: bold;
+    font-size: 20px;
+    color: #67809F
+}
+
+.content-page .aside-left .my_data h4 {
+    font-size: 18px;
+    padding: 10px 10px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+
+.content-page .aside-left .my_data li {
+    width: -moz-max-content;
+    width: -webkit-max-content;
+    width: max-content;
+}
+
+.avtive-navigation {
+    border-left: 2px solid #cc5333;
+    color: #72b0f7;
+
+}
+
+.content-page .aside-left .my_data li:hover {
+    border-left: 2px solid #cc5333;
+    cursor: pointer;
+    color: #72b0f7;
+}
+
+.content-page .aside-left .my_data li h4:hover {
+    transform: translateX(5px);
+    transition: all .2s ease-out;
+}
+
+.content-page .aside-left .my_data li hr {
+    margin: 5px;
+    border-color: #cc5333;
+    width: 200px
+}
+
+.content-page .aside-left .aside-content .my_data .copyright {
+    margin-top: 100px;
+    color: #797f7f;
+}
+
+.content-page .aside-left .aside-content .my_data .copyright span {
+    font-size: 18px;
+}
+
+.content-page .aside-left .aside-content > div,
+.content-page .aside-right .aside-content > div {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.content-page .aside-right .aside-content .ma_journee a,
+.content-page .aside-left .aside-content .my_data a {
+    padding: 12px 0;
+    border: none;
+    font-size: 16px;
+    color: inherit;
+    background-color: transparent;
+    font-weight: bold;
+}
+
+.content-page .aside-right .aside-content .ma_journee a {
+    background-color: #cc5333;
+    color: #FFFFFF;
+}
+
+.content-page .aside-right .aside-content .ma_journee .well,
+.content-page .aside-left .aside-content .my_data .well {
+    background-color: transparent;
+    border: none;
+    box-shadow: unset;
+}
+
+
+.content-page .aside-right .aside-content .ma_journee .well li h4 {
+    margin: 5px 0;
+    font-weight: bolder;
+}
+
+.content-page .aside-right .aside-content .ma_journee .well li p {
+    margin: 5px 0px 10px 15px;
+    font-size: 16px;
+}
+
+.aside-content .btn-default:hover,
+.aside-content .btn-default:focus {
+    background: transparent;
+}
+
+/*** Aside left style End ***/
+
+/*** Main style start ***/
+
+.content-page .main {}
+
+.content-page .main .welcom_day {
+    height: 200px;
+    background: green;
+    margin: 20px auto;
+}
+
+.content-page .main .publication_mold {
+    height: 400px;
+    background: red;
+    margin-bottom: 20px;
+}
+
+/*** Main style End ***/
+
+/*** Aside right style start ***/
+
+.content-page .aside-right {
+    background-color: #FFFFFF;
+    position: fixed;
+    top: 90px;
+    z-index: 1020;
+    right: 1%;
+    box-shadow: 2px 4px 8px 0 rgba(46, 61, 73, .2)
+}
+
+/*** Aside right style End ***/
+
+/****Responsive Start****/
+
+@media (max-width: 1200px) {
+    .content-page .aside-left .aside-content,
+    .content-page .aside-right {
+        position: relative;
+        margin-bottom: 60px;
+        width: 100%;
+    }
+    .content-page .aside-left .copyright {
+        display: none;
+    }
+    .content-page .aside-right {
+        box-shadow: unset;
+    }
+    .content-page .main {
+        margin: 0;
+    }
+}
+
+/****Responsive End****/
+
+/*** content page style Start **/
+
+/* Style End */
