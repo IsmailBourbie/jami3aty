@@ -11,18 +11,102 @@ class Users extends Controller {
 
    }
 
+   public function register() {
+      if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+         // SANITIZE the Inputs of POST
+         $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
+         $data = [
+            'number_card' => $_POST['number_card'],
+            'email'       => $_POST['email'],
+            'average'     => $_POST['average'],
+            'password'    => $_POST['password'],
+         ];
+         $response = [
+            'status'  => 1,
+            'message' => "Every thing is Okay",
+         ];
+         // Validate number card
+         if (empty($data["number_card"])) {
+            $response["status"] = 0;
+            $response["message"] = "Empty number Card";
+         } else {
+            if (!filter_var($data['number_card'], FILTER_VALIDATE_INT)
+               || strlen($data['number_card']) < 8
+            ) {
+               $response["status"] = 0;
+               $response["message"] = "Invalid number card";
+            }
+         }
+         // Validate email
+         if (empty($data["email"])) {
+            $response["status"] = 2;
+            $response["message"] = "Empty Email";
+         } else {
+            if (!filter_var($data["email"], FILTER_VALIDATE_EMAIL)) {
+               $response["status"] = 2;
+               $response["message"] = "Invalid Email";
+            }
+         }
+
+         // Check the Email if exist
+         if ($this->userModel->findUserByEmail($data["email"])) {
+            $response["status"] = 2;
+            $response["message"] = "Email exist";
+         }
+         // Validate the Average
+         if (empty($data["average"])) {
+            $response["status"] = 3;
+            $response["message"] = "Empty Average";
+         } else {
+            if (!filter_var($data['average'], FILTER_VALIDATE_FLOAT)) {
+               $response["status"] = 3;
+               $response["message"] = "Invalid Average";
+            }
+         }
+         // Check the password if not empty
+         if (empty($data["password"])) {
+            $response["status"] = 2;
+            $response["message"] = "Empty Password";
+         } else {
+            if (strlen($data["password"]) < 8) {
+               $response["status"] = 2;
+               $response["message"] = "Invalid Password";
+            }
+         }
+
+         // Go on if no error
+         if ($response['status'] == 1) {
+            // no Errors
+            $data['password'] = password_hash($data['password'], PASSWORD_DEFAULT);
+            if ($this->userModel->addUser($data)) {
+               redirect("users/login");
+            } else {
+               die("something wrong");
+            }
+         } else {
+            die(var_dump($response));
+            // there is an errors
+         }
+
+
+      } else {
+         // Direct Url Request
+         $this->view("users/login");
+      }
+   }
+
    public function login() {
       if ($_SERVER['REQUEST_METHOD'] == 'POST') {
          // Post Request
          $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
          $data = [
-            'email' => $_POST['email'],
+            'email'    => $_POST['email'],
             'password' => $_POST['password'],
          ];
          $response = [
-            'status' => 1,
+            'status'  => 1,
             'message' => 'Every Thing is Okay',
-            'data' => '',
+            'data'    => '',
          ];
 
          // Check the Email if not empty

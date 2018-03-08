@@ -2,6 +2,13 @@
 /*global $, alert, console*/
 $(document).ready(function () {
     "use strict";
+    // Show the Register Box
+    var pathname = location.pathname;
+    if (pathname.indexOf("users/register") > 0) {
+        $('form.form-login').hide(function () {
+            $('form.form-signup').show();
+        });
+    }
     /*Input style on focus Start*/
     $('input[type!="submit"]').focus(function () {
         if ($(this).attr("placeholder").length > 0) {
@@ -80,8 +87,6 @@ $(document).ready(function () {
             }
         } else if ($(this).attr("data") === "moyenne") {
             input_val = input_val.replace(/,/, ".");
-            console.log(input_val);
-            console.log(typeof input_val);
             if (input_val.match(moyenne_pattren)) {
                 $(this).parent().css("border-color", "#5cb85c");
                 $(this).parent().next(".error").html("");
@@ -96,32 +101,40 @@ $(document).ready(function () {
 
     /*Login with ajax Start */
     $('form').submit(function (e) {
-        $(this).find(".error").each(function (index) {
-            if ($(this).siblings(".required").eq(index).find("input").val().length <= 8) {
+        if ($(this).hasClass("form-signup")) {
+            if ($("#num_carte").val().length <= 8) {
                 e.preventDefault();
-                $(this).siblings(".required").eq(index).css("border-color", "#dd1037");
-                $(this).siblings(".required").eq(index).find("input").focus();
+                $("#num_carte").parent(".required").css("border-color", "#dd1037");
+                $("#num_carte").focus();
                 return;
             }
+            if ($("#average").val().length == 0) {
+                e.preventDefault();
+                $("#average").parent(".required").css("border-color", "#dd1037");
+                $("#average").focus();
+                return;
+            }
+        }
+        if ($(this).find("input[type=password]").val().length < 8) {
+            e.preventDefault();
+            $(this).find("input[type=password]").parent(".required").css("border-color", "#dd1037");
+            $(this).find("input[type=password]").focus();
+            return;
+        }
+        if ($(this).find("input[type=email]").val().length < 8) {
+            e.preventDefault();
+            $(this).find("input[type=email]").parent(".required").css("border-color", "#dd1037");
+            $(this).find("input[type=email]").focus();
+            return;
+        }
+        $(this).find(".error").each(function (index) {
             if ($(this).eq(index).text().length !== 0) {
                 e.preventDefault();
                 $('form').find(".required").eq(index).find("input").focus();
                 return;
             }
         });
-
-        // $.ajax({
-        //     url: '/jami3aty/users/login',
-        //     type: 'post',
-        //     data: {
-        //         'email': "ismail@gmail.com",
-        //         'password': "hellohello",
-        //         'ajax': "ajax"
-        //     },
-        //     success: function (data) {
-        //         console.log(data);
-        //     }
-        // });
+        
 
     });
     /*Login with ajax End */

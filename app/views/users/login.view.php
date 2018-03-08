@@ -122,13 +122,16 @@
             </form>
 
 
-            <form class="form-signup">
+            <form action="<?= URL_ROOT ?>users/register" class="form-signup" method="post">
                 <div class="feild-input">
 
                     <!-- User Card number Start -->
                     <div class="input-group required">
                         <span class="input-group-addon" id="basic-addon1"><i class="fa fa-id-card"></i></span>
-                        <input type="text" data="num_carte" class="form-control" placeholder="Numéro de la carte"
+                        <input id="num_carte" type="text" data="num_carte"
+                               class="form-control"
+                               placeholder="Numéro de la carte"
+                               name="number_card"
                                style="padding-left:  7px;">
                         <i class="fa fa-question-circle-o custom-icon"
                            title="Ce numéro tu le trouve dans&#013;votre carte étudiant&#013;donnée par l'adminstration"></i>
@@ -139,7 +142,9 @@
                     <!-- Email Start -->
                     <div class="input-group required">
                         <span class="input-group-addon" id="basic-addon1"><i class="fa fa-envelope"></i></span>
-                        <input type="email" data="email" class="form-control" placeholder="Email">
+                        <input type="email" data="email"
+                               class="form-control"
+                               placeholder="Email" name="email">
                     </div>
                     <div class='error'></div>
                     <!-- Email End -->
@@ -147,7 +152,10 @@
                     <!-- Moyenne BAC Start -->
                     <div class="input-group required">
                         <span class="input-group-addon" id="basic-addon1"><i class="fa fa-graduation-cap"></i></span>
-                        <input id="ah" data="moyenne" class="form-control" placeholder="Moyenne du BAC">
+                        <input id="average" type="text"
+                               data="moyenne"
+                               class="form-control"
+                               placeholder="Moyenne du BAC" name="average">
                     </div>
                     <div class='error'></div>
                     <!-- Moyenne BAC End -->
@@ -156,7 +164,10 @@
                     <div class="input-group required">
                         <span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-lock"
                                                                                 aria-hidden="true"></span></span>
-                        <input type="password" data="password" class="form-control" placeholder="Mot de passe">
+                        <input type="password"
+                               data="password"
+                               class="form-control"
+                               placeholder="Mot de passe" name="password">
                         <span class="glyphicon glyphicon-eye-open custom-icon"></span>
                     </div>
                     <div class='error'></div>
