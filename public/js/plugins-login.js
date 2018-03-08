@@ -96,33 +96,32 @@ $(document).ready(function () {
 
     /*Login with ajax Start */
     $('form').submit(function (e) {
-        e.preventDefault();
         $(this).find(".error").each(function (index) {
             if ($(this).siblings(".required").eq(index).find("input").val().length <= 8) {
-                // e.preventDefault();
+                e.preventDefault();
                 $(this).siblings(".required").eq(index).css("border-color", "#dd1037");
                 $(this).siblings(".required").eq(index).find("input").focus();
                 return;
             }
             if ($(this).eq(index).text().length !== 0) {
-                // e.preventDefault();
+                e.preventDefault();
                 $('form').find(".required").eq(index).find("input").focus();
                 return;
             }
         });
 
-        $.ajax({
-            url: '/jami3aty/users/login',
-            type: 'post',
-            data: {
-                'email': "ismail@gmail.com",
-                'password': "hellohello",
-                'ajax': "ajax"
-            },
-            success: function (data) {
-                console.log(data);
-            }
-        });
+        // $.ajax({
+        //     url: '/jami3aty/users/login',
+        //     type: 'post',
+        //     data: {
+        //         'email': "ismail@gmail.com",
+        //         'password': "hellohello",
+        //         'ajax': "ajax"
+        //     },
+        //     success: function (data) {
+        //         console.log(data);
+        //     }
+        // });
 
     });
     /*Login with ajax End */

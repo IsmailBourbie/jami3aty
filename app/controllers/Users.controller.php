@@ -4,6 +4,9 @@
 class Users extends Controller {
 
    public function __construct() {
+      if (isLoggedIn()) {
+         redirect('');
+      }
       $this->userModel = $this->model('User');
 
    }
@@ -69,6 +72,20 @@ class Users extends Controller {
       }
    }
 
+   public function logout() {
+      // unset all Data from Session
+      unset($_SESSION["user_id"]);
+      unset($_SESSION["user_email"]);
+      unset($_SESSION["user_name"]);
+      unset($_SESSION["user_level"]);
+      unset($_SESSION["user_section"]);
+      unset($_SESSION["user_group"]);
+      // destroy Session
+      session_destroy();
+      // redirect to the login page
+      redirect('users/login');
+   }
+
    private function createSessionUser($user) {
       $_SESSION["user_id"] = $user->id;
       $_SESSION["user_email"] = $user->email;
@@ -76,7 +93,7 @@ class Users extends Controller {
       $_SESSION["user_level"] = $user->level;
       $_SESSION["user_section"] = $user->section;
       $_SESSION["user_group"] = $user->group;
-      redirect('pages/index');
+      redirect('');
    }
 
 

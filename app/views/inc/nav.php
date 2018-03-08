@@ -48,7 +48,7 @@
                           </a>
                           <ul class="dropdown-menu" >
                             <li><a href="#">Setting</a></li>
-                            <li><a href="#">Log out</a></li>
+                            <li><a href="<?=URL_ROOT?>users/logout">Log out</a></li>
                             <li><a href="#">Signialer un prblm</a></li>
                             <li role="separator" class="divider"></li>
                             <li><a href="#">Separated link</a></li>
