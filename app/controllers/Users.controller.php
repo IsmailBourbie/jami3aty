@@ -1,6 +1,5 @@
 <?php
 
-
 class Users extends Controller {
 
    public function __construct() {
@@ -9,6 +8,11 @@ class Users extends Controller {
       }
       $this->userModel = $this->model('User');
 
+   }
+
+   public function index() {
+      $data = [];
+      $this->view('users/login', $data);
    }
 
    public function register() {
@@ -77,9 +81,15 @@ class Users extends Controller {
          // Go on if no error
          if ($response['status'] == 1) {
             // no Errors
+            $data['token'] = bin2hex(openssl_random_pseudo_bytes(8));
             $data['password'] = password_hash($data['password'], PASSWORD_DEFAULT);
             if ($this->userModel->addUser($data)) {
-               redirect("users/login");
+               // Send the Token to Email
+               if (mail_token($data['email'], $data['token'])) {
+                  redirect("users/login");
+               } else {
+                  die('Problem in Emailing');
+               }
             } else {
                die("something wrong");
             }
@@ -92,6 +102,28 @@ class Users extends Controller {
       } else {
          // Direct Url Request
          $this->view("users/login");
+      }
+   }
+
+   public function confirm($token = "") {
+      $token = trim($token);
+      if (!empty($token)) {
+         // Valid token
+         if ($this->userModel->getUserByToken($token)) {
+            // Token exist so Confirm the email
+            if ($this->userModel->confirmEmail($token)) {
+               redirect("users/login");
+            } else {
+               die('Error update');
+            }
+         } else {
+            // Token not exist
+            die('token not exist');
+         }
+
+      } else {
+         // inValid token
+         redirect('users/login');
       }
    }
 
@@ -136,7 +168,11 @@ class Users extends Controller {
                   header('Content-type: application/json');
                   $this->view('users/ajax', $response);
                } else {
-                  $this->createSessionUser($loggedInUser);
+                  if ($loggedInUser->isConfirmed == 0) {
+                     redirect("users/login");
+                  } else {
+                     $this->createSessionUser($loggedInUser);
+                  }
                }
             } else {
                echo "Yes Loginned";
