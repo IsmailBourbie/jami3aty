@@ -8,8 +8,8 @@ function mail_token($email, $token) {
    $mail->SMTPAuth = true;
    $mail->SMTPDebug = 2;
    $mail->Host = 'smtp.gmail.com';
-   $mail->Username = 'ur_email_here';
-   $mail->Password = 'ur_password_here';
+   $mail->Username = 'jami3atyapp@gmail.com';
+   $mail->Password = 'bourbieyounes';
    $mail->SMTPSecure = "ssl";
    $mail->Port = 465;
 

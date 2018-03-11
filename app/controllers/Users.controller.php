@@ -26,60 +26,66 @@ class Users extends Controller {
             'password'    => $_POST['password'],
          ];
          $response = [
-            'status'  => 1,
+            'status'  => OK,
             'message' => "Every thing is Okay",
          ];
          // Validate number card
          if (empty($data["number_card"])) {
-            $response["status"] = 0;
+            $response["status"] = EMPTY_NUM_CARD;
             $response["message"] = "Empty number Card";
          } else {
             if (!filter_var($data['number_card'], FILTER_VALIDATE_INT)
                || strlen($data['number_card']) < 8
             ) {
-               $response["status"] = 0;
+               $response["status"] = INVALID_NUM_CARD;
                $response["message"] = "Invalid number card";
             }
          }
          // Validate email
          if (empty($data["email"])) {
-            $response["status"] = 2;
+            $response["status"] = EMPTY_EMAIL;
             $response["message"] = "Empty Email";
          } else {
             if (!filter_var($data["email"], FILTER_VALIDATE_EMAIL)) {
-               $response["status"] = 2;
+               $response["status"] = INVALID_EMAIL;
                $response["message"] = "Invalid Email";
             }
          }
 
          // Check the Email if exist
+
          if ($this->userModel->findUserByEmail($data["email"])) {
-            $response["status"] = 2;
+            $response["status"] = EMAIL_N_EXIST;
             $response["message"] = "Email exist";
+         }
+         // Check if Student Exist
+         if (!$this->userModel->isUserExist($data['average'], $data['number_card'])) {
+            $response["status"] = AVERAGE_CARD_ERR;
+            $response["message"] = "Average or Card number not exist";
          }
          // Validate the Average
          if (empty($data["average"])) {
-            $response["status"] = 3;
+            $response["status"] = EMPTY_AVERAGE;
             $response["message"] = "Empty Average";
          } else {
             if (!filter_var($data['average'], FILTER_VALIDATE_FLOAT)) {
-               $response["status"] = 3;
+               $response["status"] = INVALID_AVERAGE;
                $response["message"] = "Invalid Average";
             }
          }
          // Check the password if not empty
          if (empty($data["password"])) {
-            $response["status"] = 2;
+            $response["status"] = EMPTY_PASS;
             $response["message"] = "Empty Password";
          } else {
             if (strlen($data["password"]) < 8) {
-               $response["status"] = 2;
+               $response["status"] = INVALID_PASS;
                $response["message"] = "Invalid Password";
             }
          }
 
          // Go on if no error
-         if ($response['status'] == 1) {
+         if ($response['status'] == OK) {
             // no Errors
             $data['token'] = bin2hex(openssl_random_pseudo_bytes(8));
             $data['password'] = password_hash($data['password'], PASSWORD_DEFAULT);
@@ -123,7 +129,18 @@ class Users extends Controller {
 
       } else {
          // inValid token
-         redirect('users/login');
+         if (isset($_POST['submit'])) {
+            $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
+            $email = $_POST['email'];
+            $token = bin2hex(openssl_random_pseudo_bytes(8));
+            if (mail_token($email, $token)) {
+               redirect("users/login");
+            } else {
+               die('Sorry there is a problem try again please!');
+            }
+         } else {
+            $this->view('users/confirm');
+         }
       }
    }
 
@@ -136,35 +153,34 @@ class Users extends Controller {
             'password' => $_POST['password'],
          ];
          $response = [
-            'status'  => 1,
+            'status'  => OK,
             'message' => 'Every Thing is Okay',
             'data'    => '',
          ];
-
          // Check the Email if not empty
          if (empty($data["email"])) {
-            $response["status"] = 0;
+            $response["status"] = EMPTY_EMAIL;
             $response["message"] = "Empty Email";
          }
          // Check the Email if exist
-
          if (!$this->userModel->findUserByEmail($data["email"])) {
 
-            $response["status"] = 0;
+            $response["status"] = EMAIL_N_EXIST;
             $response["message"] = "Email does not exist";
          }
          // Check the password if not empty
          if (empty($data["password"])) {
-            $response["status"] = 2;
+            $response["status"] = EMPTY_PASS;
             $response["message"] = "Empty Password";
          }
          // Check if there's no Problem
-         if ($response['status'] == 1) {
+         if ($response['status'] == OK) {
             // get The user From database
             $loggedInUser = $this->userModel->getUser($data['email'], $data['password']);
             if ($loggedInUser) {
                if (isset($_POST["ajax"])) {
                   $response['data'] = $loggedInUser;
+                  unset($response['data']->password);
                   header('Content-type: application/json');
                   $this->view('users/ajax', $response);
                } else {
@@ -175,8 +191,7 @@ class Users extends Controller {
                   }
                }
             } else {
-               echo "Yes Loginned";
-               $response["status"] = 2;
+               $response["status"] = INVALID_PASS;
                $response["message"] = "The Password is incorrect";
             }
 
@@ -191,6 +206,40 @@ class Users extends Controller {
          $this->view('users/login', $data);
       }
    }
+
+   public function forgetpassword($token = '', $email = '') {
+      $token = filter_var(trim($token), FILTER_SANITIZE_STRING);
+      $email = filter_var(trim($email), FILTER_SANITIZE_EMAIL);
+      $isEmail = filter_var($email, FILTER_VALIDATE_EMAIL);
+      if (!empty($token) && !empty($email) && $isEmail ) {
+         // Valid token
+         if ($this->userModel->getUserByEmailAndToken($email, $token)) {
+            die("User exist");
+            // Token exist so Confirm the email
+           // Process Email
+         } else {
+            // Token not exist
+            die('token not exist');
+         }
+
+      } else {
+         // inValid token
+         if (isset($_POST['submit'])) {
+            $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
+            $email = $_POST['email'];
+            $token = bin2hex(openssl_random_pseudo_bytes(8));
+            if (mail_token($email, $token)) {
+               redirect("users/forgetpassword");
+            } else {
+               die('Sorry there is a problem try again please!');
+            }
+         } else {
+            die('Show the View');
+//            $this->view('users/for');
+         }
+      }
+   }
+
 
    public function logout() {
       // unset all Data from Session
@@ -207,9 +256,11 @@ class Users extends Controller {
    }
 
    private function createSessionUser($user) {
-      $_SESSION["user_id"] = $user->id;
+
+      $_SESSION["user_id"] = $user->_id_student;
       $_SESSION["user_email"] = $user->email;
-      $_SESSION["user_name"] = $user->fullname;
+      $_SESSION["user_firstname"] = $user->first_name;
+      $_SESSION["user_lastname"] = $user->last_name;
       $_SESSION["user_level"] = $user->level;
       $_SESSION["user_section"] = $user->section;
       $_SESSION["user_group"] = $user->group;

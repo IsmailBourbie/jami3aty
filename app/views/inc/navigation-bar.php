@@ -7,7 +7,7 @@
                 <span>I</span>
             </div>
             <div class="user_info">
-                <h3><?=$_SESSION['user_name']?></h3>
+                <h3><?=$_SESSION['user_firstname'] . ' ' . $_SESSION['user_lastname']?></h3>
                 <p class="lead"><?=$_SESSION['user_level']?></p>
             </div>
 

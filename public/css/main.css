@@ -185,8 +185,9 @@ nav .container .items_icons .search_container .navbar-form input.form-control {
 
 .content-page .aside-left .my_data .user_info {
     padding: 3px 0 0;
-    float: left;
-    width: 300px;
+    float: right;
+    width: 230px;
+    text-align: left;
 }
 
 .content-page .aside-left .my_data a {
