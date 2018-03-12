@@ -7,10 +7,13 @@
       <w>enregistrement</w>
       <w>firstname</w>
       <w>forgetpassword</w>
+      <w>forgotpass</w>
       <w>fullname</w>
       <w>gmail</w>
       <w>lastname</w>
       <w>loginned</w>
+      <w>navbar</w>
+      <w>resetpass</w>
       <w>smtp</w>
     </words>
   </dictionary>

@@ -36,7 +36,7 @@ class User {
       }
    }
 
-   public function getUserByToken($token) {
+   public function findUserByToken($token) {
       $this->db->query('SELECT * FROM student WHERE token = :token');
       $this->db->bind(':token', $token);
       $row = $this->db->get();
@@ -49,16 +49,25 @@ class User {
       }
    }
 
-   public function getUserByEmailAndToken($email, $token) {
-      $this->db->query('SELECT * FROM student WHERE email = :email AND token = :token AND isConfirmed = 1');
-      $this->db->bind(':email', $email);
+   public function updateToken($email, $token) {
+      $this->db->query('UPDATE student SET token = :token WHERE email = :email');
       $this->db->bind(':token', $token);
-      $row = $this->db->get();
-      // Check row
-      if ($this->db->rowCount() > 0) {
+      $this->db->bind(':email', $email);
+      if ($this->db->execute()) {
          return true;
       } else {
-         return false;
+         return true;
+      }
+   }
+
+   public function updatePassword ($token, $password) {
+      $this->db->query('UPDATE student SET password = :password WHERE token = :token');
+      $this->db->bind(':token', $token);
+      $this->db->bind(':password', $password);
+      if ($this->db->execute()) {
+         return true;
+      } else {
+         return true;
       }
    }
 
@@ -77,8 +86,7 @@ class User {
       $this->db->bind(':email', $email);
       $row = $this->db->get();
       $hashed_password = $row->password;
-//      password_verify($password, $hashed_password)
-      if (true) {
+      if (password_verify($password, $hashed_password)) {
          return $row;
       } else {
          return false;

@@ -111,7 +111,7 @@
                 <div class="filed_ask">
                     <hr>
                     <p class="lead text-center">Première visite?<span id="show_signup">Inscrivez-vous.</span></p>
-                    <p class="lead text-center">Mot de passe oublier?</p>
+                    <p class="lead text-center"><a href="<?=URL_ROOT?>users/forgotpass">Mot de passe oublier?</a></p>
                 </div>
                 <!--Ask Problem login End-->
                 <div class="footer_login">

@@ -36,6 +36,9 @@ a:hover {
     border: none;
     box-shadow: 0px 0px 40px rgba(0, 0, 0, 0.21);
 }
+nav .default-nav li a:hover {
+    color: inherit !important;
+}
 
 nav .container .items_icons .logo > div {
     padding-top: 5px
@@ -77,7 +80,8 @@ nav .container .items_icons .list_items .navbar-nav > li > a i {
 }
 
 nav .container .items_icons .list_items .navbar-nav > li > a:hover,
-nav .container .items_icons .list_items .navbar-nav > li > a:focus {
+nav .container .items_icons .list_items .navbar-nav > li > a:focus,
+nav .default-nav li:hover{
     background-color: #72b0f7;
     color: #FFFFFF
 }
