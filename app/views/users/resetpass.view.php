@@ -25,6 +25,9 @@ require_once APP_ROOT . '/views/inc/header.php';
                <input type="password" class="form-control" placeholder="Confirm" name="confirmPassword">
             </div>
          </div>
+          <div class="error">
+             <?php if ($data["status"] !== OK) echo $data['message']; ?>
+          </div>
          <div class="col-md-2" style="margin-top: 10px">
             <input type="submit" name="submit" class="btn btn-success" value="Send">
          </div>

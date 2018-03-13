@@ -1,7 +1,7 @@
 <?php
 use PHPMailer\PHPMailer\PHPMailer;
 
-function mail_token($email, $body) {
+function mail_token($email, $body, $subject = "") {
    // Config Server
    $mail = new PHPMailer();
    $mail->isSMTP();
@@ -17,7 +17,7 @@ function mail_token($email, $body) {
    $mail->From = "jami3atyapp@gmail.com";
    $mail->FromName = "Jami3aty";
    $mail->addAddress($email);
-   $mail->Subject = "Complete your register";
+   $mail->Subject = $subject;
    $mail->Body = $body;
    $mail->AltBody = "Please click in the button to complete your register";
    if ($mail->send()) {

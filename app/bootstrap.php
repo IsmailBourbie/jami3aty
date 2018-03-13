@@ -4,6 +4,7 @@ require_once '../app/config/config.php';
 
 require_once '../app/helper/url_helper.php';
 require_once '../app/helper/session_helper.php';
+require_once '../app/helper/validation_helper.php';
 require_once '../app/helper/mailer_helper.php';
 
 // Include PhpMailer

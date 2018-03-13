@@ -27,3 +27,4 @@ define('INVALID_EMAIL',406);
 define('AVERAGE_CARD_ERR',407);
 define('EMPTY_AVERAGE',408);
 define('INVALID_AVERAGE',409);
+define('CONFIRM_PASS_ERR',410);

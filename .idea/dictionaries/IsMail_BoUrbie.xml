@@ -5,6 +5,7 @@
       <w>bourbieismail</w>
       <w>bourbieyounes</w>
       <w>enregistrement</w>
+      <w>fichiers</w>
       <w>firstname</w>
       <w>forgetpassword</w>
       <w>forgotpass</w>
@@ -13,8 +14,10 @@
       <w>lastname</w>
       <w>loginned</w>
       <w>navbar</w>
+      <w>notif</w>
       <w>resetpass</w>
       <w>smtp</w>
+      <w>tusers</w>
     </words>
   </dictionary>
 </component>

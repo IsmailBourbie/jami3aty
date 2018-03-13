@@ -13,15 +13,19 @@ require_once APP_ROOT . '/views/inc/header.php';
         </div>
         <div class="row">
             <div class="col-sm-8 col-sm-offset-1">
-                <div class="input-group">
+                <div class="input-group <?php if ($data["status"] !== OK) echo 'border-err'; ?>">
                     <span class="input-group-addon">@</span>
                     <input type="email" class="form-control" placeholder="Email" name="email">
+                </div>
+                <div class="error">
+                   <?php if ($data["status"] !== OK) echo $data['message']; ?>
                 </div>
             </div>
             <div class="col-md-2">
                 <input type="submit" name="submit" class="btn btn-success" value="Send">
             </div>
         </div>
+       <?php flash('email_send')?>
     </form>
 <?php
 require_once APP_ROOT . '/views/inc/footer.php';

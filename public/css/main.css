@@ -16,6 +16,17 @@ a:hover {
 .btn:active {
     box-shadow: unset;
 }
+form .error {
+    min-height: 10px;
+    text-align: left;
+    color: #dd1037;
+    font-size: 12px;
+    margin-top: 6px;
+    margin-left: 10px;
+}
+.border-err {
+    border: 1px solid #dd1037;
+}
 
 @media (max-width: 767px) {
 
@@ -179,7 +190,7 @@ nav .container .items_icons .search_container .navbar-form input.form-control {
 
 .content-page .aside-left .aside-content {
     position: fixed;
-    top: 60px;
+    top: 65px;
     left: 0;
     padding-left: 0px;
     padding-right: 0px;

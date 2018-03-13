@@ -73,9 +73,11 @@
         </div>
         <!--Slider side End-->
 
-        <!--Forme login Start-->
+        <!--Form login Start-->
         <div class="col-md-5 right">
             <form action="<?= URL_ROOT ?>users/login" method="post" class="form-login">
+               <?php flash("register_success"); flash("password_updated") ?>
+
                 <div class="feild-input">
                     <!--Email input Start-->
                     <div class="input-group required">
@@ -84,7 +86,9 @@
                                class="form-control" placeholder="Email">
                     </div>
                     <!--Email input End-->
-                    <div class='error'></div>
+                    <div class='error'>
+                       <?php if ($data["status"] == EMPTY_EMAIL || $data["status"] == INVALID_EMAIL || $data["status"] == EMAIL_N_EXIST) echo $data['message']; ?>
+                    </div>
                     <!--Password input Start-->
                     <div class="input-group required">
                         <span class="input-group-addon"
@@ -96,7 +100,9 @@
                         <span class="glyphicon glyphicon-eye-open custom-icon"></span>
                     </div>
                     <!--Password input End-->
-                    <div class='error'></div>
+                    <div class='error'>
+                       <?php if ($data["status"] == EMPTY_PASS || $data["status"] == INVALID_PASS) echo $data['message']; ?>
+                    </div>
                     <!--Remember me input Start-->
                     <div class="input-group">
                         <input id="remember_me" type="checkbox" name="remember_me">
@@ -111,7 +117,7 @@
                 <div class="filed_ask">
                     <hr>
                     <p class="lead text-center">Première visite?<span id="show_signup">Inscrivez-vous.</span></p>
-                    <p class="lead text-center"><a href="<?=URL_ROOT?>users/forgotpass">Mot de passe oublier?</a></p>
+                    <p class="lead text-center"><a href="<?= URL_ROOT ?>users/forgotpass">Mot de passe oublier?</a></p>
                 </div>
                 <!--Ask Problem login End-->
                 <div class="footer_login">
@@ -136,7 +142,9 @@
                         <i class="fa fa-question-circle-o custom-icon"
                            title="Ce numéro tu le trouve dans&#013;votre carte étudiant&#013;donnée par l'adminstration"></i>
                     </div>
-                    <div class='error'></div>
+                    <div class='error'>
+                       <?php if ($data["status"] == EMPTY_NUM_CARD || $data["status"] == INVALID_NUM_CARD || $data["status"] == AVERAGE_CARD_ERR) echo $data['message']; ?>
+                    </div>
                     <!-- User Card number End -->
 
                     <!-- Email Start -->
@@ -146,7 +154,9 @@
                                class="form-control"
                                placeholder="Email" name="email">
                     </div>
-                    <div class='error'></div>
+                    <div class='error'>
+                       <?php if ($data["status"] == EMPTY_EMAIL || $data["status"] == INVALID_EMAIL || $data["status"] == EMAIL_N_EXIST) echo $data['message']; ?>
+                    </div>
                     <!-- Email End -->
 
                     <!-- Moyenne BAC Start -->
@@ -157,7 +167,9 @@
                                class="form-control"
                                placeholder="Moyenne du BAC" name="average">
                     </div>
-                    <div class='error'></div>
+                    <div class='error'>
+                       <?php if ($data["status"] == EMPTY_AVERAGE || $data["status"] == INVALID_AVERAGE || $data["status"] == AVERAGE_CARD_ERR) echo $data['message']; ?>
+                    </div>
                     <!-- Moyenne BAC End -->
 
                     <!-- Password Start -->
@@ -170,7 +182,9 @@
                                placeholder="Mot de passe" name="password">
                         <span class="glyphicon glyphicon-eye-open custom-icon"></span>
                     </div>
-                    <div class='error'></div>
+                    <div class='error'>
+                       <?php if ($data["status"] == EMPTY_PASS || $data["status"] == INVALID_PASS) echo $data['message']; ?>
+                    </div>
 
                     <!-- Password End -->
                     <input id="signup_btn" type="submit" class="btn btn-block btn-success" value="S'inscrire">

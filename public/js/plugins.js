@@ -3,10 +3,12 @@
 $(document).ready(function () {
     'use strict';
     var pathname = location.pathname.replace("/jami3aty/", "");
-
+    pathname = pathname.replace('/', "");
     /* add active class for styling start */
     if (pathname.length > 0) {
-        $(".my_data .well li#" + pathname).addClass("avtive-navigation");
+        if ($(".my_data .well li#" + pathname).length != 0) {
+            $(".my_data .well li#" + pathname).addClass("avtive-navigation");
+        }
     } else {
         $(".my_data .well li#home").addClass("avtive-navigation");
     }

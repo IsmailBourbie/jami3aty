@@ -8,8 +8,15 @@ class Users extends Controller {
    }
 
    public function index() {
-      $data = [];
-      $this->view('users/login', $data);
+      if (isLoggedIn()) {
+         redirect("");
+      }
+      $response = [
+         'status'  => OK,
+         'message' => 'Every Thing is Okay',
+         'data'    => '',
+      ];
+      $this->view('users/login', $response);
    }
 
    public function register() {
@@ -30,59 +37,15 @@ class Users extends Controller {
             'message' => "Every thing is Okay",
          ];
          // Validate number card
-         if (empty($data["number_card"])) {
-            $response["status"] = EMPTY_NUM_CARD;
-            $response["message"] = "Empty number Card";
-         } else {
-            if (!filter_var($data['number_card'], FILTER_VALIDATE_INT)
-               || strlen($data['number_card']) < 8
-            ) {
-               $response["status"] = INVALID_NUM_CARD;
-               $response["message"] = "Invalid number card";
-            }
-         }
+         $response = validateNumCard($data['number_card'], $response);
          // Validate email
-         if (empty($data["email"])) {
-            $response["status"] = EMPTY_EMAIL;
-            $response["message"] = "Empty Email";
-         } else {
-            if (!filter_var($data["email"], FILTER_VALIDATE_EMAIL)) {
-               $response["status"] = INVALID_EMAIL;
-               $response["message"] = "Invalid Email";
-            }
-         }
-
-         // Check the Email if exist
-
-         if ($this->userModel->findUserByEmail($data["email"])) {
-            $response["status"] = EMAIL_N_EXIST;
-            $response["message"] = "Email exist";
-         }
+         $response = validateEmail($data["email"], $response, $this->userModel, true);
          // Check if Student Exist
-         if (!$this->userModel->isUserExist($data['average'], $data['number_card'])) {
-            $response["status"] = AVERAGE_CARD_ERR;
-            $response["message"] = "Average or Card number not exist";
-         }
+         $response = studentNotExist($data["average"], $data['number_card'], $this->userModel, $response);
          // Validate the Average
-         if (empty($data["average"])) {
-            $response["status"] = EMPTY_AVERAGE;
-            $response["message"] = "Empty Average";
-         } else {
-            if (!filter_var($data['average'], FILTER_VALIDATE_FLOAT)) {
-               $response["status"] = INVALID_AVERAGE;
-               $response["message"] = "Invalid Average";
-            }
-         }
+         $response = validateAverage($data['average'], $response);
          // Check the password if not empty
-         if (empty($data["password"])) {
-            $response["status"] = EMPTY_PASS;
-            $response["message"] = "Empty Password";
-         } else {
-            if (strlen($data["password"]) < 8) {
-               $response["status"] = INVALID_PASS;
-               $response["message"] = "Invalid Password";
-            }
-         }
+         $response = validatePassword($data['password'], $response);
 
          // Go on if no error
          if ($response['status'] == OK) {
@@ -94,7 +57,9 @@ class Users extends Controller {
                $body = "
                <p>Please click in the button to complete your register</p><a href='http://localhost/jami3aty/users/confirm/" . $data['token'] . "'><input type='button' value='Click Here!'></a>
                ";
-               if (mail_token($data['email'], $body)) {
+               $subject = "Complete Registration";
+               if (mail_token($data['email'], $body, $subject)) {
+                  flash('register_success', "Success! you must confirm your email");
                   redirect("users/login");
                } else {
                   die('Problem in Emailing');
@@ -103,18 +68,25 @@ class Users extends Controller {
                die("something wrong");
             }
          } else {
-            die(var_dump($response));
             // there is an errors
+            $this->view('users/login', $response);
          }
 
 
       } else {
          // Direct Url Request
-         $this->view("users/login");
+         $response = [
+            'status'  => "",
+            'message' => "",
+         ];
+         $this->view("users/login", $response);
       }
    }
 
    public function confirm($token = "") {
+      if (!isLoggedIn()) {
+         redirect("");
+      }
       $token = trim($token);
       if (!empty($token)) {
          // Valid token
@@ -133,19 +105,42 @@ class Users extends Controller {
       } else {
          // inValid token
          if (isset($_POST['submit'])) {
+
             $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
             $email = $_POST['email'];
-            $token = bin2hex(openssl_random_pseudo_bytes(8));
-            $body = "
+            $response = [
+               'status'  => OK,
+               'message' => "Every thing is Okay",
+            ];
+
+            $response = validateEmail($email, $response, $this->userModel);
+
+            if ($response['status'] == OK) {
+               $token = bin2hex(openssl_random_pseudo_bytes(8));
+               $body = "
                <p>Please click in the button to complete your register</p><a href='http://localhost/jami3aty/users/confirm/" . $token . "'><input type='button' value='Click Here!'></a>
                ";
-            if (mail_token($email, $body) && $this->userModel->updateToken($email, $token)) {
-               redirect("users/login");
+               $subject = "Complete Registration";
+               if (mail_token($email, $body, $subject) && $this->userModel->updateToken($email, $token)) {
+                  $_SESSION["isConfirmed"] = 1;
+
+                  flash('confirm_email_send', 'We send you en Email Check it 
+                        <br> if you don\'t receive it just try again <br><br>
+                        <a href="' . URL_ROOT . '">Home</a>');
+                  redirect('users/confirm');
+               } else {
+                  die('Sorry there is a problem try again please!');
+               }
             } else {
-               die('Sorry there is a problem try again please!');
+               $this->view("users/confirm", $response);
             }
+
          } else {
-            $this->view('users/confirm');
+            $response = [
+               'status'  => OK,
+               'message' => "",
+            ];
+            $this->view('users/confirm', $response);
          }
       }
    }
@@ -167,22 +162,10 @@ class Users extends Controller {
             'data'    => '',
          ];
          // Check the Email if not empty
-         if (empty($data["email"])) {
-            $response["status"] = EMPTY_EMAIL;
-            $response["message"] = "Empty Email";
-         }
-         // Check the Email if exist
-         if (!$this->userModel->findUserByEmail($data["email"])) {
-
-            $response["status"] = EMAIL_N_EXIST;
-            $response["message"] = "Email does not exist";
-         }
+         $response = validateEmail($data['email'], $response, $this->userModel);
          // Check the password if not empty
-         if (empty($data["password"])) {
-            $response["status"] = EMPTY_PASS;
-            $response["message"] = "Empty Password";
-         }
-         // Check if there's no Problem
+         $response = validatePassword($data['password'], $response);
+         // Check if the email is Exist
          if ($response['status'] == OK) {
             // get The user From database
             $loggedInUser = $this->userModel->getUser($data['email'], $data['password']);
@@ -198,17 +181,21 @@ class Users extends Controller {
             } else {
                $response["status"] = INVALID_PASS;
                $response["message"] = "The Password is incorrect";
+               $this->view('users/login', $response);
             }
 
          } else {
-            die("Error");
+            $this->view('users/login', $response);
          }
 
 
       } else {
          // URL Request
-         $data = [];
-         $this->view('users/login', $data);
+         $response = [
+            'status'  => "",
+            'message' => "",
+         ];
+         $this->view('users/login', $response);
       }
    }
 
@@ -222,21 +209,34 @@ class Users extends Controller {
             $tokenConfirm = $_POST["token"];
             $password = $_POST["password"];
             $confirmPassword = $_POST["confirmPassword"];
-            if ($token == $tokenConfirm && $password == $confirmPassword) {
+            $response = [
+               'status'  => OK,
+               'message' => 'We send a key to your email, check it! ',
+            ];
+
+            // VALIDATE the Password
+            $response = validatePassword($password, $response, $confirmPassword);
+            if ($token == $tokenConfirm && $response['status'] == OK) {
                // update Password and the token
                $password = password_hash($password, PASSWORD_DEFAULT);
                if ($this->userModel->updatePassword($token, $password) && $this->userModel->confirmEmail($token)) {
+                  flash('password_updated', "Success! You can login now");
                   redirect("users/login");
                } else {
                   die('Error in updating');
                }
             } else {
-               die('Password incorrect');
+               $response["token"] = $token;
+               $this->view("users/resetpass", $response);
             }
          } else {
             // Show Inputs
-            $data = ['token' => $token];
-            $this->view("users/resetpass", $data);
+            $response = [
+               'token'   => $token,
+               'status'  => "",
+               'message' => '',
+            ];
+            $this->view("users/resetpass", $response);
          }
 
       } else {
@@ -250,27 +250,38 @@ class Users extends Controller {
       }
       if (isset($_POST["submit"])) {
          $email = filter_var($_POST['email'], FILTER_SANITIZE_EMAIL);
-         $token = bin2hex(openssl_random_pseudo_bytes(64));
-         if ($this->userModel->findUserByEmail($email)) {
+         $response = [
+            'status'  => OK,
+            'message' => 'We send a key to your email, check it! ',
+         ];
+         $response = validateEmail($email, $response, $this->userModel);
+
+         if ($response['status'] == OK) {
+            $token = bin2hex(openssl_random_pseudo_bytes(64));
+            $subject = "Reset Password";
             $body = "You want to Change your password ? <a href='http://localhost/jami3aty/users/resetpass/" . $token . "'><input type='button' value='Click here'></a>
                     <br>
                     <br>
                     If you don't change it just ignore this email";
-            if (mail_token($email, $body) && $this->userModel->updateToken($email, $token)) {
-               redirect('users/login');
+            if (mail_token($email, $body, $subject) && $this->userModel->updateToken($email, $token)) {
+               flash('email_send', 'We send you en Email Check it <br> if you don\'t receive it just try again ');
+               redirect('users/forgotpass');
             } else {
                die("Problem Emailing Try Again");
             }
          } else {
-            die("error in your email");
+            $this->view("users/forgotpass", $response);
          }
 
       } else {
-         $this->view("users/forgotpass");
+         $response = [
+            'status'  => OK,
+            'message' => 'ok',
+         ];
+         $this->view("users/forgotpass", $response);
       }
 
    }
-
 
    public function logout() {
       // unset all Data from Session
@@ -295,8 +306,8 @@ class Users extends Controller {
       $_SESSION["user_level"] = $user->level;
       $_SESSION["user_section"] = $user->section;
       $_SESSION["user_group"] = $user->group;
+      $_SESSION["isConfirmed"] = $user->isConfirmed;
       redirect('');
    }
-
 
 }
