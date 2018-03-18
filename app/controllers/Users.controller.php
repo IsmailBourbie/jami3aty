@@ -59,17 +59,28 @@ class Users extends Controller {
                ";
                $subject = "Complete Registration";
                if (mail_token($data['email'], $body, $subject)) {
-                  flash('register_success', "Success! you must confirm your email");
-                  redirect("users/login");
+                  if (isset($_POST["ajax"])) {
+                     header('Content-type: application/json');
+                     $this->view('users/ajax', $response);
+                  } else {
+                     flash('register_success', "Success! you must confirm your email");
+                     redirect("users/login");
+                  }
+
                } else {
-                  die('Problem in Emailing');
+                  die('Problem in Emailing make sure that you have connection and try');
                }
             } else {
-               die("something wrong");
+               die("something wrong please try again!");
             }
          } else {
             // there is an errors
-            $this->view('users/login', $response);
+            if (isset($_POST["ajax"])) {
+               header('Content-type: application/json');
+               $this->view('users/ajax', $response);
+            } else {
+               $this->view('users/login', $response);
+            }
          }
 
 
@@ -179,13 +190,25 @@ class Users extends Controller {
                   $this->createSessionUser($loggedInUser);
                }
             } else {
-               $response["status"] = INVALID_PASS;
-               $response["message"] = "The Password is incorrect";
-               $this->view('users/login', $response);
+               if (isset($_POST["ajax"])) {
+                  $response["status"] = INVALID_PASS;
+                  $response["message"] = "The Password is incorrect";
+                  header('Content-type: application/json');
+                  $this->view('users/ajax', $response);
+               } else {
+                  $response["status"] = INVALID_PASS;
+                  $response["message"] = "The Password is incorrect";
+                  $this->view('users/login', $response);
+               }
             }
 
          } else {
-            $this->view('users/login', $response);
+            if (isset($_POST["ajax"])) {
+               header('Content-type: application/json');
+               $this->view('users/ajax', $response);
+            } else {
+               $this->view('users/login', $response);
+            }
          }
 
 
@@ -264,19 +287,30 @@ class Users extends Controller {
                     <br>
                     If you don't change it just ignore this email";
             if (mail_token($email, $body, $subject) && $this->userModel->updateToken($email, $token)) {
-               flash('email_send', 'We send you en Email Check it <br> if you don\'t receive it just try again ');
-               redirect('users/forgotpass');
+               if (isset($_POST["ajax"])) {
+                  header('Content-type: application/json');
+                  $this->view('users/ajax', $response);
+               } else {
+                  flash('email_send', 'We send you en Email Check it <br> if you don\'t receive it just try again ');
+                  redirect('users/forgotpass');
+
+               }
             } else {
                die("Problem Emailing Try Again");
             }
          } else {
-            $this->view("users/forgotpass", $response);
+            if (isset($_POST["ajax"])) {
+               header('Content-type: application/json');
+               $this->view('users/ajax', $response);
+            } else {
+               $this->view("users/forgotpass", $response);
+            }
          }
 
       } else {
          $response = [
             'status'  => OK,
-            'message' => 'ok',
+            'message' => '',
          ];
          $this->view("users/forgotpass", $response);
       }

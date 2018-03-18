@@ -2,20 +2,27 @@
 
 /**** Navbar start ****/
 
+#5C97BF
 /**** Navbar end ****/
 
 body {
     padding-top: 70px;
-    background-color: #FAFBFC;
+    background-color: #e6ecf0;
+    color: #22313F;
 }
 
 a:hover {
     text-decoration: none;
 }
 
-.btn:active {
+.btn:active,
+.btn:focus,
+button:active,
+button:focus {
     box-shadow: unset;
+    outline: none;
 }
+
 form .error {
     min-height: 10px;
     text-align: left;
@@ -24,6 +31,7 @@ form .error {
     margin-top: 6px;
     margin-left: 10px;
 }
+
 .border-err {
     border: 1px solid #dd1037;
 }
@@ -45,8 +53,9 @@ form .error {
 .navbar-default {
     background-color: #FFFFFF;
     border: none;
-    box-shadow: 0px 0px 40px rgba(0, 0, 0, 0.21);
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.21);
 }
+
 nav .default-nav li a:hover {
     color: inherit !important;
 }
@@ -57,7 +66,7 @@ nav .container .items_icons .logo > div {
 
 nav .container .items_icons .logo a {
     font-size: 34px;
-    color: #72b0f7;
+    color: #5C97BF;
     opacity: .89;
 }
 
@@ -83,7 +92,7 @@ nav .container .items_icons .list_items ul li:not(.list_gestion) .dropdown-menu 
 }
 
 nav .container .items_icons .list_items .navbar-nav > li > a {
-    color: #72b0f7;
+    color: #5C97BF;
 }
 
 nav .container .items_icons .list_items .navbar-nav > li > a i {
@@ -92,8 +101,8 @@ nav .container .items_icons .list_items .navbar-nav > li > a i {
 
 nav .container .items_icons .list_items .navbar-nav > li > a:hover,
 nav .container .items_icons .list_items .navbar-nav > li > a:focus,
-nav .default-nav li:hover{
-    background-color: #72b0f7;
+nav .default-nav li:hover {
+    background-color: #5C97BF;
     color: #FFFFFF
 }
 
@@ -177,10 +186,6 @@ nav .container .items_icons .search_container .navbar-form input.form-control {
 
 /** content page style Start **/
 
-.content-page .row {
-    margin: 0px
-}
-
 /*** Aside left style start ***/
 
 .content-page .aside-left {
@@ -259,14 +264,14 @@ nav .container .items_icons .search_container .navbar-form input.form-control {
 
 .avtive-navigation {
     border-left: 2px solid #cc5333;
-    color: #72b0f7;
+    color: #5C97BF;
 
 }
 
 .content-page .aside-left .my_data li:hover {
     border-left: 2px solid #cc5333;
     cursor: pointer;
-    color: #72b0f7;
+    color: #5C97BF;
 }
 
 .content-page .aside-left .my_data li h4:hover {
@@ -340,16 +345,196 @@ nav .container .items_icons .search_container .navbar-form input.form-control {
 .content-page .main {}
 
 .content-page .main .welcom_day {
-    height: 200px;
-    background: green;
-    margin: 20px auto;
+    padding: 10px;
+    margin: 20px 0px;
+    border-radius: 6px;
+    box-shadow: 0px 0px 6px 0 rgba(46, 61, 73, .2);
+    background: #fafbfc;
 }
 
-.content-page .main .publication_mold {
-    height: 400px;
-    background: red;
-    margin-bottom: 20px;
+.content-page .main .welcom_day h2 {
+    margin: 10px;
 }
+
+.content-page .main .welcom_day h2 span {
+    color: #67809F;
+    letter-spacing: 2px;
+    font-weight: bold;
+    font-family: monospace;
+}
+
+.content-page .main .welcom_day p {
+    color: #676767;
+    font-size: 16px;
+    font-weight: 300;
+    line-height: 1.4;
+}
+
+/* Publication Mold*/
+
+.publication_mold {
+    padding-top: 10px;
+    margin: 20px 0px;
+    border-radius: 6px;
+    box-shadow: 0px 0px 6px 0 rgba(46, 61, 73, .2);
+    background: #FaFbFc;
+}
+
+.publication_mold .publication_head .options_dropdown .dropdown button {
+    background: transparent;
+    border: none;
+    padding-top: 3px;
+}
+
+.publication_mold .publication_head .options_dropdown .dropdown button:hover,
+.publication_mold .publication_head .options_dropdown .dropdown button:focus {
+    color: #657786;
+}
+
+.publication_mold .publication_head .options_dropdown .dropdown .dropdown-menu {
+    min-width: 248px;
+    top: 75%;
+    right: 0px;
+    left: auto;
+    padding: 0;
+}
+
+.publication_mold .publication_head .options_dropdown .dropdown .dropdown-menu li {
+    padding: 5px 10px;
+    font-weight: bold;
+}
+
+.publication_mold .publication_head .options_dropdown .dropdown .dropdown-menu li div {
+    margin-left: 5px;
+    display: inline-block;
+}
+
+.publication_mold .publication_head .options_dropdown .dropdown .dropdown-menu li:hover {
+    background: #5C97BF;
+    cursor: pointer;
+    color: #fafbfc;
+}
+
+.publication_mold .publication_head .options_dropdown .dropdown .dropdown-menu li:hover div {
+    transform: translateX(2px);
+    transition: all .2s ease-out;
+}
+
+.publication_mold .publication_head .course_info {
+    display: flex;
+}
+
+.publication_mold .publication_head .course_info .teacher_logo {
+    position: relative;
+    width: 50px;
+}
+
+.publication_mold .publication_head .course_info .teacher_logo span {
+    background-color: #5C97BF;
+    position: absolute;
+    width: 100%;
+    text-align: center;
+    border-radius: 50%;
+    font-size: 35px;
+    top: 5px;
+}
+
+.publication_mold .publication_head .course_info .module_teacher {
+    padding: 10px;
+}
+
+.publication_mold .publication_head .course_info .module_teacher h3 {
+    margin: 0px;
+    display: inline-block;
+    font-size: 21px;
+}
+
+.publication_mold .publication_head .course_info .module_teacher span {
+    font-size: 14px;
+    color: #657786;
+}
+
+.publication_mold .publication_head .course_info .module_teacher span.separitor {
+    font-weight: bold;
+    position: relative;
+    top: -3px;
+}
+
+.publication_mold .publication_body {
+    padding: 11px 18px 0px;
+}
+
+
+.publication_mold .publication_body p {
+    font-size: 17px;
+    margin-bottom: 0px
+}
+
+.publication_mold .publication_body .react-bar {
+    padding: 5px;
+    opacity: 0;
+}
+
+.publication_mold:hover .publication_body .react-bar {
+    transition: all .1s linear;
+    opacity: 1;
+}
+
+.publication_mold .react-bar hr {
+    border-top: 1px solid #cc5333;
+    margin: 0 0 5px -5px;
+    width: 60px;
+    text-align: left;
+}
+
+.publication_mold .react-bar li {
+    color: #5C97BF;
+}
+
+
+
+.publication_mold .publication_footer {
+    border-top: 1px solid rgba(34, 49, 63, .2);
+    background-color: #f1f4f6;
+}
+
+.publication_mold .publication_footer .current_comments .comment_mold {
+    padding: 10px 20px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.publication_mold .publication_footer .current_comments .comment_mold .row > .col-xs-2 {
+    width: 14.666667%;
+}
+
+.publication_mold .publication_footer .current_comments .comment_mold .row:hover .hide {
+    display: block !important;
+}
+
+.publication_mold .publication_footer .current_comments .comment_mold .student_logo {
+    position: relative;
+    min-height: 10px;
+}
+
+.publication_mold .publication_footer .current_comments .comment_mold .student_logo span {
+    position: absolute;
+    right: 2px;
+    width: 40px;
+    height: 40px;
+    background: green;
+    font-size: 21px;
+    text-align: center;
+    border-radius: 50%;
+    padding: 5px;
+}
+
+.publication_mold .publication_footer .current_comments .comment_mold .student_data {
+    background: #FFF;
+    padding: 10px;
+    margin-left: 10px;
+}
+
 
 /*** Main style End ***/
 
@@ -363,6 +548,7 @@ nav .container .items_icons .search_container .navbar-form input.form-control {
     right: 1%;
     box-shadow: 2px 4px 8px 0 rgba(46, 61, 73, .2)
 }
+
 
 /*** Aside right style End ***/
 
@@ -391,3 +577,9 @@ nav .container .items_icons .search_container .navbar-form input.form-control {
 /*** content page style Start **/
 
 /* Style End */
+
+/*FramWork*/
+
+.reset-margin {
+    margin: 0px !important;
+}

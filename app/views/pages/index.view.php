@@ -1,15 +1,13 @@
 <?php
 require_once APP_ROOT . '/views/inc/header.php';
 ?>
-    <div class="row">
+    <div class="row reset-margin">
 
         <div class="col-lg-3  col-md-12 aside-right">
             <div class="calnedar">
                 <div class="aside-content">
                     <div class="ma_journee">
-                        <a class="btn btn-default btn-block" role="button"
-                           data-toggle="collapse" href="#ma_journee"
-                           aria-expanded="false" aria-controls="ma_journee">
+                        <a class="btn btn-default btn-block" role="button" data-toggle="collapse" href="#ma_journee" aria-expanded="false" aria-controls="ma_journee">
                             Ma Journée Universitaire
                         </a>
                         <div class="collapse in" id="ma_journee">
@@ -43,26 +41,104 @@ require_once APP_ROOT . '/views/inc/header.php';
             </div>
         </div>
         <div class="col-lg-3  col-md-12 aside-left">
-           <?php
+            <?php
            require_once APP_ROOT . '/views/inc/navigation-bar.php';
            ?>
         </div>
-        <div class="col-lg-6  col-md-12 main">
+        <div class="col-lg-6 col-md-12 main">
             <div class="welcom_day">
-
+                <h2 class="text-center">Bonjour <span>ISMAIL</span></h2>
+                <p class="text-center">Aucune événement aujourd'hui</p>
             </div>
-            <div class="publication_mold"></div>
-            <div class="publication_mold"></div>
-            <div class="publication_mold"></div>
-            <div class="publication_mold"></div>
-            <div class="publication_mold"></div>
-            <div class="publication_mold"></div>
-            <div class="publication_mold"></div>
-            <div class="publication_mold"></div>
-        </div>
+            <div class="publication_mold">
+                <div class="row publication_head reset-margin">
+                    <div class="col-xs-10 course_info">
+                        <div class="teacher_logo">
+                            <span>O</span>
+                        </div>
+                        <div class="module_teacher">
+                            <h3>Ouared Aek</h3>
+                            <span class="separitor">.</span>
+                            <span class="time_pub">1 min</span>
+                            <span class="module_name show">System d'exploitaion</span>
+                        </div>
+                    </div>
+                    <div class="col-xs-2 options_dropdown text-right">
+                        <div class="dropdown">
+                            <button id="option_pub" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="fa fa-ellipsis-h fa-2x"></i>
+                            </button>
+                            <ul class="dropdown-menu" aria-labelledby="option_pub">
+                                <li>
+                                    <i class="fa fa-bookmark"></i>
+                                    <div>Sauvgarder la publication</div>
+                                </li>
+                                <li>
+                                    <i class="fa fa-times-circle"></i>
+                                    <div>Masquer la publication</div>
+                                </li>
+                                <li>
+                                    <i class="fa fa-clipboard"></i>
+                                    <div>Copier le lien</div>
+                                </li>
+                                <li>
+                                    <i class="fa fa-exclamation-circle"></i>
+                                    <div>Signaler une erreur</div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="publication_body">
+                    <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nemo vero beatae a, atque repellat obcaecati explicabo placeat. Praesentium eum laboriosam officia tenetur magni provident quo veritatis, id repellat vero quae ut eligendi quasi, quidem! Ipsam soluta inventore earum facilis esse veritatis expedita placeat? Cumque necessitatibus explicabo nihil perspiciatis, aut autem.</p>
 
+                    <div class="react-bar">
+                        <hr>
+                        <ul class="list-inline reset-margin clearfix">
+                            <li><i class="fa fa-comment fa-2x"></i></li>
+                            <li><i class="fa fa-envelope fa-2x"></i></li>
+                            <li class="pull-right"><i class="fa fa-bookmark fa-2x"></i></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="publication_footer">
+                    <div class="current_comments">
+                        <div class="comment_mold">
+                            <div class="row reset-margin">
+                                <div class="col-xs-1 student_logo">
+                                    <span>Y</span>
+                                </div>
+                                <div class="col-xs-9 student_data">
+                                    <h4 class="student_name reset-margin">Charfaoui Younes</h4>
+                                    <p class="student_comment reset-margin">Lorem ipsum dolor sit amet, consectetur.</p>
+                                    <span class="time_comment">10 min</span>
+                                </div>
+                                <div class="col-xs-2 hide text-right">
+                                    <i class="fa fa-exclamation-circle" style="font-size: 17px"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="comment_mold">
+                            <div class="row reset-margin">
+                                <div class="col-xs-1 student_logo">
+                                    <span>R</span>
+                                </div>
+                                <div class="col-xs-9 student_data">
+                                    <h4 class="student_name reset-margin">Redouane Baya</h4>
+                                    <p class="student_comment reset-margin">Lorem ipsum dolor sit amet, consectetur.</p>
+                                    <span class="time_comment">25 min</span>
+                                </div>
+                                <div class="col-xs-2 hide text-right">
+                                    <i class="fa fa-exclamation-circle" style="font-size: 17px"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
-<?php
+    <?php
 require_once APP_ROOT . '/views/inc/footer.php';
 ?>
