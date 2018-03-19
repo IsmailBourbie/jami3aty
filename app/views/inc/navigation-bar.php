@@ -1,14 +1,16 @@
 <div class="aside-content">
     <div class="my_data">
-        <a class="btn btn-default btn-block clearfix" role="button"
-           data-toggle="collapse" href="#my_data" aria-expanded="false"
-           aria-controls="ma_journee">
+        <a class="btn btn-default btn-block clearfix" role="button" data-toggle="collapse" href="#my_data" aria-expanded="false" aria-controls="ma_journee">
             <div class="user_img">
                 <span>I</span>
             </div>
             <div class="user_info">
-                <h3><?=$_SESSION['user_firstname'] . ' ' . $_SESSION['user_lastname']?></h3>
-                <p class="lead"><?=$_SESSION['user_level']?></p>
+                <h3>
+                    <?=$_SESSION['user_firstname'] . ' ' . $_SESSION['user_lastname']?>
+                </h3>
+                <p class="lead">
+                    <?=$_SESSION['user_level']?>
+                </p>
             </div>
 
         </a>
@@ -37,10 +39,10 @@
                     <li>
                         <hr>
                     </li>
-                    <li id="fichiers">
+                    <li id="modules">
                         <h4>
                             <i class="fa fa-book"></i>
-                            <a href="#">Fichier</a>
+                            <a href="#">Modules</a>
                         </h4>
                     </li>
                     <li id="notes">

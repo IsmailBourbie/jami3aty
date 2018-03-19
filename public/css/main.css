@@ -2,13 +2,13 @@
 
 /**** Navbar start ****/
 
-#5C97BF
 /**** Navbar end ****/
 
 body {
     padding-top: 70px;
     background-color: #e6ecf0;
     color: #22313F;
+
 }
 
 a:hover {
@@ -530,9 +530,29 @@ nav .container .items_icons .search_container .navbar-form input.form-control {
 }
 
 .publication_mold .publication_footer .current_comments .comment_mold .student_data {
+    position: relative;
     background: #FFF;
     padding: 10px;
     margin-left: 10px;
+}
+
+.publication_mold .publication_footer .current_comments .comment_mold .student_data > span.arrow {
+    border: solid 10px transparent;
+    border-right-color: #FFF;
+    position: absolute;
+    top: 0;
+    left: 0;
+    margin-top: 5px;
+    margin-left: -20px;
+}
+
+.publication_mold .publication_footer .current_comments .comment_mold .student_data h5 {
+    font-size: 15px;
+    font-weight: 600;
+}
+
+.publication_mold .publication_footer .current_comments .comment_mold .student_data span.time_comment {
+    font-size: 12px;
 }
 
 

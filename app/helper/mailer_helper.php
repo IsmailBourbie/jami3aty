@@ -6,7 +6,7 @@ function mail_token($email, $body, $subject = "") {
    $mail = new PHPMailer();
    $mail->isSMTP();
    $mail->SMTPAuth = true;
-   $mail->SMTPDebug = 2;
+   $mail->SMTPDebug = 0;
    $mail->Host = 'smtp.gmail.com';
    $mail->Username = 'jami3atyapp@gmail.com';
    $mail->Password = 'bourbieyounes';

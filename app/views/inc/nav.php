@@ -1,17 +1,15 @@
 <header>
     <nav class="navbar navbar-default navbar-fixed-top">
-       <?php if ($_SESSION['isConfirmed'] == 0 && !strchr(basename($_SERVER['REQUEST_URI']), "confirm")): ?>
-           <div class="alert alert-danger alert-dismissible" role="alert"
-                style="padding: 0;margin: auto;text-align: center;">
-               <button type="button" class="close" data-dismiss="alert"
-                       aria-label="Close" style="right: 11px;>
-                   <span aria-hidden="true">&times;</span>
-               </button>
-               <a class="alert-link" href="<?= URL_ROOT ?>users/confirm">
-                   You don't confirm your email! please confirm it now
-               </a>
-           </div>
-       <?php endif; ?>
+        <?php if ($_SESSION['isConfirmed'] == 0 && !strchr(basename($_SERVER['REQUEST_URI']),"confirm")): ?>
+        <div class="alert alert-danger alert-dismissible" role="alert" style="padding: 0;margin: auto;text-align: center">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close" style="right: 11px;">
+                   <span aria-hidden=" true ">&times;</span>
+           </button>
+
+            <a class="alert-link " href="<?=URL_ROOT ?>users/confirm"> You don't confirm your email! please confirm it now
+            </a>
+        </div>
+        <?php endif; ?>
         <div class="container">
             <div class="row items_icons">
                 <!-- logo container Start -->
@@ -25,8 +23,7 @@
                 <div class="col-md-4 col-md-push-5 col-xs-9 list_items">
                     <ul class="nav navbar-nav navbar-right">
                         <li class="dropdown notifications">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
-                               aria-haspopup="true" aria-expanded="false">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
                                 <i class="fa fa-bell fa-2x"></i>
                             </a>
                             <ul class="dropdown-menu">
@@ -41,8 +38,7 @@
                             </ul>
                         </li>
                         <li class="dropdown messages">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
-                               aria-haspopup="true" aria-expanded="false">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
                                 <i class="fa fa-envelope fa-2x"></i>
                             </a>
                             <ul class="dropdown-menu">
@@ -57,8 +53,7 @@
                             </ul>
                         </li>
                         <li class="dropdown list_gestion">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
-                               aria-haspopup="true" aria-expanded="false">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
                                 <i class="fa fa-chevron-down fa-2x"></i>
                             </a>
                             <ul class="dropdown-menu">
@@ -77,8 +72,7 @@
                 <div class="col-md-5 col-md-pull-4 col-xs-12 search_container">
                     <form class="navbar-form navbar-left">
                         <div class="input-group">
-                            <input type="text" class="form-control" placeholder="Rechercher"
-                                   aria-describedby="basic-addon1">
+                            <input type="text" class="form-control" placeholder="Rechercher" aria-describedby="basic-addon1">
                             <span class="input-group-addon" id="basic-addon1">
                          <button type="submit">
                               <i class="fa fa-search"></i>

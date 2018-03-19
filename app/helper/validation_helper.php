@@ -75,10 +75,25 @@ function validateNumCard($num_card, $response) {
    return $response;
 }
 
-function studentNotExist($average, $number_card, $object, $response) {
-   if (!$object->isUserExist($average, $number_card)) {
-      $response["status"] = AVERAGE_CARD_ERR;
-      $response["message"] = "Average or Card number not exist";
+function studentNotExistByAverage($average, $num_card, $object, $response) {
+   if (!$object->isUserExistByAverage($average, $num_card)) {
+      $response["status"] = AVERAGE_N_EXIST;
+      $response["message"] = "Average not exist";
+   }
+   return $response;
+}
+
+function studentNotExistByNumCard($num_card, $object, $response) {
+   if (!$object->isUserExistByNumCard($num_card)) {
+      $response["status"] = NUM_CARD_N_EXIST;
+      $response["message"] = "Card number not exist";
+   }
+   return $response;
+}
+function ifUserNotExist($num_card, $object, $response) {
+   if (!$object->ifUserNotExist($num_card)) {
+      $response["status"] = STUDENT_EXIST;
+      $response["message"] = "Student already exist";
    }
    return $response;
 }

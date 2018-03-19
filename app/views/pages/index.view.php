@@ -109,9 +109,10 @@ require_once APP_ROOT . '/views/inc/header.php';
                                     <span>Y</span>
                                 </div>
                                 <div class="col-xs-9 student_data">
-                                    <h4 class="student_name reset-margin">Charfaoui Younes</h4>
+                                    <h5 class="student_name reset-margin">Charfaoui Younes</h5>
                                     <p class="student_comment reset-margin">Lorem ipsum dolor sit amet, consectetur.</p>
                                     <span class="time_comment">10 min</span>
+                                    <span class="arrow"></span>
                                 </div>
                                 <div class="col-xs-2 hide text-right">
                                     <i class="fa fa-exclamation-circle" style="font-size: 17px"></i>
@@ -124,9 +125,10 @@ require_once APP_ROOT . '/views/inc/header.php';
                                     <span>R</span>
                                 </div>
                                 <div class="col-xs-9 student_data">
-                                    <h4 class="student_name reset-margin">Redouane Baya</h4>
+                                    <h5 class="student_name reset-margin">Redouane Baya</h5>
                                     <p class="student_comment reset-margin">Lorem ipsum dolor sit amet, consectetur.</p>
                                     <span class="time_comment">25 min</span>
+                                    <span class="arrow"></span>
                                 </div>
                                 <div class="col-xs-2 hide text-right">
                                     <i class="fa fa-exclamation-circle" style="font-size: 17px"></i>
@@ -134,6 +136,8 @@ require_once APP_ROOT . '/views/inc/header.php';
                             </div>
                         </div>
                     </div>
+
+                    <div class="input_comment"></div>
                 </div>
             </div>
         </div>

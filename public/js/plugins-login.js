@@ -1,4 +1,4 @@
-/*jslint vars: true*/
+/*jslint eqeq: true, vars: true*/
 /*global $, alert, console*/
 $(document).ready(function () {
     "use strict";
@@ -77,7 +77,7 @@ $(document).ready(function () {
                 }
             }
         } else if ($(this).attr("data") === "num_carte") {
-            if (input_val.match(carte_num_pattern)) {
+            if (input_val.match(carte_num_pattern) && input_val.length == 8) {
                 $(this).parent().css("border-color", "#5cb85c");
                 $(this).parent().next(".error").html("");
             } else {
@@ -102,15 +102,19 @@ $(document).ready(function () {
     /*Login with ajax Start */
     $('form').submit(function (e) {
         if ($(this).hasClass("form-signup")) {
-            if ($("#num_carte").val().length <= 8) {
+            if ($("#num_carte").val().length !== 8) {
                 e.preventDefault();
                 $("#num_carte").parent(".required").css("border-color", "#dd1037");
+                $("#num_carte").parent(".required").next(".error").html("Ce numéro est invalide.");
                 $("#num_carte").focus();
                 return;
+            } else {
+                $("#num_carte").parent(".required").next(".error").html("");
             }
             if ($("#average").val().length == 0) {
                 e.preventDefault();
                 $("#average").parent(".required").css("border-color", "#dd1037");
+                $("#num_carte").parent(".required").next(".error").html("Cette moyenne est invalid.");
                 $("#average").focus();
                 return;
             }
@@ -134,7 +138,7 @@ $(document).ready(function () {
                 return;
             }
         });
-        
+
 
     });
     /*Login with ajax End */

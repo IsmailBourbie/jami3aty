@@ -40,12 +40,16 @@ class Users extends Controller {
          $response = validateNumCard($data['number_card'], $response);
          // Validate email
          $response = validateEmail($data["email"], $response, $this->userModel, true);
-         // Check if Student Exist
-         $response = studentNotExist($data["average"], $data['number_card'], $this->userModel, $response);
          // Validate the Average
          $response = validateAverage($data['average'], $response);
          // Check the password if not empty
          $response = validatePassword($data['password'], $response);
+         // Check if User not active
+         $response = ifUserNotExist($data['number_card'], $this->userModel, $response);
+         // Check if Student Exist By Average
+         $response = studentNotExistByAverage($data["average"], $data["number_card"], $this->userModel, $response);
+         // Check if Student Exist By Average
+         $response = studentNotExistByNumCard($data["number_card"], $this->userModel, $response);
 
          // Go on if no error
          if ($response['status'] == OK) {
@@ -62,12 +66,19 @@ class Users extends Controller {
                   if (isset($_POST["ajax"])) {
                      header('Content-type: application/json');
                      $this->view('users/ajax', $response);
-                  } else {
-                     flash('register_success', "Success! you must confirm your email");
-                     redirect("users/login");
+                     return;
                   }
+                  flash('register_success', "Success! you must confirm your email");
+                  redirect("users/login");
 
                } else {
+                  if (isset($_POST["ajax"])) {
+                     $response["status"] = ERR_EMAIL;
+                     $response["message"] = "Problem in Emailing";
+                     header('Content-type: application/json');
+                     $this->view('users/ajax', $response);
+                     return;
+                  }
                   die('Problem in Emailing make sure that you have connection and try');
                }
             } else {
@@ -186,29 +197,29 @@ class Users extends Controller {
                   unset($response['data']->password);
                   header('Content-type: application/json');
                   $this->view('users/ajax', $response);
-               } else {
-                  $this->createSessionUser($loggedInUser);
+                  return;
                }
+               $this->createSessionUser($loggedInUser);
             } else {
                if (isset($_POST["ajax"])) {
                   $response["status"] = INVALID_PASS;
                   $response["message"] = "The Password is incorrect";
                   header('Content-type: application/json');
                   $this->view('users/ajax', $response);
-               } else {
-                  $response["status"] = INVALID_PASS;
-                  $response["message"] = "The Password is incorrect";
-                  $this->view('users/login', $response);
+                  return;
                }
+               $response["status"] = INVALID_PASS;
+               $response["message"] = "The Password is incorrect";
+               $this->view('users/login', $response);
             }
 
          } else {
             if (isset($_POST["ajax"])) {
                header('Content-type: application/json');
                $this->view('users/ajax', $response);
-            } else {
-               $this->view('users/login', $response);
+               return;
             }
+            $this->view('users/login', $response);
          }
 
 
@@ -271,7 +282,7 @@ class Users extends Controller {
       if (isLoggedIn()) {
          redirect("");
       }
-      if (isset($_POST["submit"])) {
+      if (isset($_POST["submit"]) || isset($_POST["ajax"])) {
          $email = filter_var($_POST['email'], FILTER_SANITIZE_EMAIL);
          $response = [
             'status'  => OK,
@@ -290,12 +301,18 @@ class Users extends Controller {
                if (isset($_POST["ajax"])) {
                   header('Content-type: application/json');
                   $this->view('users/ajax', $response);
-               } else {
-                  flash('email_send', 'We send you en Email Check it <br> if you don\'t receive it just try again ');
-                  redirect('users/forgotpass');
-
+                  return;
                }
+               flash('email_send', 'We send you en Email Check it <br> if you don\'t receive it just try again ');
+               redirect('users/forgotpass');
             } else {
+               if (isset($_POST["ajax"])) {
+                  $response['status'] = ERR_EMAIL;
+                  $response['message'] = "Problem in emailing";
+                  header('Content-type: application/json');
+                  $this->view('users/ajax', $response);
+                  return;
+               }
                die("Problem Emailing Try Again");
             }
          } else {

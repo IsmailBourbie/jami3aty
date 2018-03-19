@@ -143,7 +143,7 @@
                            title="Ce numéro tu le trouve dans&#013;votre carte étudiant&#013;donnée par l'adminstration"></i>
                     </div>
                     <div class='error'>
-                       <?php if ($data["status"] == EMPTY_NUM_CARD || $data["status"] == INVALID_NUM_CARD || $data["status"] == AVERAGE_CARD_ERR) echo $data['message']; ?>
+                       <?php if ($data["status"] == EMPTY_NUM_CARD || $data["status"] == INVALID_NUM_CARD || $data["status"] == NUM_CARD_N_EXIST || $data["status"] == STUDENT_EXIST) echo $data['message']; ?>
                     </div>
                     <!-- User Card number End -->
 
@@ -168,7 +168,7 @@
                                placeholder="Moyenne du BAC" name="average">
                     </div>
                     <div class='error'>
-                       <?php if ($data["status"] == EMPTY_AVERAGE || $data["status"] == INVALID_AVERAGE || $data["status"] == AVERAGE_CARD_ERR) echo $data['message']; ?>
+                       <?php if ($data["status"] == EMPTY_AVERAGE || $data["status"] == INVALID_AVERAGE || $data["status"] == AVERAGE_N_EXIST) echo $data['message']; ?>
                     </div>
                     <!-- Moyenne BAC End -->
 
