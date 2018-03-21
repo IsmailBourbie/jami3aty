@@ -598,7 +598,7 @@ nav .container .items_icons .search_container .navbar-form input.form-control {
     text-align: center;
     cursor: pointer;
     z-index: 2;
-    display: none;
+
 }
 
 .content-page .modules .card_mold .front .header {
@@ -628,7 +628,7 @@ nav .container .items_icons .search_container .navbar-form input.form-control {
     font-weight: bold;
 }
 
-.content-page .modules .card_mold .front .body p.description {
+.content-page .modules .card_mold .front .body div.description {
     color: #555;
     font-size: 18px;
     padding: 7px;
@@ -652,6 +652,7 @@ nav .container .items_icons .search_container .navbar-form input.form-control {
     border-radius: 10px;
     z-index: 1;
     overflow: auto;
+    display: none;
 }
 
 .content-page .modules .card_mold .back ol {
