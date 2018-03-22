@@ -1,60 +1,72 @@
 <?php
 require_once APP_ROOT . '/views/inc/header.php';
 if ($data["status"] == OK) {
-   $response = $data["data"];
+   $responses = $data["data"];
 } else {
-   $response = array();
+   $responses = array();
 }
 ?>
-
-    <!--Modules pages-->
-
+    <?php require_once APP_ROOT . '/views/inc/header.php';?>
     <div class="row reset-margin">
-        <div class="col-lg-3  col-md-12 aside-left">
-            <?php
-       require_once APP_ROOT . '/views/inc/navigation-bar.php';
-       ?>
+        <div class="aside-left reset-padding">
+            <?php require_once APP_ROOT . '/views/inc/navigation-bar.php';?>
         </div>
-        <div class="col-lg-9  col-md-12 modules">
-            <div class="row reset-margin">
-                <div class="col-lg-4 card_mold">
-                    <div class="front">
-                        <div class="header">
-                            <span class="circle"><?= $response[0]->short_title ?></span>
-                        </div>
-                        <div class="body">
-                            <h3>
-                                <?= $response[0]->title ?>
-                            </h3>
-                            <div class="description text-left">
-                                <h4 class="reset-margin">Enseignants:</h4>
-                                <ul class="list-unstyled reset-margin professors">
-                                    <li><span>Course:</span> Lorem ipsum.</li>
-                                    <li><span>TD:</span> Lorem ipsum.</li>
-                                    <li><span>TP:</span> Lorem ipsum.</li>
-                                </ul>
+        <div class="content">
+            <?php require_once APP_ROOT . '/views/inc/nav.php';?>
+            <div class="main">
+                <div class="modules">
+                    <div class="row reset-margin">
+
+                        <?php foreach($responses as $response):?>
+
+                        <div class="col-lg-5 card_mold">
+                            <div class="front">
+                                <div class="header">
+                                    <div class="circle">
+                                        <?= $response->short_title ?>
+                                    </div>
+                                </div>
+                                <div class="body">
+                                    <h3>
+                                        <?= $response->title ?>
+                                    </h3>
+                                    <ul class="list-unstyled reset-margin description">
+                                        <li>Enseignant de cours<span class="pull-right">
+                                        <?= $response->course_prof?></span></li>
+                                        <li>Enseignant de TD<span class="pull-right">
+                                        <?= $response->course_prof?></span></li>
+                                        <li>Enseignant de TP<span class="pull-right">
+                                        <?= $response->course_prof?></span></li>
+                                        <li>Coefficient<span class="number pull-right">
+                                        <?= $response->coefficient?>
+                                        </span></li>
+                                        <li>Crédit<span class="number pull-right">
+                                        <?=$response->credit?></span></li>
+                                    </ul>
+                                    <span class="clickme">Hover to see Contents</span>
+                                </div>
                             </div>
-                            <span class="clickme">Hover to see Contents</span>
+                            <div class="back">
+                                <h3>Index:</h3>
+                                <ol class="reset-margin">
+                                    <li>Lorem ipsum dolor.</li>
+                                    <li>Lorem ipsum dolor.</li>
+                                    <li>Lorem ipsum dolor.</li>
+                                    <li>Lorem ipsum dolor.</li>
+                                    <li>Lorem ipsum dolor.</li>
+                                    <li>Lorem ipsum dolor.</li>
+                                    <li>Lorem ipsum dolor.</li>
+                                    <li>Lorem ipsum dolor.</li>
+                                    <li>Lorem ipsum dolor.</li>
+                                </ol>
+                            </div>
                         </div>
-                    </div>
-                    <div class="back">
-                        <ol class="reset-margin">
-                            <li>Lorem ipsum dolor.</li>
-                            <li>Lorem ipsum dolor.</li>
-                            <li>Lorem ipsum dolor.</li>
-                            <li>Lorem ipsum dolor.</li>
-                            <li>Lorem ipsum dolor.</li>
-                            <li>Lorem ipsum dolor.</li>
-                            <li>Lorem ipsum dolor.</li>
-                            <li>Lorem ipsum dolor.</li>
-                        </ol>
+
+                        <?php endforeach;?>
+
                     </div>
                 </div>
             </div>
         </div>
     </div>
-
-
-    <?php
-require_once APP_ROOT . '/views/inc/footer.php';
-?>
+    <?php require_once APP_ROOT . '/views/inc/footer.php';?>

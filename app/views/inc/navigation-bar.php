@@ -1,8 +1,10 @@
-<div class="aside-content">
+<div id="menubar" class="aside-content">
     <div class="my_data">
-        <a class="btn btn-default btn-block clearfix" role="button" data-toggle="collapse" href="#my_data" aria-expanded="false" aria-controls="ma_journee">
+        <a>
             <div class="user_img">
-                <span>I</span>
+                <i class="fa fa-user"></i>
+                <!--                <span class="glyphicon glyphicon-user" aria-hidden="true"></span>-->
+
             </div>
             <div class="user_info">
                 <h3>
@@ -26,7 +28,7 @@
                     </li>
                     <li id="messages">
                         <h4>
-                            <i class="fa fa-envelope-square"></i>
+                            <i class="fa fa-envelope"></i>
                             <a href="#">Messages</a>
                         </h4>
                     </li>

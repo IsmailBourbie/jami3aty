@@ -4,32 +4,45 @@ class Pages extends Controller {
 
 
    public function __construct() {
-      if (!isLoggedIn()) {
-         redirect('users/login');
-      }
    }
 
    public function index($args = "") {
-
+      if (!isLoggedIn()) {
+         redirect('users/login');
+      }
       $data = [];
       $this->view("pages/index", $data);
    }
 
-   public function modules($args = "") {
+   public function modules() {
       $this->modulesModel = $this->model("Modules");
-      $object = $this->modulesModel->getModules();
-      $sortArray = $this->arrange_rows($object);
-
       $response = [
          'status' => OK,
-         'data'   => $this->obj_arr($sortArray),
+         'data'   => null,
       ];
       if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+         $level = isset($_POST['level']) ? $_POST['level'] : "";
+         $section = isset($_POST['section']) ? $_POST['section'] : "";
+         $group = isset($_POST['group']) ? $_POST['group'] : "";
+         $object = $this->modulesModel->getModules($level, $section, $group);
+         if ($object) {
+            $sortArray = $this->arrange_rows($object);
+            $response['data'] = $this->obj_arr($sortArray);
+         } else {
+            $response['status'] = ERR_EMAIL;
+         }
          header('Content-type: application/json');
          $this->view('users/ajax', $response);
          return;
+      } else {
+         if (!isLoggedIn()) {
+            redirect('users/login');
+         }
+         $object = $this->modulesModel->getModules($_SESSION['user_level'], $_SESSION['user_section'], $_SESSION['user_group']);
+         $sortArray = $this->arrange_rows($object);
+         $response['data'] = $this->obj_arr($sortArray);
+         $this->view("pages/modules", $response);
       }
-      $this->view("pages/modules", $response);
 
    }
 
