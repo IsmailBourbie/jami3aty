@@ -39,6 +39,12 @@ form .error {
     .col-xs-9 {
         width: 74.8%;
     }
+
+    .main .aside-right {
+        padding-top: 50px;
+        margin-bottom: 90px !important;
+        right: 2.2%;
+    }
 }
 
 .form-control:focus {
@@ -60,8 +66,6 @@ form .error {
     width: 79%;
     left: 297px;
 }
-
-
 
 .content {
     margin-left: 297px;
@@ -164,18 +168,22 @@ nav .items_icons .search_container .navbar-form input.form-control {
     nav .items_icons .list_items .navbar-nav {
         float: right !important;
     }
+
     nav .items_icons .list_items .navbar-nav .open .dropdown-menu {
         position: absolute;
         left: -320px;
         background-color: #e7e7e7;
         min-width: 380px;
     }
+
     nav .items_icons .list_items .navbar-nav .open.messages .dropdown-menu {
         left: -260px;
     }
+
     nav .items_icons .list_items .navbar-nav .open.notifications .dropdown-menu {
         left: -205px;
     }
+
     nav .items_icons .logo {
         width: 90px;
         overflow: hidden
@@ -188,6 +196,7 @@ nav .items_icons .search_container .navbar-form input.form-control {
         padding-right: 0px;
         padding-left: 0px;
     }
+
     nav .items_icons .list_items .navbar-nav .open .dropdown-menu {
         min-width: 310px;
         left: -245px;
@@ -196,6 +205,7 @@ nav .items_icons .search_container .navbar-form input.form-control {
     nav .items_icons .list_items .navbar-nav .open.messages .dropdown-menu {
         left: -180px;
     }
+
     nav .items_icons .list_items .navbar-nav .open.notifications .dropdown-menu {
         left: -120px;
     }
@@ -280,7 +290,7 @@ nav .items_icons .search_container .navbar-form input.form-control {
     margin-bottom: 10px;
 }
 
-.avtive-navigation {
+.active-navigation {
     border-left: 2px solid #cc5333;
     color: #46bfbe;
 
@@ -341,7 +351,6 @@ nav .items_icons .search_container .navbar-form input.form-control {
     box-shadow: unset;
 }
 
-
 .main .aside-right .aside-content .ma_journee .well li h4 {
     margin: 5px 0;
     font-weight: bolder;
@@ -361,7 +370,8 @@ nav .items_icons .search_container .navbar-form input.form-control {
 
 /*** Main style start ***/
 
-.main .main {}
+.main .main {
+}
 
 .main .main .welcom_day {
     padding: 10px;
@@ -483,7 +493,6 @@ nav .items_icons .search_container .navbar-form input.form-control {
     padding: 11px 18px 0px;
 }
 
-
 .publication_mold .publication_body p {
     font-size: 17px;
     margin-bottom: 0px
@@ -509,8 +518,6 @@ nav .items_icons .search_container .navbar-form input.form-control {
 .publication_mold .react-bar li {
     color: #5C97BF;
 }
-
-
 
 .publication_mold .publication_footer {
     border-top: 1px solid rgba(34, 49, 63, .2);
@@ -574,7 +581,6 @@ nav .items_icons .search_container .navbar-form input.form-control {
     font-size: 12px;
 }
 
-
 /*** Main style End ***/
 
 /*** Aside right style start ***/
@@ -587,7 +593,6 @@ nav .items_icons .search_container .navbar-form input.form-control {
     box-shadow: 2px 4px 8px 0 rgba(46, 61, 73, .2);
     width: 32%;
 }
-
 
 /*** Aside right style End ***/
 
@@ -605,7 +610,7 @@ nav .items_icons .search_container .navbar-form input.form-control {
     transition: all .8s ease-in-out;
     margin-left: 4%;
     margin-right: 4%;
-    margin-bottom: 20px;
+    margin-bottom: 60px;
 }
 
 .main .modules .card_mold:hover {
@@ -670,7 +675,6 @@ nav .items_icons .search_container .navbar-form input.form-control {
     background: rgba(48, 55, 62, .08);
 }
 
-
 .main .modules .card_mold .front .body .description li > span {
     color: #555;
     font-size: 13px;
@@ -730,13 +734,17 @@ nav .items_icons .search_container .navbar-form input.form-control {
         margin-left: 10px;
         background-color: transparent;
         box-shadow: unset;
+        width: 100%;
     }
+
     .main .aside-right .aside-content .ma_journee .well {
         background: #FFF;
     }
+
     .main .aside-left .copyright {
         display: none;
     }
+
     .main .main {
         margin: 0;
     }
@@ -746,20 +754,25 @@ nav .items_icons .search_container .navbar-form input.form-control {
     .aside-left .aside-content {
         left: -300px;
     }
+
     .aside-left .my_data li {
         margin-bottom: 0px;
     }
+
     .content {
         margin-left: 0;
     }
+
     .navbar-fixed-top {
         width: 100%;
         left: auto;
         padding: 0;
     }
+
     nav .items_icons .page-title > button {
         display: inline-block;
     }
+
     .main .modules {
         margin-top: 75px;
     }
@@ -778,7 +791,6 @@ nav .items_icons .search_container .navbar-form input.form-control {
     right: -297px;
     width: 100%
 }
-
 
 /****Responsive End****/
 

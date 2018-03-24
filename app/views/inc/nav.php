@@ -18,7 +18,7 @@
             <button id="show-menubar" class="button-menu">
                 <i class="fa fa-bars fa-2x"></i>
             </button>
-            <span>Modules</span>
+            <span><?=$data["page_title"]?></span>
         </div>
         <!-- Liste items container Start -->
         <div class="col-md-4 col-xs-7 col-md-push-5 list_items ">

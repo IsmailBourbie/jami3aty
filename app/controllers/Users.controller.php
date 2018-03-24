@@ -27,30 +27,29 @@ class Users extends Controller {
          // SANITIZE the Inputs of POST
          $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
          $data = [
-            'number_card' => $_POST['number_card'],
-            'email'       => $_POST['email'],
-            'average'     => $_POST['average'],
-            'password'    => $_POST['password'],
+            'number_card' => isset($_POST['number_card']) ? $_POST['number_card'] : "",
+            'email'       => isset($_POST['email']) ? $_POST['email'] : "",
+            'average'     => isset($_POST['average']) ? $_POST['average'] : "",
+            'password'    => isset($_POST['password']) ? $_POST['password'] : "",
          ];
          $response = [
             'status'  => OK,
             'message' => "Every thing is Okay",
          ];
-         // Validate number card
-         $response = validateNumCard($data['number_card'], $response);
-         // Validate email
-         $response = validateEmail($data["email"], $response, $this->userModel, true);
-         // Validate the Average
-         $response = validateAverage($data['average'], $response);
-         // Check the password if not empty
-         $response = validatePassword($data['password'], $response);
          // Check if User not active
          $response = ifUserNotExist($data['number_card'], $this->userModel, $response);
          // Check if Student Exist By Average
          $response = studentNotExistByAverage($data["average"], $data["number_card"], $this->userModel, $response);
          // Check if Student Exist By Average
          $response = studentNotExistByNumCard($data["number_card"], $this->userModel, $response);
-
+         // Check the password if not empty
+         $response = validatePassword($data['password'], $response);
+         // Validate the Average
+         $response = validateAverage($data['average'], $response);
+         // Validate email
+         $response = validateEmail($data["email"], $response, $this->userModel, true);
+         // Validate number card
+         $response = validateNumCard($data['number_card'], $response);
          // Go on if no error
          if ($response['status'] == OK) {
             // no Errors
@@ -65,7 +64,7 @@ class Users extends Controller {
                if (mail_token($data['email'], $body, $subject)) {
                   if (isset($_POST["ajax"])) {
                      header('Content-type: application/json');
-                     $this->view('users/ajax', $response);
+                     $this->view('api/json', $response);
                      return;
                   }
                   flash('register_success', "Success! you must confirm your email");
@@ -76,7 +75,7 @@ class Users extends Controller {
                      $response["status"] = ERR_EMAIL;
                      $response["message"] = "Problem in Emailing";
                      header('Content-type: application/json');
-                     $this->view('users/ajax', $response);
+                     $this->view('api/json', $response);
                      return;
                   }
                   die('Problem in Emailing make sure that you have connection and try');
@@ -88,7 +87,7 @@ class Users extends Controller {
             // there is an errors
             if (isset($_POST["ajax"])) {
                header('Content-type: application/json');
-               $this->view('users/ajax', $response);
+               $this->view('api/json', $response);
             } else {
                $this->view('users/login', $response);
             }
@@ -98,8 +97,9 @@ class Users extends Controller {
       } else {
          // Direct Url Request
          $response = [
-            'status'  => "",
-            'message' => "",
+            'page_title' => ucfirst(__FUNCTION__),
+            'status'     => "",
+            'message'    => "",
          ];
          $this->view("users/login", $response);
       }
@@ -129,7 +129,7 @@ class Users extends Controller {
          if (isset($_POST['submit'])) {
 
             $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
-            $email = $_POST['email'];
+            $email = isset($_POST['email']) ? $_POST['email'] : "";
             $response = [
                'status'  => OK,
                'message' => "Every thing is Okay",
@@ -168,26 +168,25 @@ class Users extends Controller {
    }
 
    public function login() {
-      if (isLoggedIn()) {
+      if (isLoggedIn() && $_SERVER["REQUEST_METHOD"] == 'GET') {
          redirect("");
       }
       if ($_SERVER['REQUEST_METHOD'] == 'POST') {
          // Post Request
          $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
          $data = [
-            'email'    => $_POST['email'],
-            'password' => $_POST['password'],
+            'email'    => isset($_POST['email']) ? $_POST['email'] : "",
+            'password' => isset($_POST['password']) ? $_POST['password'] : "",
          ];
          $response = [
             'status'  => OK,
             'message' => 'Every Thing is Okay',
             'data'    => '',
          ];
-         // Check the Email if not empty
-         $response = validateEmail($data['email'], $response, $this->userModel);
          // Check the password if not empty
          $response = validatePassword($data['password'], $response);
-         // Check if the email is Exist
+         // Check the Email if not empty
+         $response = validateEmail($data['email'], $response, $this->userModel);
          if ($response['status'] == OK) {
             // get The user From database
             $loggedInUser = $this->userModel->getUser($data['email'], $data['password']);
@@ -196,7 +195,7 @@ class Users extends Controller {
                   $response['data'] = $loggedInUser;
                   unset($response['data']->password);
                   header('Content-type: application/json');
-                  $this->view('users/ajax', $response);
+                  $this->view('api/json', $response);
                   return;
                }
                $this->createSessionUser($loggedInUser);
@@ -205,7 +204,7 @@ class Users extends Controller {
                   $response["status"] = INVALID_PASS;
                   $response["message"] = "The Password is incorrect";
                   header('Content-type: application/json');
-                  $this->view('users/ajax', $response);
+                  $this->view('api/json', $response);
                   return;
                }
                $response["status"] = INVALID_PASS;
@@ -216,7 +215,7 @@ class Users extends Controller {
          } else {
             if (isset($_POST["ajax"])) {
                header('Content-type: application/json');
-               $this->view('users/ajax', $response);
+               $this->view('api/json', $response);
                return;
             }
             $this->view('users/login', $response);
@@ -226,8 +225,9 @@ class Users extends Controller {
       } else {
          // URL Request
          $response = [
-            'status'  => "",
-            'message' => "",
+            'page_title' => ucfirst(__FUNCTION__),
+            'status'     => "",
+            'message'    => "",
          ];
          $this->view('users/login', $response);
       }
@@ -240,9 +240,9 @@ class Users extends Controller {
       $token = filter_var(trim($token), FILTER_SANITIZE_STRING);
       if ($this->userModel->findUserByToken($token) && !empty($token)) {
          if (isset($_POST['submit'])) {
-            $tokenConfirm = $_POST["token"];
-            $password = $_POST["password"];
-            $confirmPassword = $_POST["confirmPassword"];
+            $tokenConfirm = isset($_POST["token"]) ? $_POST["token"] : "";
+            $password = isset($_POST["password"]) ? $_POST["password"] : "";
+            $confirmPassword = isset($_POST["confirmPassword"]) ? $_POST["confirmPassword"] : "";
             $response = [
                'status'  => OK,
                'message' => 'We send a key to your email, check it! ',
@@ -283,7 +283,8 @@ class Users extends Controller {
          redirect("");
       }
       if (isset($_POST["submit"]) || isset($_POST["ajax"])) {
-         $email = filter_var($_POST['email'], FILTER_SANITIZE_EMAIL);
+         $email = isset($_POST['email']) ? $_POST['email'] : "";
+         $email = filter_var($email, FILTER_SANITIZE_EMAIL);
          $response = [
             'status'  => OK,
             'message' => 'We send a key to your email, check it! ',
@@ -300,7 +301,7 @@ class Users extends Controller {
             if (mail_token($email, $body, $subject) && $this->userModel->updateToken($email, $token)) {
                if (isset($_POST["ajax"])) {
                   header('Content-type: application/json');
-                  $this->view('users/ajax', $response);
+                  $this->view('api/json', $response);
                   return;
                }
                flash('email_send', 'We send you en Email Check it <br> if you don\'t receive it just try again ');
@@ -310,7 +311,7 @@ class Users extends Controller {
                   $response['status'] = ERR_EMAIL;
                   $response['message'] = "Problem in emailing";
                   header('Content-type: application/json');
-                  $this->view('users/ajax', $response);
+                  $this->view('api/json', $response);
                   return;
                }
                die("Problem Emailing Try Again");
@@ -318,16 +319,18 @@ class Users extends Controller {
          } else {
             if (isset($_POST["ajax"])) {
                header('Content-type: application/json');
-               $this->view('users/ajax', $response);
+               $this->view('api/json', $response);
             } else {
+               $response['page_title'] = 'Forgot password';
                $this->view("users/forgotpass", $response);
             }
          }
 
       } else {
          $response = [
-            'status'  => OK,
-            'message' => '',
+            'page_title' => 'Forgot password',
+            'status'     => OK,
+            'message'    => '',
          ];
          $this->view("users/forgotpass", $response);
       }

@@ -5,12 +5,16 @@
       <w>bourbieismail</w>
       <w>bourbieyounes</w>
       <w>enregistrement</w>
+      <w>enregistré</w>
+      <w>evenment</w>
       <w>fichiers</w>
       <w>firstname</w>
       <w>forgetpassword</w>
       <w>forgotpass</w>
       <w>fullname</w>
       <w>gmail</w>
+      <w>journee</w>
+      <w>journée</w>
       <w>lastname</w>
       <w>loginned</w>
       <w>navbar</w>
@@ -18,6 +22,7 @@
       <w>resetpass</w>
       <w>smtp</w>
       <w>tusers</w>
+      <w>évènements</w>
     </words>
   </dictionary>
 </component>

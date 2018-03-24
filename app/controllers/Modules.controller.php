@@ -1,24 +1,18 @@
 <?php
 
-class Pages extends Controller {
-
-
+class Modules extends Controller {
    public function __construct() {
-   }
-
-   public function index($args = "") {
-      if (!isLoggedIn()) {
+      if ($_SERVER['REQUEST_METHOD'] == 'GET' && !isLoggedIn()) {
          redirect('users/login');
       }
-      $data = [];
-      $this->view("pages/index", $data);
+      $this->modulesModel = $this->model("Module");
    }
 
-   public function modules() {
-      $this->modulesModel = $this->model("Modules");
+   public function index() {
       $response = [
-         'status' => OK,
-         'data'   => null,
+         "page_title" => __CLASS__,
+         'status'     => OK,
+         'data'       => null,
       ];
       if ($_SERVER['REQUEST_METHOD'] == 'POST') {
          $level = isset($_POST['level']) ? $_POST['level'] : "";
@@ -32,18 +26,14 @@ class Pages extends Controller {
             $response['status'] = ERR_EMAIL;
          }
          header('Content-type: application/json');
-         $this->view('users/ajax', $response);
+         $this->view('api/json', $response);
          return;
       } else {
-         if (!isLoggedIn()) {
-            redirect('users/login');
-         }
          $object = $this->modulesModel->getModules($_SESSION['user_level'], $_SESSION['user_section'], $_SESSION['user_group']);
          $sortArray = $this->arrange_rows($object);
          $response['data'] = $this->obj_arr($sortArray);
-         $this->view("pages/modules", $response);
+         $this->view("modules/index", $response);
       }
-
    }
 
    private function obj_arr($obj_arr) {
@@ -73,7 +63,6 @@ class Pages extends Controller {
       }
       return $array;
    }
-
 
    private function arrange_rows($object) {
       $object = (array)$object;
@@ -110,6 +99,6 @@ class Pages extends Controller {
          }
       }
       $sortArray = $this->unsetData($sortArray, ["fullName", "type", "course", "tp", "td", "_id_subject"]);
-      return $sortArray;
+      return array_reverse($sortArray);
    }
 }

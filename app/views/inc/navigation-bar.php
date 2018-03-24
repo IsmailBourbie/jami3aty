@@ -32,7 +32,7 @@
                             <a href="#">Messages</a>
                         </h4>
                     </li>
-                    <li id="notif">
+                    <li id="notification">
                         <h4>
                             <i class="fa fa-bell"></i>
                             <a href="#">Notifications</a>
@@ -53,19 +53,19 @@
                             <a href="#">Notes</a>
                         </h4>
                     </li>
-                    <li id="emploi">
+                    <li id="planning">
                         <h4>
                             <i class="fa fa-calendar"></i>
                             <a href="#">Emploi du temps</a>
                         </h4>
                     </li>
-                    <li id="evenment">
+                    <li id="évènements">
                         <h4>
                             <i class="fa fa-bullhorn"></i>
                             <a href="#">Évènements</a>
                         </h4>
                     </li>
-                    <li id="enrg">
+                    <li id="Enregistré">
                         <h4>
                             <i class="fa fa-bookmark"></i>
                             <a href="#">Enregistrement</a>

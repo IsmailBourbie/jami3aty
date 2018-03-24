@@ -2,25 +2,14 @@
 /*global $, alert, console*/
 $(document).ready(function () {
     'use strict';
-    var pathname = location.pathname;
-    if (pathname.indexOf("pages") > -1) {
-        pathname = location.pathname.replace("/jami3aty/pages", "");
-    } else {
-        pathname = location.pathname.replace("/jami3aty", "");
-    }
-
-    pathname = pathname.replace('/', "");
+    var title = document.title.toLowerCase();
     /* add active class for styling start */
-    if (pathname.length > 0) {
-        if ($(".my_data .well li#" + pathname).length !== 0) {
-            $(".my_data .well li#" + pathname).addClass("avtive-navigation");
-        }
-    } else {
-        $(".my_data .well li#home").addClass("avtive-navigation");
+    if (title.length > 0) {
+        $(".my_data .well li#" + title).addClass("active-navigation");
     }
     /* add active class for styling start */
 
-    /* Hide ma joutnée et le meun on resize start */
+    /* Hide ma journée et le menu on resize start */
     (function () {
         var ma_journee = $('.aside-right .collapse');
         if (window.innerWidth <= 1200) {

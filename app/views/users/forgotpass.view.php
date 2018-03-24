@@ -12,7 +12,7 @@ require_once APP_ROOT . '/views/inc/header.php';
             </div>
             <div class="row">
                 <div class="col-sm-8 col-sm-offset-1">
-                    <div class="input-group <?php if ($data[" status "] !== OK) echo 'border-err'; ?>">
+                    <div class="input-group <?php if ($data["status"] !== OK) echo 'border-err'; ?>">
                         <span class="input-group-addon">@</span>
                         <input type="email" class="form-control" placeholder="Email" name="email">
                     </div>

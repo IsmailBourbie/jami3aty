@@ -7,7 +7,7 @@
 */
 
 class App {
-    protected $currentController = 'pages';
+    protected $currentController = 'Home';
     protected $currentMethod = 'index';
     protected $params = [];
 

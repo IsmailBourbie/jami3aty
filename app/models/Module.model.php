@@ -1,6 +1,6 @@
 <?php
 
-class Modules {
+class Module {
    private $db;
 
    public function __construct() {
@@ -11,7 +11,7 @@ class Modules {
    public function getModules($level, $section, $group) {
       $this->db->query("SELECT subject.*, 
                                    assignment.type, 
-                                   concat(professor.degree , ' ' , 
+                                   concat(professor.degree , '. ' , 
                                    professor.first_name , ' ', 
                                    professor.last_name) 
                             as fullName
@@ -21,7 +21,8 @@ class Modules {
                                   IN (0,:group)) AND subject._id_subject = assignment._id_subject 
                                   AND assignment.section = :section and subject.level = :level)
                             INNER JOIN professor 
-                                  ON professor._id_professor = assignment._id_professor)");
+                                  ON professor._id_professor = assignment._id_professor)
+                                  ORDER BY subject.coefficient, subject.title DESC ");
       $this->db->bind(':level', $level);
       $this->db->bind(':section', $section);
       $this->db->bind(':group', $group);
