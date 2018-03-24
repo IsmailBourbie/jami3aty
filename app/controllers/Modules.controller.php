@@ -64,15 +64,28 @@ class Modules extends Controller {
       return $array;
    }
 
+   private function checkProf($object, $next_object) {
+      switch ($next_object['type']) {
+         case 1:
+            $object["course_prof"] = $next_object["fullName"];
+         case 2:
+            $object["td_prof"] = $next_object["fullName"];
+         case 3:
+            $object["tp_prof"] = $next_object["fullName"];
+      }
+      return $object;
+
+   }
+
    private function arrange_rows($object) {
       $object = (array)$object;
       $object = $this->obj_arr($object);
       $sortArray = array();
       for ($i = 0; $i < count($object); $i++) {
          if ($object[$i]['_id_subject'] == $object[($i + 1) % count($object)]['_id_subject'] && $object[$i]['_id_subject'] == $object[($i + 2) % count($object)]['_id_subject']) {
-            $object[$i]['course_prof'] = $object[$i]["fullName"];
-            $object[$i]['tp_prof'] = $object[$i + 2]["fullName"];
-            $object[$i]['tp_prof'] = $object[$i + 2]["fullName"];
+            $object[$i] = $this->checkProf($object[$i], $object[$i]);
+            $object[$i] = $this->checkProf($object[$i], $object[$i + 1]);
+            $object[$i] = $this->checkProf($object[$i], $object[$i + 2]);
             $sortArray[count($sortArray)] = $object[$i];
             $i += 2;
          } elseif ($object[$i]['_id_subject'] == $object[($i + 1) % count($object)]['_id_subject']) {

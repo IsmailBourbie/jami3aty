@@ -89,6 +89,7 @@ class Users extends Controller {
                header('Content-type: application/json');
                $this->view('api/json', $response);
             } else {
+               $response['page_title'] = ucfirst(__FUNCTION__);
                $this->view('users/login', $response);
             }
          }
@@ -218,6 +219,7 @@ class Users extends Controller {
                $this->view('api/json', $response);
                return;
             }
+            $response['page_title'] = ucfirst(__FUNCTION__);
             $this->view('users/login', $response);
          }
 
