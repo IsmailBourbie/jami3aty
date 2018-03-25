@@ -268,7 +268,7 @@ nav .items_icons .search_container .navbar-form input.form-control {
 
 .aside-left .my_data a p {
     font-size: 18px;
-    color: #cc5333;
+    color: #d91f2d;
     /*Orange #f7b972*/
 }
 
@@ -291,13 +291,13 @@ nav .items_icons .search_container .navbar-form input.form-control {
 }
 
 .active-navigation {
-    border-left: 2px solid #cc5333;
+    border-left: 2px solid #d91f2d;
     color: #46bfbe;
 
 }
 
 .aside-left .my_data li:hover {
-    border-left: 2px solid #cc5333;
+    border-left: 2px solid #d91f2d;
     cursor: pointer;
     color: #46bfbe;
 }
@@ -340,7 +340,7 @@ nav .items_icons .search_container .navbar-form input.form-control {
 }
 
 .main .aside-right .aside-content .ma_journee a {
-    background-color: #cc5333;
+    background-color: #d91f2d;
     color: #FFFFFF;
 }
 
@@ -370,8 +370,7 @@ nav .items_icons .search_container .navbar-form input.form-control {
 
 /*** Main style start ***/
 
-.main .main {
-}
+.main .main {}
 
 .main .main .welcom_day {
     padding: 10px;
@@ -509,7 +508,7 @@ nav .items_icons .search_container .navbar-form input.form-control {
 }
 
 .publication_mold .react-bar hr {
-    border-top: 1px solid #cc5333;
+    border-top: 1px solid #d91f2d;
     margin: 0 0 5px -5px;
     width: 60px;
     text-align: left;
@@ -645,7 +644,7 @@ nav .items_icons .search_container .navbar-form input.form-control {
     background-color: #46bfbe;
     font-size: 25px;
     border-radius: 50%;
-    color: #cc5333;
+    color: #d91f2d;
     width: 80px;
     height: 80px;
     padding: 23px 0;
@@ -723,7 +722,110 @@ nav .items_icons .search_container .navbar-form input.form-control {
     font-family: inherit;
 }
 
-/* Modules page Start */
+/* Modules page end */
+
+/*Schedule page start*/
+
+.main .schedules {
+    margin-left: .5%;
+    margin-right: .5%;
+}
+
+.main .schedules .color-index {
+    display: flex;
+    justify-content: space-around;
+    padding: 10px;
+    width: 1000px;
+}
+
+.main .schedules .color-index div span.square {
+    position: relative;
+    width: 10px;
+    height: 10px;
+    padding: 2px 10px;
+    margin-right: 10px;
+    background: blue;
+}
+
+.main .schedules .color-index div.course-c span.square {
+    background: rgba(112, 221, 148, 0.3);
+    border: 1px solid #70dd94;
+}
+
+.main .schedules .color-index div.td-c span.square {
+    background: rgba(49, 197, 249, .3);
+    border: 1px solid #31c5f9;
+}
+
+.main .schedules .color-index div.tp-c span.square {
+    background: rgba(255, 211, 76, .3);
+    border: 1px solid #ffd34c;
+}
+
+.main .schedules .color-index div.empty-c span.square {
+    background: rgba(217, 31, 45, .3);
+    border: 1px solid #d91f2d;
+}
+
+
+
+.main .schedules table thead {
+    background: #d91f2d;
+    color: #EFEFEF;
+    text-shadow: 0px 0px 1px;
+}
+
+.main .schedules table tbody {
+    background-color: #FFF;
+}
+
+.main .schedules table thead tr th {
+    width: 100px;
+}
+
+.main .schedules table tbody tr td.time {
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.main .schedules table thead tr th,
+.main .schedules table tbody tr td.time {
+    text-align: center;
+    vertical-align: middle;
+}
+
+.main .schedules table tbody tr td h4 {
+    margin-top: 5px;
+    margin-bottom: 5px;
+    width: 170px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    -o-text-overflow: ellipsis;
+    font-size: 15px;
+    font-weight: bold;
+    color: #4f5661;
+}
+
+.main .schedules table tbody tr td h5 {
+    margin-top: 5px;
+    margin-bottom: 5px;
+    height: 12px;
+    width: 170px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    -o-text-overflow: ellipsis;
+    font-size: 13px;
+    color: #4f5661;
+}
+
+.main .schedules table tbody tr td span {
+    font-size: 12px;
+    color: #9a9c9e;
+}
+
+/*Schedule page End*/
 
 /****Responsive Start****/
 
@@ -807,3 +909,46 @@ nav .items_icons .search_container .navbar-form input.form-control {
 .reset-padding {
     padding: 0px !important;
 }
+
+
+
+
+
+#test {
+    position: relative;
+}
+
+#test:hover .over {
+    opacity: 1;
+}
+
+.over {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: red;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    transition: .5s ease;
+    background-color: #008CBA;
+
+}
+
+.over p {
+    color: white;
+    font-size: 16px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    text-align: center;
+}
+
+/*
+max-height: 20px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 170px;*/

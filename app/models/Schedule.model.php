@@ -9,26 +9,26 @@ class Schedule {
    }
 
    public function getSchedule($level, $section, $group) {
-      $this->db->query("SELECT subject.title,
-                                   CONCAT(professor.degree, '. ',
-                                          professor.first_name,
-                                          professor.last_name) AS fullName,
-                                   SCHEDULE.day_schedule,
-                                   SCHEDULE.hour_start_schedule,
-                                   SCHEDULE.place
+      $this->db->query("SELECT subject.title, subject.level, 
+                                   assignment.group, assignment.section, 
+                                   assignment.type, 
+                                   concat(professor.degree , '. ',professor.first_name, 
+                                   professor.last_name) AS fullName,
+                                   schedule.day_schedule, schedule.hour_start_schedule, 
+                                   schedule.place 
                             FROM (
-                               ( SCHEDULE
-                               INNER JOIN assignment 
-                                 ON SCHEDULE._id_assign = assignment._id_assign 
-                                 AND assignment.section = :section 
-                                 AND assignment.group IN(0, :group)
-                               )
-                               INNER JOIN SUBJECT 
-                                 ON assignment._id_subject = SUBJECT._id_subject 
-                                 AND SUBJECT.level = :level
+                              (schedule 
+                              INNER JOIN assignment 
+                                ON schedule._id_assign = assignment._id_assign 
+                                AND assignment.section = :section
+                                AND assignment.group in(0,:group)) 
+                              INNER JOIN subject 
+                                ON assignment._id_subject = subject._id_subject 
+                                AND subject.level = :level
                             )
                             INNER JOIN professor 
-                            ON assignment._id_professor = professor._id_professor");
+                              ON assignment._id_professor = professor._id_professor 
+                              ORDER BY schedule.day_schedule , subject.title ASC");
       $this->db->bind(":level", $level);
       $this->db->bind(":section", $section);
       $this->db->bind(":group", $group);
@@ -38,22 +38,4 @@ class Schedule {
    }
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 

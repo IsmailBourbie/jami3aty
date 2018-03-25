@@ -51,19 +51,6 @@ class Modules extends Controller {
       return $obj_arr;
    }
 
-   private function unsetData($array, $data) {
-      for ($i = 0; $i < count($array); $i++) {
-         if (gettype($data) == "array") {
-            foreach ($data as $d) {
-               unset($array[$i][$d]);
-            }
-         } else {
-            unset($array[$i][$data]);
-         }
-      }
-      return $array;
-   }
-
    private function checkProf($object, $next_object) {
       switch ($next_object['type']) {
          case 1:
@@ -111,7 +98,7 @@ class Modules extends Controller {
             $sortArray[count($sortArray)] = $object[$i];
          }
       }
-      $sortArray = $this->unsetData($sortArray, ["fullName", "type", "course", "tp", "td", "_id_subject"]);
+      $sortArray = unsetData($sortArray, ["fullName", "type", "course", "tp", "td", "_id_subject"]);
       return array_reverse($sortArray);
    }
 }
