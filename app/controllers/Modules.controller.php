@@ -1,6 +1,9 @@
 <?php
 
 class Modules extends Controller {
+
+   private $modulesModel;
+
    public function __construct() {
       if ($_SERVER['REQUEST_METHOD'] == 'GET' && !isLoggedIn()) {
          redirect('users/login');
@@ -14,7 +17,21 @@ class Modules extends Controller {
          'status'     => OK,
          'data'       => null,
       ];
+      $object = $this->modulesModel->getModules($_SESSION['user_level'], $_SESSION['user_section'], $_SESSION['user_group']);
+      $sortArray = $this->arrange_rows($object);
+      $response['data'] = $this->obj_arr($sortArray);
+      $this->view("modules/index", $response);
+   }
+
+
+   public function all($level = "", $section = "", $group = "") {
+      $response = [
+         "page_title" => __CLASS__,
+         'status'     => OK,
+         'data'       => null,
+      ];
       if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+         $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_NUMBER_INT);
          $level = isset($_POST['level']) ? $_POST['level'] : "";
          $section = isset($_POST['section']) ? $_POST['section'] : "";
          $group = isset($_POST['group']) ? $_POST['group'] : "";
@@ -29,10 +46,7 @@ class Modules extends Controller {
          $this->view('api/json', $response);
          return;
       } else {
-         $object = $this->modulesModel->getModules($_SESSION['user_level'], $_SESSION['user_section'], $_SESSION['user_group']);
-         $sortArray = $this->arrange_rows($object);
-         $response['data'] = $this->obj_arr($sortArray);
-         $this->view("modules/index", $response);
+         die("request specified level");
       }
    }
 
@@ -55,10 +69,13 @@ class Modules extends Controller {
       switch ($next_object['type']) {
          case 1:
             $object["course_prof"] = $next_object["fullName"];
+            break;
          case 2:
             $object["td_prof"] = $next_object["fullName"];
+            break;
          case 3:
             $object["tp_prof"] = $next_object["fullName"];
+            break;
       }
       return $object;
 

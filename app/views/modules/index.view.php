@@ -67,21 +67,13 @@ if ($data["status"] == OK) {
                            <div class="back">
                                <h3>Index:</h3>
                                <ol class="reset-margin">
-                                   <li>Lorem ipsum dolor.</li>
-                                   <li>Lorem ipsum dolor.</li>
-                                   <li>Lorem ipsum dolor.</li>
-                                   <li>Lorem ipsum dolor.</li>
-                                   <li>Lorem ipsum dolor.</li>
-                                   <li>Lorem ipsum dolor.</li>
-                                   <li>Lorem ipsum dolor.</li>
-                                   <li>Lorem ipsum dolor.</li>
-                                   <li>Lorem ipsum dolor.</li>
+                                  <?php foreach (explode("$", $response->table_of_content) as $content): ?>
+                                      <li><?= $content ?></li>
+                                  <?php endforeach; ?>
                                </ol>
                            </div>
                        </div>
-
                    <?php endforeach; ?>
-
                 </div>
             </div>
         </div>

@@ -12,7 +12,7 @@ class Schedule {
       $this->db->query("SELECT subject.title, subject.level, 
                                    assignment.group, assignment.section, 
                                    assignment.type, 
-                                   concat(professor.degree , '. ',professor.first_name, 
+                                   concat(professor.degree , '. ',professor.first_name, ' ',
                                    professor.last_name) AS fullName,
                                    schedule.day_schedule, schedule.hour_start_schedule, 
                                    schedule.place 
@@ -28,7 +28,7 @@ class Schedule {
                             )
                             INNER JOIN professor 
                               ON assignment._id_professor = professor._id_professor 
-                              ORDER BY schedule.day_schedule , subject.title ASC");
+                              ORDER BY schedule.day_schedule , schedule.hour_start_schedule ASC");
       $this->db->bind(":level", $level);
       $this->db->bind(":section", $section);
       $this->db->bind(":group", $group);

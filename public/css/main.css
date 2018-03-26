@@ -747,27 +747,25 @@ nav .items_icons .search_container .navbar-form input.form-control {
     background: blue;
 }
 
-.main .schedules .color-index div.course-c span.square {
-    background: rgba(112, 221, 148, 0.3);
-    border: 1px solid #70dd94;
+.main .schedules .color-index div.course-c span.square,
+.main .schedules table tbody tr td.type1 {
+    background: rgba(112, 221, 148, .5);
 }
 
-.main .schedules .color-index div.td-c span.square {
-    background: rgba(49, 197, 249, .3);
-    border: 1px solid #31c5f9;
+.main .schedules .color-index div.td-c span.square,
+.main .schedules table tbody tr td.type2 {
+    background: rgba(49, 197, 249, .5);
 }
 
-.main .schedules .color-index div.tp-c span.square {
-    background: rgba(255, 211, 76, .3);
-    border: 1px solid #ffd34c;
+.main .schedules .color-index div.tp-c span.square,
+.main .schedules table tbody tr td.type3 {
+    background: rgba(255, 211, 76, .5);
 }
 
-.main .schedules .color-index div.empty-c span.square {
-    background: rgba(217, 31, 45, .3);
-    border: 1px solid #d91f2d;
+.main .schedules .color-index div.empty-c span.square,
+.main .schedules table tbody tr td.type {
+    background: rgb(255, 255, 255);
 }
-
-
 
 .main .schedules table thead {
     background: #d91f2d;
@@ -786,6 +784,7 @@ nav .items_icons .search_container .navbar-form input.form-control {
 .main .schedules table tbody tr td.time {
     font-size: 16px;
     font-weight: bold;
+    color: #d91f2d;
 }
 
 .main .schedules table thead tr th,
@@ -909,10 +908,6 @@ nav .items_icons .search_container .navbar-form input.form-control {
 .reset-padding {
     padding: 0px !important;
 }
-
-
-
-
 
 #test {
     position: relative;

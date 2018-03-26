@@ -8,10 +8,10 @@
             </div>
             <div class="user_info">
                 <h3>
-                    <?=$_SESSION['user_firstname'] . ' ' . $_SESSION['user_lastname']?>
+                   <?= $_SESSION['user_firstname'] . ' ' . $_SESSION['user_lastname'] ?>
                 </h3>
                 <p class="lead">
-                    <?=$_SESSION['user_level']?>
+                   <?= $_SESSION['user_branch'] ?>
                 </p>
             </div>
 
@@ -23,19 +23,19 @@
                     <li id="home">
                         <h4>
                             <i class="fa fa-home"></i>
-                            <a href="#">Acueil</a>
+                            <a href="<?= URL_ROOT ?>home">Acueil</a>
                         </h4>
                     </li>
                     <li id="messages">
                         <h4>
                             <i class="fa fa-envelope"></i>
-                            <a href="#">Messages</a>
+                            <a href="<?= URL_ROOT ?>messages">Messages</a>
                         </h4>
                     </li>
-                    <li id="notification">
+                    <li id="notifications">
                         <h4>
                             <i class="fa fa-bell"></i>
-                            <a href="#">Notifications</a>
+                            <a href="<?= URL_ROOT ?>notifications">Notifications</a>
                         </h4>
                     </li>
                     <li>
@@ -44,37 +44,37 @@
                     <li id="modules">
                         <h4>
                             <i class="fa fa-book"></i>
-                            <a href="#">Modules</a>
+                            <a href="<?= URL_ROOT ?>modules">Modules</a>
                         </h4>
                     </li>
                     <li id="notes">
                         <h4>
                             <i class="fa fa-calculator"></i>
-                            <a href="#">Notes</a>
+                            <a href="<?= URL_ROOT ?>notes">Notes</a>
                         </h4>
                     </li>
                     <li id="planning">
                         <h4>
                             <i class="fa fa-calendar"></i>
-                            <a href="#">Emploi du temps</a>
+                            <a href="<?= URL_ROOT ?>schedules">Planning</a>
                         </h4>
                     </li>
                     <li id="évènements">
                         <h4>
                             <i class="fa fa-bullhorn"></i>
-                            <a href="#">Évènements</a>
+                            <a href="<?= URL_ROOT ?>events">Évènements</a>
                         </h4>
                     </li>
                     <li id="Enregistré">
                         <h4>
                             <i class="fa fa-bookmark"></i>
-                            <a href="#">Enregistrement</a>
+                            <a href="<?= URL_ROOT ?>saved">Enregistrement</a>
                         </h4>
                     </li>
                     <li id="aide">
                         <h4>
                             <i class="fa fa-question-circle"></i>
-                            <a href="#">Aide</a>
+                            <a href="<?= URL_ROOT ?>help">Aide</a>
                         </h4>
                     </li>
                 </ul>
