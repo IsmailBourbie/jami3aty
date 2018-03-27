@@ -9,8 +9,8 @@ class Schedules extends Controller {
     * Schedules constructor.
     */
    public function __construct() {
-      if ($_SERVER["REQUEST_METHOD"] == "GET" && !isLoggedIn()) {
-         redirect("");
+      if ($_SERVER["REQUEST_METHOD"] == "GET" && !Session::isLoggedIn()) {
+         Directions::redirect("");
       }
       $this->createScheduleMold();
       $this->scheduleModel = $this->model('Schedule');
@@ -95,10 +95,10 @@ class Schedules extends Controller {
          $hour = $schedule[$i]["hour_start_schedule"];
          $this->_scheduleMold[$day][$hour] = $schedule[$i];
          // unset data
-         $this->_scheduleMold[$day] = unsetData($this->_scheduleMold[$day], ["day_schedule",
-                                                                             "hour_start_schedule",
-                                                                             "level", "section",
-                                                                             "group"]);
+         $this->_scheduleMold[$day] = FormatData::unsetData($this->_scheduleMold[$day], ["day_schedule",
+                                                                                         "hour_start_schedule",
+                                                                                         "level", "section",
+                                                                                         "group"]);
       }
       return $this->_scheduleMold;
    }

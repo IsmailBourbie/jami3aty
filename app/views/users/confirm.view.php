@@ -24,7 +24,7 @@ require_once APP_ROOT . '/views/inc/header.php';
                     <input type="submit" name="submit" class="btn btn-success" value="Send">
                 </div>
             </div>
-            <?php flash('confirm_email_send')?>
+            <?php Session::flash('confirm_email_send')?>
         </form>
         <?php
 require_once APP_ROOT . '/views/inc/footer.php';

@@ -5,8 +5,8 @@ class Modules extends Controller {
    private $modulesModel;
 
    public function __construct() {
-      if ($_SERVER['REQUEST_METHOD'] == 'GET' && !isLoggedIn()) {
-         redirect('users/login');
+      if ($_SERVER['REQUEST_METHOD'] == 'GET' && !Session::isLoggedIn()) {
+         Directions::redirect('users/login');
       }
       $this->modulesModel = $this->model("Module");
    }
@@ -115,7 +115,7 @@ class Modules extends Controller {
             $sortArray[count($sortArray)] = $object[$i];
          }
       }
-      $sortArray = unsetData($sortArray, ["fullName", "type", "course", "tp", "td", "_id_subject"]);
+      $sortArray = FormatData::unsetData($sortArray, ["fullName", "type", "course", "tp", "td", "_id_subject"]);
       return array_reverse($sortArray);
    }
 }

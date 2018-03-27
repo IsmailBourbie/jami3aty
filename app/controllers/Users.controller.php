@@ -8,8 +8,8 @@ class Users extends Controller {
    }
 
    public function index() {
-      if (isLoggedIn()) {
-         redirect("");
+      if (Session::isLoggedIn()) {
+         Directions::redirect("");
       }
       $response = [
          'status'  => OK,
@@ -20,8 +20,8 @@ class Users extends Controller {
    }
 
    public function register() {
-      if (isLoggedIn()) {
-         redirect("");
+      if (Session::isLoggedIn()) {
+         Directions::redirect("");
       }
       if ($_SERVER['REQUEST_METHOD'] == 'POST') {
          // SANITIZE the Inputs of POST
@@ -37,19 +37,19 @@ class Users extends Controller {
             'message' => "Every thing is Okay",
          ];
          // Check if User not active
-         $response = ifUserNotExist($data['number_card'], $this->userModel, $response);
+         $response = Validation::ifUserNotExist($data['number_card'], $this->userModel, $response);
          // Check if Student Exist By Average
-         $response = studentNotExistByAverage($data["average"], $data["number_card"], $this->userModel, $response);
+         $response = Validation::studentNotExistByAverage($data["average"], $data["number_card"], $this->userModel, $response);
          // Check if Student Exist By Average
-         $response = studentNotExistByNumCard($data["number_card"], $this->userModel, $response);
+         $response = Validation::studentNotExistByNumCard($data["number_card"], $this->userModel, $response);
          // Check the password if not empty
-         $response = validatePassword($data['password'], $response);
-         // Validate the Average
-         $response = validateAverage($data['average'], $response);
-         // Validate email
-         $response = validateEmail($data["email"], $response, $this->userModel, true);
-         // Validate number card
-         $response = validateNumCard($data['number_card'], $response);
+         $response = Validation::validatePassword($data['password'], $response);
+         // Validation_helper::Validate the Average
+         $response = Validation::validateAverage($data['average'], $response);
+         // Validation_helper::Validate email
+         $response = Validation::validateEmail($data["email"], $response, $this->userModel, true);
+         // Validation_helper::Validate number card
+         $response = Validation::validateNumCard($data['number_card'], $response);
          // Go on if no error
          if ($response['status'] == OK) {
             // no Errors
@@ -61,14 +61,14 @@ class Users extends Controller {
                <p>Please click in the button to complete your register</p><a href='http://localhost/jami3aty/users/confirm/" . $data['token'] . "'><input type='button' value='Click Here!'></a>
                ";
                $subject = "Complete Registration";
-               if (mail_token($data['email'], $body, $subject)) {
+               if (Mailer::mail_token($data['email'], $body, $subject)) {
                   if (isset($_POST["ajax"])) {
                      header('Content-type: application/json');
                      $this->view('api/json', $response);
                      return;
                   }
-                  flash('register_success', "Success! you must confirm your email");
-                  redirect("users/login");
+                  Session::flash('register_success', "Success! you must confirm your email");
+                  Directions::redirect("users/login");
 
                } else {
                   if (isset($_POST["ajax"])) {
@@ -107,8 +107,8 @@ class Users extends Controller {
    }
 
    public function confirm($token = "") {
-      if (!isLoggedIn()) {
-         redirect("");
+      if (!Session::isLoggedIn()) {
+         Directions::redirect("");
       }
       $token = trim($token);
       if (!empty($token)) {
@@ -116,7 +116,7 @@ class Users extends Controller {
          if ($this->userModel->findUserByToken($token)) {
             // Token exist so Confirm the email
             if ($this->userModel->confirmEmail($token)) {
-               redirect("users/login");
+               Directions::redirect("users/login");
             } else {
                die('Error update');
             }
@@ -136,7 +136,7 @@ class Users extends Controller {
                'message' => "Every thing is Okay",
             ];
 
-            $response = validateEmail($email, $response, $this->userModel);
+            $response = Validation::validateEmail($email, $response, $this->userModel);
 
             if ($response['status'] == OK) {
                $token = bin2hex(openssl_random_pseudo_bytes(8));
@@ -144,13 +144,13 @@ class Users extends Controller {
                <p>Please click in the button to complete your register</p><a href='http://localhost/jami3aty/users/confirm/" . $token . "'><input type='button' value='Click Here!'></a>
                ";
                $subject = "Complete Registration";
-               if (mail_token($email, $body, $subject) && $this->userModel->updateToken($email, $token)) {
+               if (Mailer::mail_token($email, $body, $subject) && $this->userModel->updateToken($email, $token)) {
                   $_SESSION["isConfirmed"] = 1;
 
-                  flash('confirm_email_send', 'We send you en Email Check it 
+                  Session::flash('confirm_email_send', 'We send you en Email Check it 
                         <br> if you don\'t receive it just try again <br><br>
                         <a href="' . URL_ROOT . '">Home</a>');
-                  redirect('users/confirm');
+                  Directions::redirect('users/confirm');
                } else {
                   die('Sorry there is a problem try again please!');
                }
@@ -169,8 +169,8 @@ class Users extends Controller {
    }
 
    public function login() {
-      if (isLoggedIn() && $_SERVER["REQUEST_METHOD"] == 'GET') {
-         redirect("");
+      if (Session::isLoggedIn() && $_SERVER["REQUEST_METHOD"] == 'GET') {
+         Directions::redirect("");
       }
       if ($_SERVER['REQUEST_METHOD'] == 'POST') {
          // Post Request
@@ -185,9 +185,9 @@ class Users extends Controller {
             'data'    => '',
          ];
          // Check the password if not empty
-         $response = validatePassword($data['password'], $response);
+         $response = Validation::validatePassword($data['password'], $response);
          // Check the Email if not empty
-         $response = validateEmail($data['email'], $response, $this->userModel);
+         $response = Validation::validateEmail($data['email'], $response, $this->userModel);
          if ($response['status'] == OK) {
             // get The user From database
             $loggedInUser = $this->userModel->getUser($data['email'], $data['password']);
@@ -236,8 +236,8 @@ class Users extends Controller {
    }
 
    public function resetpass($token = '') {
-      if (isLoggedIn()) {
-         redirect("");
+      if (Session::isLoggedIn()) {
+         Directions::redirect("");
       }
       $token = filter_var(trim($token), FILTER_SANITIZE_STRING);
       if ($this->userModel->findUserByToken($token) && !empty($token)) {
@@ -250,14 +250,14 @@ class Users extends Controller {
                'message' => 'We send a key to your email, check it! ',
             ];
 
-            // VALIDATE the Password
-            $response = validatePassword($password, $response, $confirmPassword);
+            // Validation_helper::VALIDATE the Password
+            $response = Validation::validatePassword($password, $response, $confirmPassword);
             if ($token == $tokenConfirm && $response['status'] == OK) {
                // update Password and the token
                $password = password_hash($password, PASSWORD_DEFAULT);
                if ($this->userModel->updatePassword($token, $password) && $this->userModel->confirmEmail($token)) {
-                  flash('password_updated', "Success! You can login now");
-                  redirect("users/login");
+                  Session::flash('password_updated', "Success! You can login now");
+                  Directions::redirect("users/login");
                } else {
                   die('Error in updating');
                }
@@ -281,8 +281,8 @@ class Users extends Controller {
    }
 
    public function forgotpass() {
-      if (isLoggedIn()) {
-         redirect("");
+      if (Session::isLoggedIn()) {
+         Directions::redirect("");
       }
       if (isset($_POST["submit"]) || isset($_POST["ajax"])) {
          $email = isset($_POST['email']) ? $_POST['email'] : "";
@@ -291,7 +291,7 @@ class Users extends Controller {
             'status'  => OK,
             'message' => 'We send a key to your email, check it! ',
          ];
-         $response = validateEmail($email, $response, $this->userModel);
+         $response = Validation::validateEmail($email, $response, $this->userModel);
 
          if ($response['status'] == OK) {
             $token = bin2hex(openssl_random_pseudo_bytes(64));
@@ -300,14 +300,14 @@ class Users extends Controller {
                     <br>
                     <br>
                     If you don't change it just ignore this email";
-            if (mail_token($email, $body, $subject) && $this->userModel->updateToken($email, $token)) {
+            if (Mailer::mail_token($email, $body, $subject) && $this->userModel->updateToken($email, $token)) {
                if (isset($_POST["ajax"])) {
                   header('Content-type: application/json');
                   $this->view('api/json', $response);
                   return;
                }
-               flash('email_send', 'We send you en Email Check it <br> if you don\'t receive it just try again ');
-               redirect('users/forgotpass');
+               Session::flash('email_send', 'We send you en Email Check it <br> if you don\'t receive it just try again ');
+               Directions::redirect('users/forgotpass');
             } else {
                if (isset($_POST["ajax"])) {
                   $response['status'] = ERR_EMAIL;
@@ -349,8 +349,8 @@ class Users extends Controller {
       unset($_SESSION["user_group"]);
       // destroy Session
       session_destroy();
-      // redirect to the login page
-      redirect('users/login');
+      // Redirect_helper::redirect to the login page
+      Directions::redirect('users/login');
    }
 
    private function createSessionUser($user) {
@@ -359,12 +359,12 @@ class Users extends Controller {
       $_SESSION["user_email"] = $user->email;
       $_SESSION["user_firstname"] = $user->first_name;
       $_SESSION["user_lastname"] = $user->last_name;
-      $_SESSION["user_branch"] = levelToString($user->level);
+      $_SESSION["user_branch"] = FormatData::levelToString($user->level);
       $_SESSION["user_level"] = $user->level;
       $_SESSION["user_section"] = $user->section;
       $_SESSION["user_group"] = $user->group;
       $_SESSION["isConfirmed"] = $user->isConfirmed;
-      redirect('');
+      Directions::redirect('');
    }
 
 }

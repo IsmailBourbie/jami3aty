@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title><?= $data['page_title']?></title>
+    <title><?= $data['page_title'] ?></title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <link rel="stylesheet" href="<?= URL_ROOT ?>/css/bootstrap.min.css">
     <link rel="stylesheet" href="<?= URL_ROOT ?>/css/font-awesome.min.css">
@@ -76,7 +76,8 @@
         <!--Form login Start-->
         <div class="col-md-5 right">
             <form action="<?= URL_ROOT ?>users/login" method="post" class="form-login">
-               <?php flash("register_success"); flash("password_updated") ?>
+               <?php Session::flash("register_success");
+               Session::flash("password_updated") ?>
 
                 <div class="feild-input">
                     <!--Email input Start-->

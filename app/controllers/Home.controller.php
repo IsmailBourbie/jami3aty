@@ -4,8 +4,8 @@ class Home extends Controller {
 
 
    public function __construct() {
-      if (!isLoggedIn()) {
-         redirect('users/login');
+      if (!Session::isLoggedIn()) {
+         Directions::redirect('users/login');
       }
    }
 

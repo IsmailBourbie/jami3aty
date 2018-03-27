@@ -1,12 +1,7 @@
 <?php
+session_start();
 require_once '../app/config/config.php';
 
-
-require_once '../app/helper/url_helper.php';
-require_once '../app/helper/session_helper.php';
-require_once '../app/helper/validation_helper.php';
-require_once '../app/helper/mailer_helper.php';
-require_once '../app/helper/data_bdd_helper.php';
 
 // Include PhpMailer
 require_once 'lib/PHPMailer/src/PHPMailer.php';
@@ -15,6 +10,27 @@ require_once 'lib/PHPMailer/src/SMTP.php';
 require_once 'lib/PHPMailer/src/OAuth.php';
 
 // AutoLoad Core Lib
-spl_autoload_register(function ($className) {
-   require_once 'lib/' . $className . '.php';
-});
+spl_autoload_register('load_lib');
+
+// AutoLoad Core helper
+spl_autoload_register('load_helper');
+
+// load files in lib core
+function load_lib($className) {
+   $file = APP_ROOT . "/lib/" . $className . ".php";
+   if (!file_exists($file))
+      return false;
+   require_once $file;
+   return true;
+
+}
+
+// load file in helper directory
+function load_helper($className) {
+   $file = APP_ROOT . "/helper/" . $className . ".class.php";
+   if (!file_exists($file))
+      return false;
+   require_once $file;
+   return true;
+
+}

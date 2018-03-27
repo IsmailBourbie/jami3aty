@@ -1,7 +1,5 @@
 <?php
-/**
- *
- */
+define("DS", DIRECTORY_SEPARATOR);
 // Database Params:
 define('DB_HOST', "localhost");
 define('DB_USER', "root");
