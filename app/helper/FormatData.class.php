@@ -19,6 +19,7 @@ class FormatData {
       return $array;
    }
 
+// Change the level from number to something readable
    public static function levelToString($level, $branch = "Informatique") {
       switch ($level) {
          case 1:
@@ -52,4 +53,6 @@ class FormatData {
             "------------";
       }
    }
+
+
 }

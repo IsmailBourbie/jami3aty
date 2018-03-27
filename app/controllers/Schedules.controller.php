@@ -2,7 +2,6 @@
 
 class Schedules extends Controller {
    private $_scheduleMold;
-
    private $scheduleModel;
 
    /**
@@ -12,7 +11,7 @@ class Schedules extends Controller {
       if ($_SERVER["REQUEST_METHOD"] == "GET" && !Session::isLoggedIn()) {
          Directions::redirect("");
       }
-      $this->createScheduleMold();
+      $this->_scheduleMold = FormatSchedule::init_week_mold();
       $this->scheduleModel = $this->model('Schedule');
    }
 
@@ -21,7 +20,7 @@ class Schedules extends Controller {
       $section = $_SESSION["user_section"];
       $group = $_SESSION["user_group"];
       $data = $this->scheduleModel->getSchedule($level, $section, $group);
-      $data = $this->arrangSchedule($data);
+      $data = FormatSchedule::arrangeSchedule($data, $this->_scheduleMold);
 
       $response = [
          "page_title" => "Planning",
@@ -62,46 +61,6 @@ class Schedules extends Controller {
 
    }
 
-   private function createScheduleMold() {
-      $moduleMold = [
-         "title"    => "",
-         "type"     => "",
-         "fullName" => "",
-         "place"    => "",
-      ];
-      $dayMold = [
-         "1" => $moduleMold,
-         "2" => $moduleMold,
-         "3" => $moduleMold,
-         "4" => $moduleMold,
-         "5" => $moduleMold,
-         "6" => $moduleMold,
-         "7" => $moduleMold
-      ];
-      $this->_scheduleMold = [
-         "1" => $dayMold,
-         "2" => $dayMold,
-         "3" => $dayMold,
-         "4" => $dayMold,
-         "5" => $dayMold,
-      ];
-   }
-
-   private
-   function arrangSchedule($schedule) {
-      for ($i = 0; $i < count($schedule); $i++) {
-         $schedule[$i] = (array)$schedule[$i];
-         $day = $schedule[$i]["day_schedule"];
-         $hour = $schedule[$i]["hour_start_schedule"];
-         $this->_scheduleMold[$day][$hour] = $schedule[$i];
-         // unset data
-         $this->_scheduleMold[$day] = FormatData::unsetData($this->_scheduleMold[$day], ["day_schedule",
-                                                                                         "hour_start_schedule",
-                                                                                         "level", "section",
-                                                                                         "group"]);
-      }
-      return $this->_scheduleMold;
-   }
 }
 
 

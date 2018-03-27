@@ -13,7 +13,7 @@ class Home extends Controller {
       $data = [
          "page_title" => __CLASS__,
       ];
-      $this->view("pages/index", $data);
+      $this->view("home/index", $data);
    }
 
 
