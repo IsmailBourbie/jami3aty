@@ -1,13 +1,17 @@
 <?php
 use App\Classes\Helper;
+use App\Classes\Module;
+
 class Modules extends Controller {
    private $modulesModel;
+   private $_module;
 
    public function __construct() {
       if ($_SERVER['REQUEST_METHOD'] == 'GET' && !Session::isLoggedIn()) {
          Helper::redirect('users/login');
       }
       $this->modulesModel = $this->model("Module");
+      $this->_module = new Module($this->modulesModel);
    }
 
    public function index() {
@@ -17,8 +21,10 @@ class Modules extends Controller {
          'data'       => null,
       ];
       $object = $this->modulesModel->getModules($_SESSION['user_level'], $_SESSION['user_section'], $_SESSION['user_group']);
-      $sortArray = FormatModule::arrange_rows($object);
-      $response['data'] = $sortArray;
+      //$sortArray = FormatModule::arrange_rows($object);
+      $this->_module->setModule($object);
+
+      $response['data'] = $this->_module->arrange_rows();;
       $this->view("modules/index", $response);
    }
 

@@ -9,8 +9,9 @@ require_once 'lib/PHPMailer/src/Exception.php';
 require_once 'lib/PHPMailer/src/SMTP.php';
 require_once 'lib/PHPMailer/src/OAuth.php';
 
-require_once APP_ROOT . '/classes/schedule.class.php';
 require_once APP_ROOT . '/classes/helper.class.php';
+require_once APP_ROOT . '/classes/schedule.class.php';
+require_once APP_ROOT . '/classes/module.class.php';
 
 
 // AutoLoad Core Lib

@@ -83,4 +83,20 @@ class Helper {
             return "";
       }
    }
+
+
+   public final static function obj_arr($obj_arr) {
+      if (isset($obj_arr[0])) {
+         if (gettype($obj_arr) == 'array' && gettype($obj_arr[0]) == "object") {
+            for ($i = 0; $i < count($obj_arr); $i++) {
+               $obj_arr[$i] = (array)$obj_arr[$i];
+            }
+         } elseif (gettype($obj_arr) == 'array' && gettype($obj_arr[0]) == "array") {
+            for ($i = 0; $i < count($obj_arr); $i++) {
+               $obj_arr[$i] = (object)$obj_arr[$i];
+            }
+         }
+      }
+      return $obj_arr;
+   }
 }
