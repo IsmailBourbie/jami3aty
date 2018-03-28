@@ -351,14 +351,31 @@ nav .items_icons .search_container .navbar-form input.form-control {
     box-shadow: unset;
 }
 
+.main .aside-right .aside-content .ma_journee .well li {
+    min-height: 50px;
+
+}
+
 .main .aside-right .aside-content .ma_journee .well li h4 {
     margin: 5px 0;
     font-weight: bolder;
 }
 
-.main .aside-right .aside-content .ma_journee .well li p {
-    margin: 5px 0px 10px 15px;
+.main .aside-right .aside-content .ma_journee .well li span.course_name,
+.main .aside-right .aside-content .ma_journee .well li span.course_type {
+    margin-left: 15px;
+
+}
+
+.main .aside-right .aside-content .ma_journee .well li span.course_type,
+.main .aside-right .aside-content .ma_journee .well li span.course_place {
     font-size: 16px;
+    color: #71767b;
+}
+
+.main .aside-right .aside-content .ma_journee .well li span.course_name {
+    display: block;
+    font-size: 18px
 }
 
 .aside-content .btn-default:hover,

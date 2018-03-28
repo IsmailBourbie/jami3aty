@@ -1,11 +1,11 @@
 <?php
-
+use App\Classes\Helper;
 class Modules extends Controller {
    private $modulesModel;
 
    public function __construct() {
       if ($_SERVER['REQUEST_METHOD'] == 'GET' && !Session::isLoggedIn()) {
-         Directions::redirect('users/login');
+         Helper::redirect('users/login');
       }
       $this->modulesModel = $this->model("Module");
    }

@@ -9,7 +9,7 @@ class Users extends Controller {
 
    public function index() {
       if (Session::isLoggedIn()) {
-         Directions::redirect("");
+         \App\Classes\Helper::redirect("");
       }
       $response = [
          'status'  => OK,
@@ -21,7 +21,7 @@ class Users extends Controller {
 
    public function register() {
       if (Session::isLoggedIn()) {
-         Directions::redirect("");
+         \App\Classes\Helper::redirect("");
       }
       if ($_SERVER['REQUEST_METHOD'] == 'POST') {
          // SANITIZE the Inputs of POST
@@ -68,7 +68,7 @@ class Users extends Controller {
                      return;
                   }
                   Session::flash('register_success', "Success! you must confirm your email");
-                  Directions::redirect("users/login");
+                  \App\Classes\Helper::redirect("users/login");
 
                } else {
                   if (isset($_POST["ajax"])) {
@@ -108,7 +108,7 @@ class Users extends Controller {
 
    public function confirm($token = "") {
       if (!Session::isLoggedIn()) {
-         Directions::redirect("");
+         \App\Classes\Helper::redirect("");
       }
       $token = trim($token);
       if (!empty($token)) {
@@ -116,7 +116,7 @@ class Users extends Controller {
          if ($this->userModel->findUserByToken($token)) {
             // Token exist so Confirm the email
             if ($this->userModel->confirmEmail($token)) {
-               Directions::redirect("users/login");
+               \App\Classes\Helper::redirect("users/login");
             } else {
                die('Error update');
             }
@@ -150,7 +150,7 @@ class Users extends Controller {
                   Session::flash('confirm_email_send', 'We send you en Email Check it 
                         <br> if you don\'t receive it just try again <br><br>
                         <a href="' . URL_ROOT . '">Home</a>');
-                  Directions::redirect('users/confirm');
+                  \App\Classes\Helper::redirect('users/confirm');
                } else {
                   die('Sorry there is a problem try again please!');
                }
@@ -170,7 +170,7 @@ class Users extends Controller {
 
    public function login() {
       if (Session::isLoggedIn() && $_SERVER["REQUEST_METHOD"] == 'GET') {
-         Directions::redirect("");
+         \App\Classes\Helper::redirect("");
       }
       if ($_SERVER['REQUEST_METHOD'] == 'POST') {
          // Post Request
@@ -237,7 +237,7 @@ class Users extends Controller {
 
    public function resetpass($token = '') {
       if (Session::isLoggedIn()) {
-         Directions::redirect("");
+         \App\Classes\Helper::redirect("");
       }
       $token = filter_var(trim($token), FILTER_SANITIZE_STRING);
       if ($this->userModel->findUserByToken($token) && !empty($token)) {
@@ -257,7 +257,7 @@ class Users extends Controller {
                $password = password_hash($password, PASSWORD_DEFAULT);
                if ($this->userModel->updatePassword($token, $password) && $this->userModel->confirmEmail($token)) {
                   Session::flash('password_updated', "Success! You can login now");
-                  Directions::redirect("users/login");
+                  \App\Classes\Helper::redirect("users/login");
                } else {
                   die('Error in updating');
                }
@@ -282,7 +282,7 @@ class Users extends Controller {
 
    public function forgotpass() {
       if (Session::isLoggedIn()) {
-         Directions::redirect("");
+         \App\Classes\Helper::redirect("");
       }
       if (isset($_POST["submit"]) || isset($_POST["ajax"])) {
          $email = isset($_POST['email']) ? $_POST['email'] : "";
@@ -307,7 +307,7 @@ class Users extends Controller {
                   return;
                }
                Session::flash('email_send', 'We send you en Email Check it <br> if you don\'t receive it just try again ');
-               Directions::redirect('users/forgotpass');
+               \App\Classes\Helper::redirect('users/forgotpass');
             } else {
                if (isset($_POST["ajax"])) {
                   $response['status'] = ERR_EMAIL;
@@ -350,7 +350,7 @@ class Users extends Controller {
       // destroy Session
       session_destroy();
       // Redirect_helper::redirect to the login page
-      Directions::redirect('users/login');
+      \App\Classes\Helper::redirect('users/login');
    }
 
    private function createSessionUser($user) {
@@ -359,12 +359,12 @@ class Users extends Controller {
       $_SESSION["user_email"] = $user->email;
       $_SESSION["user_firstname"] = $user->first_name;
       $_SESSION["user_lastname"] = $user->last_name;
-      $_SESSION["user_branch"] = FormatData::levelToString($user->level);
+      $_SESSION["user_branch"] = \App\Classes\Helper::levelToString($user->level);
       $_SESSION["user_level"] = $user->level;
       $_SESSION["user_section"] = $user->section;
       $_SESSION["user_group"] = $user->group;
       $_SESSION["isConfirmed"] = $user->isConfirmed;
-      Directions::redirect('');
+      \App\Classes\Helper::redirect('');
    }
 
 }

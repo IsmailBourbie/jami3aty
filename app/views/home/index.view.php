@@ -1,12 +1,13 @@
 <?php
 require_once APP_ROOT . '/views/inc/header.php';
+$schedule = $data['data'];
 ?>
     <div class="row reset-margin">
         <div class="aside-left reset-padding">
-            <?php require_once APP_ROOT . '/views/inc/navigation-bar.php';?>
+            <?php require_once APP_ROOT . '/views/inc/navigation-bar.php'; ?>
         </div>
         <div class="content">
-            <?php require_once APP_ROOT . '/views/inc/nav.php';?>
+            <?php require_once APP_ROOT . '/views/inc/nav.php'; ?>
             <div class="main">
                 <div class="row reset-margin">
                     <div class="col-lg-3  col-md-12 aside-right">
@@ -14,30 +15,52 @@ require_once APP_ROOT . '/views/inc/header.php';
                             <div class="aside-content">
                                 <div class="ma_journee">
                                     <a class="btn btn-default btn-block" role="button" data-toggle="collapse" href="#ma_journee" aria-expanded="false" aria-controls="ma_journee">
-                            Ma Journée Universitaire
-                        </a>
+                                    Ma Journée Universitaire
+                                </a>
                                     <div class="collapse in" id="ma_journee">
                                         <div class="well">
                                             <ul class="list-unstyled">
                                                 <li>
                                                     <h4>08:00 - 09:30</h4>
-                                                    <p>Coure Compilation à l'amphi A</p>
+                                                    <span class="course_name"><?= $schedule[1]["title"]?></span>
+                                                    <span class="course_type"><?= \App\Classes\Helper::typeToString($schedule[1]["type"])?></span>
+                                                    <span class="separitor">-</span>
+                                                    <span class="course_place"><?= $schedule[1]["place"]?></span>
                                                 </li>
                                                 <li>
                                                     <h4>09:30 - 11:00</h4>
-                                                    <p>TD à la salle 11</p>
+                                                    <span class="course_name"><?= $schedule[2]["title"]?></span>
+                                                    <span class="course_type"><?= \App\Classes\Helper::typeToString($schedule[2]["type"])?></span>
+                                                    <span class="separitor">-</span>
+                                                    <span class="course_place"><?= $schedule[2]["place"]?></span>
                                                 </li>
                                                 <li>
                                                     <h4>11:00 - 12:30</h4>
-                                                    <p>TP IHM labo 4</p>
+                                                    <span class="course_name"><?= $schedule[3]["title"]?></span>
+                                                    <span class="course_type"><?= \App\Classes\Helper::typeToString($schedule[3]["type"])?></span>
+                                                    <span class="separitor">-</span>
+                                                    <span class="course_place"><?= $schedule[3]["place"]?></span>
+                                                </li>
+                                                <li>
+                                                    <h4>12:30 - 14:00</h4>
+                                                    <span class="course_name"><?= $schedule[4]["title"]?></span>
+                                                    <span class="course_type"><?= \App\Classes\Helper::typeToString($schedule[4]["type"])?></span>
+                                                    <span class="separitor">-</span>
+                                                    <span class="course_place"><?= $schedule[4]["place"]?></span>
                                                 </li>
                                                 <li>
                                                     <h4>14:00 - 15:30</h4>
-                                                    <p>Vide</p>
+                                                    <span class="course_name"><?= $schedule[5]["title"]?></span>
+                                                    <span class="course_type"><?= \App\Classes\Helper::typeToString($schedule[5]["type"])?></span>
+                                                    <span class="separitor">-</span>
+                                                    <span class="course_place"><?= $schedule[5]["place"]?></span>
                                                 </li>
                                                 <li>
                                                     <h4>15:30 - 17:00</h4>
-                                                    <p>Coure l'amphi B</p>
+                                                    <span class="course_name"><?= $schedule[6]["title"]?></span>
+                                                    <span class="course_type"><?= \App\Classes\Helper::typeToString($schedule[6]["type"])?></span>
+                                                    <span class="separitor">-</span>
+                                                    <span class="course_place"><?= $schedule[6]["place"]?></span>
                                                 </li>
                                             </ul>
                                         </div>
@@ -67,8 +90,8 @@ require_once APP_ROOT . '/views/inc/header.php';
                                 <div class="col-xs-2 options_dropdown text-right">
                                     <div class="dropdown">
                                         <button id="option_pub" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <i class="fa fa-ellipsis-h fa-2x"></i>
-                    </button>
+                                        <i class="fa fa-ellipsis-h fa-2x"></i>
+                                    </button>
                                         <ul class="dropdown-menu" aria-labelledby="option_pub">
                                             <li>
                                                 <i class="fa fa-bookmark"></i>
@@ -111,7 +134,8 @@ require_once APP_ROOT . '/views/inc/header.php';
                                             </div>
                                             <div class="col-xs-9 student_data">
                                                 <h5 class="student_name reset-margin">Charfaoui Younes</h5>
-                                                <p class="student_comment reset-margin">Lorem ipsum dolor sit amet, consectetur.</p>
+                                                <p class="student_comment reset-margin">Lorem ipsum dolor sit amet, consectetur.
+                                                </p>
                                                 <span class="time_comment">10 min</span>
                                                 <span class="arrow"></span>
                                             </div>
@@ -127,7 +151,8 @@ require_once APP_ROOT . '/views/inc/header.php';
                                             </div>
                                             <div class="col-xs-9 student_data">
                                                 <h5 class="student_name reset-margin">Redouane Baya</h5>
-                                                <p class="student_comment reset-margin">Lorem ipsum dolor sit amet, consectetur.</p>
+                                                <p class="student_comment reset-margin">Lorem ipsum dolor sit amet, consectetur.
+                                                </p>
                                                 <span class="time_comment">25 min</span>
                                                 <span class="arrow"></span>
                                             </div>
@@ -147,4 +172,4 @@ require_once APP_ROOT . '/views/inc/header.php';
         </div>
 
     </div>
-    <?php require_once APP_ROOT . '/views/inc/footer.php';?>
+    <?php require_once APP_ROOT . '/views/inc/footer.php'; ?>

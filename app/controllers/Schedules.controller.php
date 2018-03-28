@@ -1,7 +1,10 @@
 <?php
 
+use App\Classes\Helper;
+use App\Classes\Schedule;
+
 class Schedules extends Controller {
-   private $_scheduleMold;
+   private $_schedule;
    private $scheduleModel;
 
    /**
@@ -9,9 +12,9 @@ class Schedules extends Controller {
     */
    public function __construct() {
       if ($_SERVER["REQUEST_METHOD"] == "GET" && !Session::isLoggedIn()) {
-         Directions::redirect("");
+         Helper::redirect("");
       }
-      $this->_scheduleMold = FormatSchedule::init_week_mold();
+      $this->_schedule = new Schedule();
       $this->scheduleModel = $this->model('Schedule');
    }
 
@@ -19,9 +22,9 @@ class Schedules extends Controller {
       $level = $_SESSION["user_level"];
       $section = $_SESSION["user_section"];
       $group = $_SESSION["user_group"];
+      $this->_schedule->_init_week();
       $data = $this->scheduleModel->getSchedule($level, $section, $group);
-      $data = FormatSchedule::arrangeSchedule($data, $this->_scheduleMold);
-
+      $data = $this->_schedule->arrange_schedule_week($data);
       $response = [
          "page_title" => "Planning",
          "status"     => OK,
