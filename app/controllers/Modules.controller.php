@@ -21,10 +21,9 @@ class Modules extends Controller {
          'data'       => null,
       ];
       $object = $this->modulesModel->getModules($_SESSION['user_level'], $_SESSION['user_section'], $_SESSION['user_group']);
-      //$sortArray = FormatModule::arrange_rows($object);
       $this->_module->setModule($object);
 
-      $response['data'] = $this->_module->arrange_rows();;
+      $response['data'] = $this->_module->arrange_rows();
       $this->view("modules/index", $response);
    }
 

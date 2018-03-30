@@ -84,8 +84,7 @@ class Helper {
       }
    }
 
-
-   public final static function obj_arr($obj_arr) {
+   public static function obj_arr($obj_arr) {
       if (isset($obj_arr[0])) {
          if (gettype($obj_arr) == 'array' && gettype($obj_arr[0]) == "object") {
             for ($i = 0; $i < count($obj_arr); $i++) {
@@ -98,5 +97,9 @@ class Helper {
          }
       }
       return $obj_arr;
+   }
+
+   public static function generateToken($length) {
+      return bin2hex(openssl_random_pseudo_bytes($length));
    }
 }
