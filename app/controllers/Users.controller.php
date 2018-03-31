@@ -55,11 +55,11 @@ class Users extends Controller {
          // Go on if no error
          if ($response['status'] == OK) {
             // no Errors
-            $token = Helper::generateToken(8);
+            $data['token'] = Helper::generateToken(8);
             $data['password'] = password_hash($data['password'], PASSWORD_DEFAULT);
             if ($this->userModel->addUser($data)) {
                // Send the Token to Email
-               if ((new Mailer())->sendConfirmationEmail($data['email'], $token)) {
+               if ((new Mailer())->sendConfirmationEmail($data['email'], $data['token'])) {
                   if (isset($_POST["ajax"])) {
                      header('Content-type: application/json');
                      $this->view('api/json', $response);

@@ -1,6 +1,6 @@
 <?php
 
-class User {
+class Authentication {
    private $db;
 
    public function __construct() {
@@ -41,63 +41,6 @@ class User {
          return $row->_id_student;
       }
       return '';
-   }
-
-   public function ifUserNotExist($card_number) {
-      $this->db->query('SELECT * FROM student WHERE _id_student =  :_id_student AND student_active = 0');
-      $this->db->bind(':_id_student', $card_number);
-      $row = $this->db->get();
-      // Check row
-      if ($this->db->rowCount() > 0) {
-         return true;
-      } else {
-         return false;
-      }
-   }
-
-   public function findUserByToken($token) {
-      $this->db->query('SELECT * FROM student WHERE token = :token');
-      $this->db->bind(':token', $token);
-      $row = $this->db->get();
-
-      // Check row
-      if ($this->db->rowCount() > 0) {
-         return true;
-      } else {
-         return false;
-      }
-   }
-
-   public function updateToken($email, $token) {
-      $this->db->query('UPDATE student SET token = :token WHERE email = :email');
-      $this->db->bind(':token', $token);
-      $this->db->bind(':email', $email);
-      if ($this->db->execute()) {
-         return true;
-      } else {
-         return true;
-      }
-   }
-
-   public function updatePassword($token, $password) {
-      $this->db->query('UPDATE student SET password = :password WHERE token = :token');
-      $this->db->bind(':token', $token);
-      $this->db->bind(':password', $password);
-      if ($this->db->execute()) {
-         return true;
-      } else {
-         return true;
-      }
-   }
-
-   public function confirmEmail($token) {
-      $this->db->query('UPDATE student SET isConfirmed = 1, token = " " WHERE token = :token');
-      $this->db->bind(':token', $token);
-      if ($this->db->execute()) {
-         return true;
-      } else {
-         return false;
-      }
    }
 
    public function getUser($email, $password) {

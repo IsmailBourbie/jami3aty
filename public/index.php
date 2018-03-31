@@ -1,4 +1,4 @@
 <?php
 require_once '../app/bootstrap.php';
-
-$app = new App;
+$request = new Request();
+$app = new App($request);

@@ -10,8 +10,10 @@ class App {
     protected $currentController = 'Home';
     protected $currentMethod = 'index';
     protected $params = [];
+    private $request;
 
-    public function __construct() {
+    public function __construct(Request $request) {
+         $this->request = $request;
         $url = $this->getUrl();
         // config the controller for first value
         if (file_exists('../app/controllers/' . ucwords($url[0]) . '.controller.php')) {
@@ -22,7 +24,7 @@ class App {
 
         // Require the Controller and Instantiate
         require_once '../app/controllers/' . $this->currentController . '.controller.php';
-        $this->currentController = new $this->currentController();
+        $this->currentController = new $this->currentController($this->request);
 
         // config the Method for second value
         if (isset($url[1])) {

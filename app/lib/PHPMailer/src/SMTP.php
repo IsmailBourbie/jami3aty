@@ -435,7 +435,7 @@ class SMTP
 
         if (array_key_exists('EHLO', $this->server_caps)) {
             // SMTP extensions are available; try to find a proper authentication method
-            if (!array_key_exists('AUTH', $this->server_caps)) {
+            if (!array_key_exists('Authentication', $this->server_caps)) {
                 $this->setError('Authentication is not allowed at this stage');
                 // 'at this stage' means that auth may be allowed after the stage changes
                 // e.g. after STARTTLS
@@ -445,12 +445,12 @@ class SMTP
 
             $this->edebug('Auth method requested: ' . ($authtype ? $authtype : 'UNKNOWN'), self::DEBUG_LOWLEVEL);
             $this->edebug(
-                'Auth methods available on the server: ' . implode(',', $this->server_caps['AUTH']),
+                'Auth methods available on the server: ' . implode(',', $this->server_caps['Authentication']),
                 self::DEBUG_LOWLEVEL
             );
 
             //If we have requested a specific auth type, check the server supports it before trying others
-            if (!in_array($authtype, $this->server_caps['AUTH'])) {
+            if (!in_array($authtype, $this->server_caps['Authentication'])) {
                 $this->edebug('Requested auth method not available: ' . $authtype, self::DEBUG_LOWLEVEL);
                 $authtype = null;
             }
@@ -459,7 +459,7 @@ class SMTP
                 //If no auth mechanism is specified, attempt to use these, in this order
                 //Try CRAM-MD5 first as it's more secure than the others
                 foreach (['CRAM-MD5', 'LOGIN', 'PLAIN', 'XOAUTH2'] as $method) {
-                    if (in_array($method, $this->server_caps['AUTH'])) {
+                    if (in_array($method, $this->server_caps['Authentication'])) {
                         $authtype = $method;
                         break;
                     }
@@ -472,7 +472,7 @@ class SMTP
                 self::edebug('Auth method selected: ' . $authtype, self::DEBUG_LOWLEVEL);
             }
 
-            if (!in_array($authtype, $this->server_caps['AUTH'])) {
+            if (!in_array($authtype, $this->server_caps['Authentication'])) {
                 $this->setError("The requested authentication method \"$authtype\" is not supported by the server");
 
                 return false;
@@ -483,7 +483,7 @@ class SMTP
         switch ($authtype) {
             case 'PLAIN':
                 // Start authentication
-                if (!$this->sendCommand('AUTH', 'AUTH PLAIN', 334)) {
+                if (!$this->sendCommand('Authentication', 'AUTH PLAIN', 334)) {
                     return false;
                 }
                 // Send encoded username and password
@@ -498,7 +498,7 @@ class SMTP
                 break;
             case 'LOGIN':
                 // Start authentication
-                if (!$this->sendCommand('AUTH', 'AUTH LOGIN', 334)) {
+                if (!$this->sendCommand('Authentication', 'AUTH LOGIN', 334)) {
                     return false;
                 }
                 if (!$this->sendCommand('Username', base64_encode($username), 334)) {
@@ -529,7 +529,7 @@ class SMTP
                 $oauth = $OAuth->getOauth64();
 
                 // Start authentication
-                if (!$this->sendCommand('AUTH', 'AUTH XOAUTH2 ' . $oauth, 235)) {
+                if (!$this->sendCommand('Authentication', 'AUTH XOAUTH2 ' . $oauth, 235)) {
                     return false;
                 }
                 break;
@@ -787,7 +787,7 @@ class SMTP
                         case 'SIZE':
                             $fields = ($fields ? $fields[0] : 0);
                             break;
-                        case 'AUTH':
+                        case 'Authentication':
                             if (!is_array($fields)) {
                                 $fields = [];
                             }

@@ -75,7 +75,10 @@
 
         <!--Form login Start-->
         <div class="col-md-5 right">
-            <form action="<?= URL_ROOT ?>users/login" method="post" class="form-login">
+            <div class='error'>
+               <?php if ($data["status"] != OK) echo $data['message']; ?>
+            </div>
+            <form action="<?= URL_ROOT ?>auth/login" method="post" class="form-login">
                <?php Session::flash("register_success");
                Session::flash("password_updated") ?>
 
@@ -129,7 +132,7 @@
             </form>
 
 
-            <form action="<?= URL_ROOT ?>users/register" class="form-signup" method="post">
+            <form action="<?= URL_ROOT ?>auth/register" class="form-signup" method="post">
                 <div class="feild-input">
 
                     <!-- User Card number Start -->
