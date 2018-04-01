@@ -68,7 +68,7 @@ class Helper {
    }
 
 // Change the type of module to something readable
-   public static function typeToString($type) {
+   public static function typeOfCourseToString($type) {
       switch ($type) {
          case "1":
             return "Cours";
@@ -81,6 +81,21 @@ class Helper {
             break;
          default:
             return "";
+      }
+   }
+
+// Change The type of post to something readable
+   public function typeOfPostToString($type) {
+      switch ($type) {
+         case 1:
+            return 'Consultation';
+            break;
+         case 2:
+            return 'Affichage';
+            break;
+         case 3:
+            return "Contrôle";
+
       }
    }
 

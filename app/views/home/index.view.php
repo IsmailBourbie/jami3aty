@@ -23,42 +23,42 @@ $schedule = $data['data'];
                                                 <li>
                                                     <h4>08:00 - 09:30</h4>
                                                     <span class="course_name"><?= $schedule[1]["title"]?></span>
-                                                    <span class="course_type"><?= \App\Classes\Helper::typeToString($schedule[1]["type"])?></span>
+                                                    <span class="course_type"><?= \App\Classes\Helper::typeOfCourseToString($schedule[1]["type"])?></span>
                                                     <span class="separitor">-</span>
                                                     <span class="course_place"><?= $schedule[1]["place"]?></span>
                                                 </li>
                                                 <li>
                                                     <h4>09:30 - 11:00</h4>
                                                     <span class="course_name"><?= $schedule[2]["title"]?></span>
-                                                    <span class="course_type"><?= \App\Classes\Helper::typeToString($schedule[2]["type"])?></span>
+                                                    <span class="course_type"><?= \App\Classes\Helper::typeOfCourseToString($schedule[2]["type"])?></span>
                                                     <span class="separitor">-</span>
                                                     <span class="course_place"><?= $schedule[2]["place"]?></span>
                                                 </li>
                                                 <li>
                                                     <h4>11:00 - 12:30</h4>
                                                     <span class="course_name"><?= $schedule[3]["title"]?></span>
-                                                    <span class="course_type"><?= \App\Classes\Helper::typeToString($schedule[3]["type"])?></span>
+                                                    <span class="course_type"><?= \App\Classes\Helper::typeOfCourseToString($schedule[3]["type"])?></span>
                                                     <span class="separitor">-</span>
                                                     <span class="course_place"><?= $schedule[3]["place"]?></span>
                                                 </li>
                                                 <li>
                                                     <h4>12:30 - 14:00</h4>
                                                     <span class="course_name"><?= $schedule[4]["title"]?></span>
-                                                    <span class="course_type"><?= \App\Classes\Helper::typeToString($schedule[4]["type"])?></span>
+                                                    <span class="course_type"><?= \App\Classes\Helper::typeOfCourseToString($schedule[4]["type"])?></span>
                                                     <span class="separitor">-</span>
                                                     <span class="course_place"><?= $schedule[4]["place"]?></span>
                                                 </li>
                                                 <li>
                                                     <h4>14:00 - 15:30</h4>
                                                     <span class="course_name"><?= $schedule[5]["title"]?></span>
-                                                    <span class="course_type"><?= \App\Classes\Helper::typeToString($schedule[5]["type"])?></span>
+                                                    <span class="course_type"><?= \App\Classes\Helper::typeOfCourseToString($schedule[5]["type"])?></span>
                                                     <span class="separitor">-</span>
                                                     <span class="course_place"><?= $schedule[5]["place"]?></span>
                                                 </li>
                                                 <li>
                                                     <h4>15:30 - 17:00</h4>
                                                     <span class="course_name"><?= $schedule[6]["title"]?></span>
-                                                    <span class="course_type"><?= \App\Classes\Helper::typeToString($schedule[6]["type"])?></span>
+                                                    <span class="course_type"><?= \App\Classes\Helper::typeOfCourseToString($schedule[6]["type"])?></span>
                                                     <span class="separitor">-</span>
                                                     <span class="course_place"><?= $schedule[6]["place"]?></span>
                                                 </li>

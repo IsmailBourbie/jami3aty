@@ -2,9 +2,11 @@
   <dictionary name="IsMail BoUrbie">
     <words>
       <w>acueil</w>
+      <w>affichage</w>
       <w>atyapp</w>
       <w>bourbieismail</w>
       <w>bourbieyounes</w>
+      <w>contrôle</w>
       <w>cours</w>
       <w>enregistrement</w>
       <w>enregistré</w>
@@ -21,10 +23,12 @@
       <w>journée</w>
       <w>lastname</w>
       <w>loginned</w>
+      <w>mins</w>
       <w>navbar</w>
       <w>notif</w>
       <w>resetpass</w>
       <w>smtp</w>
+      <w>timestring</w>
       <w>tusers</w>
       <w>urbie</w>
       <w>évènements</w>

@@ -29,7 +29,7 @@ abstract class Controller {
       }
    }
 
-   public function setAjax(bool $is_ajax) {
+   public function setAjax($is_ajax) {
       $this->_is_ajax = $is_ajax;
    }
 }

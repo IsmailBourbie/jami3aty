@@ -13,6 +13,10 @@ a:hover {
     text-decoration: none;
 }
 
+a {
+    color: inherit;
+}
+
 .btn:active,
 .btn:focus,
 button:active,
@@ -499,7 +503,7 @@ nav .items_icons .search_container .navbar-form input.form-control {
     color: #657786;
 }
 
-.publication_mold .publication_head .course_info .module_teacher span.separitor {
+span.separitor {
     font-weight: bold;
     position: relative;
     top: -3px;
@@ -843,6 +847,68 @@ nav .items_icons .search_container .navbar-form input.form-control {
 
 /*Schedule page End*/
 
+/*Saved page Start*/
+
+.main .saved .saved_mold {
+    display: flex;
+    justify-content: space-between;
+    width: 90%;
+    margin: 30px auto;
+    background: #FFF;
+    box-shadow: 2px 4px 8px 0 rgba(46, 61, 73, .2);
+    padding: 10px 20px;
+    border-radius: 10px;
+}
+
+.main .saved .saved_mold .right {
+    color: #7a7d82;
+    padding-top: 20px;
+}
+
+.main .saved .saved_mold .header {
+    display: flex;
+    padding: 20px 0px 10px;
+    color: inherit;
+    text-decoration: none;
+}
+
+.main .saved .saved_mold .header:hover .info {
+    opacity: .75;
+}
+
+.main .saved .saved_mold .header .icon {
+    padding: 5px 0 5px 5px;
+    color: #46bfbe;
+}
+
+.main .saved .saved_mold .header .info {
+    padding-left: 20px;
+}
+
+.main .saved .saved_mold .header .info h3 {
+    font-size: 22px;
+    padding-bottom: 5px;
+}
+
+.main .saved .saved_mold .header .info .description h4 {
+    margin: 0;
+    font-size: 17px;
+    display: inline-block;
+}
+
+.main .saved .saved_mold .header .info .description span.time {
+    font-size: 14px;
+    color: #7a7d82;
+}
+
+.main .saved .saved_mold .body p {
+    font-size: 18px;
+    max-height: 50px;
+    overflow: hidden;
+}
+
+/*Saved page End*/
+
 /****Responsive Start****/
 
 @media (max-width: 1200px) {
@@ -925,42 +991,3 @@ nav .items_icons .search_container .navbar-form input.form-control {
 .reset-padding {
     padding: 0px !important;
 }
-
-#test {
-    position: relative;
-}
-
-#test:hover .over {
-    opacity: 1;
-}
-
-.over {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    background: red;
-    top: 0;
-    left: 0;
-    opacity: 0;
-    transition: .5s ease;
-    background-color: #008CBA;
-
-}
-
-.over p {
-    color: white;
-    font-size: 16px;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    -ms-transform: translate(-50%, -50%);
-    text-align: center;
-}
-
-/*
-max-height: 20px;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    width: 170px;*/
