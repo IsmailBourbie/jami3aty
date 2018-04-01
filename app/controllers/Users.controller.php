@@ -18,7 +18,7 @@ class Users extends Controller {
          'message' => 'Every Thing is Okay',
          'data'    => '',
       ];
-      $this->view('users/login', $response);
+      $this->view('auth/login', $response);
    }
 
    public function confirm($token = "") {

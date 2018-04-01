@@ -8,12 +8,17 @@ class Home extends Controller {
 
    public function __construct() {
       if (!Session::isLoggedIn()) {
-         Helper::redirect('users/login');
+         Helper::redirect('auth/login');
       }
       $this->_today = date("w") + 1;
    }
 
    public function index($args = "") {
+      $this->my_day();
+   }
+
+
+   private function my_day() {
       $this->_scheduleModel = $this->model("Schedule");
       $schedule = new Schedule();
       $schedule->_init_day();
@@ -24,6 +29,7 @@ class Home extends Controller {
          "data"       => $data
       ];
       $this->view("home/index", $response);
+
    }
 
 
