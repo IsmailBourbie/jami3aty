@@ -21,39 +21,51 @@ class Auth extends Controller {
 
    public function login() {
       if ($_SERVER['REQUEST_METHOD'] != "POST") {
-         Helper::redirect("");
+         // URL Request
+         $response = [
+            'page_title' => ucfirst(__FUNCTION__),
+            'status'     => OK,
+            'message'    => "",
+         ];
+         $this->view('auth/login', $response);
       }
       $data = [
          "email"    => $this->validateEmail($this->request->get("email")),
          "password" => $this->validatePassword($this->request->get("password")),
       ];
-      $response = ['status' => OK];
+      $response = [
+         'page_title' => "Authentication",
+         'status'     => OK
+      ];
       $identity = $this->authentication->findUserByEmail($data["email"]);
       if (empty($identity)) {
-         $response = [
-            'status'  => INVALID_EMAIL,
-            'message' => "err email"
-         ];
-         $this->view("users/login", $response);
+         $response['status'] = INVALID_EMAIL;
+         $response['message'] = "err email";
+         $this->view("auth/login", $response);
          return;
       }
       $user = $this->authentication->getUser($identity, $data["password"]);
       if (!$user) {
-         $response = [
-            'status'  => INVALID_EMAIL,
-            'message' => "err password"
-         ];
-         $this->view("users/login", $response);
+         $response['status'] = INVALID_PASS;
+         $response['message'] = "err password";
+         $this->view("auth/login", $response);
          return;
       }
       $this->createSessionUser($user);
+      $response["data"] = $user;
       $this->view("", $response);
       return;
    }
 
    public function register() {
       if ($_SERVER["REQUEST_METHOD"] != 'POST') {
-         Helper::redirect("");
+         // Direct Url Request
+         $response = [
+            'page_title' => ucfirst(__FUNCTION__),
+            'status'     => OK,
+            'message'    => "",
+         ];
+         $this->view("auth/login", $response);
       }
 //      var_dump("hel");
       $data = [
@@ -64,14 +76,14 @@ class Auth extends Controller {
       ];
       $response = [
          'page_title' => "Registration",
-         'status' => OK
+         'status'     => OK
       ];
       $data['card_num'] = $this->authentication->isUserExistByNumCard($data["card_num"]);
       if (empty($data['card_num'])) {
          // student's id doesn't exist
          $response["status"] = NUM_CARD_N_EXIST;
          $response["message"] = "this not user exist or already activated";
-         $this->view("users/login", $response);
+         $this->view("auth/login", $response);
          return;
       }
       $data['average'] = $this->authentication->isUserExistByAverage($data['average'], $data['card_num']);
@@ -79,7 +91,7 @@ class Auth extends Controller {
          // student's average doesn't exist
          $response["status"] = AVERAGE_N_EXIST;
          $response["message"] = "this average not exist";
-         $this->view("users/login", $response);
+         $this->view("auth/login", $response);
          return;
       }
       $email = $this->authentication->findUserByEmail($data['email']);
@@ -87,13 +99,17 @@ class Auth extends Controller {
          // student's email exist exist
          $response["status"] = EMAIL_N_EXIST;
          $response["message"] = "This Email exist try another one";
-         $this->view("users/login", $response);
+         $this->view("auth/login", $response);
          return;
       }
-      var_dump($data);
-//      echo json_encode($response);
-      die();
-      return;
+
+      // Every thing is okay here
+      if (empty($this->authentication->addUser($data)))
+         die("something wrong with add user");
+      if (!$this->authentication->addUser($data))
+         die("something wrong with Mailing the token");
+      Session::flash('register_success', "Success! you must confirm your email");
+      $this->view("", $response);
    }
 
 

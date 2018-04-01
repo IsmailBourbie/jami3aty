@@ -4,7 +4,7 @@ $(document).ready(function () {
     "use strict";
     // Show the Register Box
     var pathname = location.pathname;
-    if (pathname.indexOf("users/register") > 0) {
+    if (pathname.indexOf("auth/register") > 0) {
         $('form.form-login').hide(function () {
             $('form.form-signup').show();
         });
@@ -23,11 +23,13 @@ $(document).ready(function () {
 
     /* Show Box of Sign Up Start */
     $("#show_signup").click(function () {
+        $('.error_form').remove();
         $('form.form-login').hide(function () {
             $('form.form-signup').slideDown();
         });
     });
     $("#back_login").click(function () {
+        $('.error_form').remove();
         $('form.form-signup').hide(function () {
             $('form.form-login').slideDown();
         });

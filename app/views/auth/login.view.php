@@ -3,7 +3,9 @@
 
 <head>
     <meta charset="utf-8">
-    <title><?= $data['page_title'] ?></title>
+    <title>
+       <?= $data['page_title'] ?>
+    </title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <link rel="stylesheet" href="<?= URL_ROOT ?>/css/bootstrap.min.css">
     <link rel="stylesheet" href="<?= URL_ROOT ?>/css/font-awesome.min.css">
@@ -75,7 +77,12 @@
 
         <!--Form login Start-->
         <div class="col-md-5 right">
-            <form action="<?= URL_ROOT ?>users/login" method="post" class="form-login">
+           <?php if ($data["status"] != OK): ?>
+               <div class='error_form'>
+                  <?= $data['message'] ?>
+               </div>
+           <?php endif; ?>
+            <form action="<?= URL_ROOT ?>auth/login" method="post" class="form-login">
                <?php Session::flash("register_success");
                Session::flash("password_updated") ?>
 
@@ -83,27 +90,20 @@
                     <!--Email input Start-->
                     <div class="input-group required">
                         <span class="input-group-addon" id="basic-addon1"><i class="fa fa-envelope"></i></span>
-                        <input type="email" data="email" name="email"
-                               class="form-control" placeholder="Email">
+                        <input type="email" data="email" name="email" class="form-control" placeholder="Email">
                     </div>
                     <!--Email input End-->
-                    <div class='error'>
-                       <?php if ($data["status"] == EMPTY_EMAIL || $data["status"] == INVALID_EMAIL || $data["status"] == EMAIL_N_EXIST) echo $data['message']; ?>
-                    </div>
+                    <div class='error'></div>
                     <!--Password input Start-->
                     <div class="input-group required">
-                        <span class="input-group-addon"
-                              id="basic-addon1"><span class="glyphicon glyphicon-lock"
-                                                      aria-hidden="true"></span></span>
-                        <input type="password" data="password" name="password"
-                               class="form-control"
+                            <span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-lock"
+                                                                                    aria-hidden="true"></span></span>
+                        <input type="password" data="password" name="password" class="form-control"
                                placeholder="Mot de passe">
                         <span class="glyphicon glyphicon-eye-open custom-icon"></span>
                     </div>
                     <!--Password input End-->
-                    <div class='error'>
-                       <?php if ($data["status"] == EMPTY_PASS || $data["status"] == INVALID_PASS) echo $data['message']; ?>
-                    </div>
+                    <div class='error'></div>
                     <!--Remember me input Start-->
                     <div class="input-group">
                         <input id="remember_me" type="checkbox" name="remember_me">
@@ -129,63 +129,46 @@
             </form>
 
 
-            <form action="<?= URL_ROOT ?>users/register" class="form-signup" method="post">
+            <form action="<?= URL_ROOT ?>auth/register" class="form-signup" method="post">
                 <div class="feild-input">
 
                     <!-- User Card number Start -->
                     <div class="input-group required">
                         <span class="input-group-addon" id="basic-addon1"><i class="fa fa-id-card"></i></span>
-                        <input id="num_carte" type="text" data="num_carte"
-                               class="form-control"
-                               placeholder="Numéro de la carte"
-                               name="number_card"
-                               style="padding-left:  7px;">
+                        <input id="num_carte" type="text" data="num_carte" class="form-control"
+                               placeholder="Numéro de la carte" name="number_card" style="padding-left:  7px;">
                         <i class="fa fa-question-circle-o custom-icon"
                            title="Ce numéro tu le trouve dans&#013;votre carte étudiant&#013;donnée par l'adminstration"></i>
                     </div>
-                    <div class='error'>
-                       <?php if ($data["status"] == EMPTY_NUM_CARD || $data["status"] == INVALID_NUM_CARD || $data["status"] == NUM_CARD_N_EXIST || $data["status"] == STUDENT_EXIST) echo $data['message']; ?>
-                    </div>
+                    <div class='error'></div>
                     <!-- User Card number End -->
 
                     <!-- Email Start -->
                     <div class="input-group required">
                         <span class="input-group-addon" id="basic-addon1"><i class="fa fa-envelope"></i></span>
-                        <input type="email" data="email"
-                               class="form-control"
-                               placeholder="Email" name="email">
+                        <input type="email" data="email" class="form-control" placeholder="Email" name="email">
                     </div>
-                    <div class='error'>
-                       <?php if ($data["status"] == EMPTY_EMAIL || $data["status"] == INVALID_EMAIL || $data["status"] == EMAIL_N_EXIST) echo $data['message']; ?>
-                    </div>
+                    <div class='error'></div>
                     <!-- Email End -->
 
                     <!-- Moyenne BAC Start -->
                     <div class="input-group required">
                         <span class="input-group-addon" id="basic-addon1"><i class="fa fa-graduation-cap"></i></span>
-                        <input id="average" type="text"
-                               data="moyenne"
-                               class="form-control"
-                               placeholder="Moyenne du BAC" name="average">
+                        <input id="average" type="text" data="moyenne" class="form-control" placeholder="Moyenne du BAC"
+                               name="average">
                     </div>
-                    <div class='error'>
-                       <?php if ($data["status"] == EMPTY_AVERAGE || $data["status"] == INVALID_AVERAGE || $data["status"] == AVERAGE_N_EXIST) echo $data['message']; ?>
-                    </div>
+                    <div class='error'></div>
                     <!-- Moyenne BAC End -->
 
                     <!-- Password Start -->
                     <div class="input-group required">
-                        <span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-lock"
-                                                                                aria-hidden="true"></span></span>
-                        <input type="password"
-                               data="password"
-                               class="form-control"
-                               placeholder="Mot de passe" name="password">
+                            <span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-lock"
+                                                                                    aria-hidden="true"></span></span>
+                        <input type="password" data="password" class="form-control" placeholder="Mot de passe"
+                               name="password">
                         <span class="glyphicon glyphicon-eye-open custom-icon"></span>
                     </div>
-                    <div class='error'>
-                       <?php if ($data["status"] == EMPTY_PASS || $data["status"] == INVALID_PASS) echo $data['message']; ?>
-                    </div>
+                    <div class='error'></div>
 
                     <!-- Password End -->
                     <input id="signup_btn" type="submit" class="btn btn-block btn-success" value="S'inscrire">

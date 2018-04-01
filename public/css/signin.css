@@ -5,6 +5,7 @@
 * {
     font-family: 'Lato', sans-serif;
 }
+
 html,
 body {
     height: 100%
@@ -21,9 +22,19 @@ body {
     height: 100%;
     background: rgba(22, 0, 0, 0.3);
 }
+
 #msg-flash {
     text-align: center;
 }
+
+form .alert-success {
+    color: #3c763d;
+    background-color: #dff0d8;
+    border-color: #d6e9c6;
+    width: 80%;
+    margin: -40px auto 50px;
+}
+
 .container .row {
     margin-top: 85px;
     position: relative;
@@ -35,6 +46,19 @@ body {
     padding-right: 0px;
     height: 100%;
     background: #FFFFFF;
+}
+
+.container .row .right .error_form {
+    color: #C00;
+    position: absolute;
+    left: 10%;
+    width: 80%;
+    padding: 10px;
+    text-align: center;
+    border: 1px solid #c00;
+    background: rgba(255, 0, 0, .3);
+    border-top: none;
+    border-radius: 0px 0px 10px 10px;
 }
 
 .container .row form {

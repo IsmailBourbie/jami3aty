@@ -1,5 +1,8 @@
 <?php
 
+use App\Classes\Helper;
+use App\Classes\Mailer;
+
 class Authentication {
    private $db;
 
@@ -49,6 +52,7 @@ class Authentication {
       $row = $this->db->get();
       $hashed_password = isset($row->password) ? $row->password : "";
       if (password_verify($password, $hashed_password)) {
+         unset($row->password, $row->token);
          return $row;
       } else {
          return false;
@@ -57,28 +61,16 @@ class Authentication {
 
 
    public function addUser($data) {
+      $data['token'] = Helper::generateToken(8);
+      $data['password'] = password_hash($data['password'], PASSWORD_DEFAULT);
       $this->db->query('UPDATE student SET email = :email, password = :password, token = :token, student_active = 1 WHERE _id_student = :_id_student');
       $this->db->bind(':email', $data['email']);
       $this->db->bind(':password', $data['password']);
-      $this->db->bind(':_id_student', $data['number_card']);
+      $this->db->bind(':_id_student', $data['card_num']);
       $this->db->bind(':token', $data['token']);
       if ($this->db->execute()) {
-         return true;
-      } else {
-         return false;
+         return (new Mailer())->sendConfirmationEmail($data['email'], $data['token']);
       }
+      return "";
    }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
