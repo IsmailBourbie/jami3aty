@@ -40,9 +40,9 @@ class Modules extends Controller {
          $section = isset($_POST['section']) ? $_POST['section'] : "";
          $group = isset($_POST['group']) ? $_POST['group'] : "";
          $object = $this->modulesModel->getModules($level, $section, $group);
+         $this->_module->setModule($object);
          if ($object) {
-            $sortArray = FormatModule::arrange_rows($object);
-            $response['data'] = $sortArray;
+            $response['data'] = $this->_module->arrange_rows();
          } else {
             $response['status'] = ERR_EMAIL;
          }

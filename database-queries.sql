@@ -109,12 +109,14 @@ CREATE TABLE marks(
 CREATE TABLE post(
     _id_post INTEGER PRIMARY KEY AUTO_INCREMENT,
     _id_professor INTEGER NOT NULL ,
+    _id_subject INTEGER NOT NULL ,
     type INTEGER NOT NULL,
-    destination INTEGER NOT NULL,
+    destination VARCHAR(20) NOT NULL,
     text_post VARCHAR(500) NOT NULL,
     path_file VARCHAR(100),
-    date_post DATETIME,
-    FOREIGN KEY (_id_professor) REFERENCES professor(_id_professor)
+    date_post INTEGER(11) NOT NULL,
+    FOREIGN KEY (_id_professor) REFERENCES professor(_id_professor),
+    FOREIGN KEY (_id_subject) REFERENCES subject(_id_subject)
 );
 
 CREATE TABLE saved_notification(
@@ -130,7 +132,7 @@ CREATE TABLE saved_notification(
 CREATE TABLE comments(
     _id_post INTEGER NOT NULL ,
     _id_person INTEGER NOT NULL,
-    date_comment DATETIME NOT NULL ,
+    date_comment INTEGER(11) NOT NULL,
     text_comment VARCHAR(150) NOT NULL,
     FOREIGN KEY (_id_post) REFERENCES post(_id_post)
 );
@@ -574,3 +576,27 @@ INSERT INTO schedule VALUES (NULL, 154, 'Salle 13', 3, 3);
 INSERT INTO schedule VALUES (NULL, 155, 'Salle 13', 1, 2);
 INSERT INTO schedule VALUES (NULL, 156, 'Salle 13', 3, 2);
 INSERT INTO schedule VALUES (NULL, 157, 'Salle 7', 3, 1);
+
+
+insert into post VALUES (null,1,44,1,'6.0.3','The bung hole hails with faith, taste the lighthouse until it sings.',null,UNIX_TIMESTAMP());
+insert into post VALUES (null,2,43,2,'6.0.3','Animaliss sunt torquiss de altus tata. Persuadere hic ducunt ad alter historia.',null,UNIX_TIMESTAMP());
+insert into post VALUES (null,3,42,3,'6.0.2','Detrius, urbs, et diatria. Emeritis, varius assimilatios satis demitto de fatalis, gratis armarium.',null,UNIX_TIMESTAMP());
+insert into post VALUES (null,4,41,4,'6.0.2','Bursas favere in alta muta! Planeta de rusticus genetrix, anhelare extum.',null,UNIX_TIMESTAMP());
+insert into post VALUES (null,5,40,5,'6.0.0','Lumens sunt cursuss de placidus resistentia. Regius adelphis superbe talems triticum est.',null,UNIX_TIMESTAMP());
+insert into post VALUES (null,6,24,6,'4.0.1','When one remembers intuition and joy, one is able to handle dimension.',null,UNIX_TIMESTAMP());
+insert into post VALUES (null,7,25,7,'4.0.2','Try covering the emeri\'s essence bok choys with clammy iced tea and gold tequila, roasted.',null,UNIX_TIMESTAMP());
+insert into post VALUES (null,8,26,8,'4.0.3','The biscuit eater fears with courage, fire the pacific ocean until it sings.',null,UNIX_TIMESTAMP());
+insert into post VALUES (null,9,27,9,'4.0.4','Cum orexis favere, omnes ollaes imitari fortis, velox poetaes. Est placidus barcas, cesaris.',null,UNIX_TIMESTAMP());
+insert into post VALUES (null,10,28,10,'4.0.5','The plank crushes with treasure, endure the seychelles before it laughs.',null,UNIX_TIMESTAMP());
+insert into post VALUES (null,11,29,11,'4.0.1','Modification at the solar system was the sensor of nuclear flux, experienced to a lunar vogon.',null,UNIX_TIMESTAMP());
+insert into post VALUES (null,12,30,12,'4.0.1','Future at the center was the ionic cannon of devastation, fighted to a colorful admiral.',null,UNIX_TIMESTAMP());
+insert into post VALUES (null,13,31,13,'4.0.2','Steak can be seasoned with squeezed quinoa, also try soaking the chili with ice water.',null,UNIX_TIMESTAMP());
+
+INSERT saved_notification VALUES (1, 10101010, 1, 0);
+INSERT saved_notification VALUES (2, 10101010, 1, 1);
+INSERT saved_notification VALUES (3, 10101010, 1, 0);
+INSERT saved_notification VALUES (4, 10101010, 1, 1);
+INSERT saved_notification VALUES (5, 10101010, 1, 1);
+INSERT saved_notification VALUES (6, 10101010, 1, 0);
+INSERT saved_notification VALUES (7, 10101010, 1, 1);
+
