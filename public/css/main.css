@@ -849,7 +849,8 @@ span.separitor {
 
 /*Saved page Start*/
 
-.main .saved .saved_mold {
+.main .saved .saved_mold,
+.main .notifications .notif_mold {
     display: flex;
     justify-content: space-between;
     width: 90%;
@@ -860,12 +861,14 @@ span.separitor {
     border-radius: 10px;
 }
 
-.main .saved .saved_mold .right {
+.main .saved .saved_mold .right,
+.main .notifications .notif_mold .right {
     color: #7a7d82;
     padding-top: 20px;
 }
 
-.main .saved .saved_mold .header {
+.main .saved .saved_mold .header,
+.main .notifications .notif_mold .header {
     display: flex;
     padding: 20px 0px 10px;
     color: inherit;
@@ -876,12 +879,12 @@ span.separitor {
     opacity: .75;
 }
 
-.main .saved .saved_mold .header .icon {
+.main div .header .icon {
     padding: 5px 0 5px 5px;
     color: #46bfbe;
 }
 
-.main .saved .saved_mold .header .info {
+.main div .header .info {
     padding-left: 20px;
 }
 
@@ -890,13 +893,14 @@ span.separitor {
     padding-bottom: 5px;
 }
 
-.main .saved .saved_mold .header .info .description h4 {
+.main .saved .saved_mold .header .info .description h4,
+.main .notifications .notif_mold .header .info .description h4 {
     margin: 0;
     font-size: 17px;
     display: inline-block;
 }
 
-.main .saved .saved_mold .header .info .description span.time {
+.main div .header .info .description span.time {
     font-size: 14px;
     color: #7a7d82;
 }
@@ -908,6 +912,21 @@ span.separitor {
 }
 
 /*Saved page End*/
+
+/*Notifications page Start*/
+
+.main .notifications .notif_mold .header .info div.title {
+    font-size: 18px;
+    padding-bottom: 5px;
+    color: #7a7d82;
+}
+
+.main .notifications .notif_mold .header .info div.title span {
+    font-weight: bold;
+    color: #22313F
+}
+
+/*Notifications page End*/
 
 /****Responsive Start****/
 
