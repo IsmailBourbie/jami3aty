@@ -2,7 +2,7 @@
 require_once APP_ROOT . '/views/inc/header.php';
 ?>
     <div class="container">
-        <form class="col-md-5 col-md-push-3" action="<?= URL_ROOT ?>users/confirm" method="post" style="
+        <form class="col-md-5 col-md-push-3" action="<?= URL_ROOT ?>auth/confirmation" method="post" style="
             border: 1px solid #DDDDDD;
             text-align: center;
             margin: 100px auto;

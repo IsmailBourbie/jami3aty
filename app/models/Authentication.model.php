@@ -73,4 +73,37 @@ class Authentication {
       }
       return "";
    }
+
+
+   public function updateToken($email) {
+      $token = Helper::generateToken(8);
+      $this->db->query('UPDATE student SET token = :token WHERE email = :email');
+      $this->db->bind(':token', $token);
+      $this->db->bind(':email', $email);
+      if ($this->db->execute()) {
+         return (new Mailer())->sendConfirmationEmail($email, $token);
+      }
+         return false;
+   }
+   public function findUserByToken($token) {
+      $this->db->query('SELECT * FROM student WHERE token = :token');
+      $this->db->bind(':token', $token);
+      $row = $this->db->get();
+
+      // Check row
+      if ($this->db->rowCount() > 0) {
+         return true;
+      } else {
+         return false;
+      }
+   }
+   public function confirmEmail($token) {
+      $this->db->query('UPDATE student SET isConfirmed = 1, token = " " WHERE token = :token');
+      $this->db->bind(':token', $token);
+      if ($this->db->execute()) {
+         return true;
+      } else {
+         return false;
+      }
+   }
 }

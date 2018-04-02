@@ -13,73 +13,8 @@ class Users extends Controller {
       if (Session::isLoggedIn()) {
          Helper::redirect("");
       }
-      $response = [
-         'status'  => OK,
-         'message' => 'Every Thing is Okay',
-         'data'    => '',
-      ];
-      $this->view('auth/login', $response);
+      Helper::redirect("auth/login");
    }
-
-   public function confirm($token = "") {
-      if (!Session::isLoggedIn()) {
-         Helper::redirect("");
-      }
-      $token = trim($token);
-      if (!empty($token)) {
-         // Valid token
-         if ($this->userModel->findUserByToken($token)) {
-            // Token exist so Confirm the email
-            if ($this->userModel->confirmEmail($token)) {
-               Helper::redirect("users/login");
-            } else {
-               die('Error update');
-            }
-         } else {
-            // Token not exist
-            die('token not exist');
-         }
-
-      } else {
-         // inValid token
-         if (isset($_POST['submit'])) {
-
-            $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
-            $email = isset($_POST['email']) ? $_POST['email'] : "";
-            $response = [
-               'status'  => OK,
-               'message' => "Every thing is Okay",
-            ];
-
-            $response = Validation::validateEmail($email, $response, $this->userModel);
-
-            if ($response['status'] == OK) {
-               $token = Helper::generateToken(8);
-               if ((new Mailer())->sendConfirmationEmail($email, $token) && $this->userModel->updateToken($email, $token)) {
-                  $_SESSION["isConfirmed"] = 1;
-
-                  Session::flash('confirm_email_send', 'We send you en Email Check it 
-                        <br> if you don\'t receive it just try again <br><br>
-                        <a href="' . URL_ROOT . '">Home</a>');
-                  Helper::redirect('users/confirm');
-               } else {
-                  die('Sorry there is a problem try again please!');
-               }
-            } else {
-               $this->view("users/confirm", $response);
-            }
-
-         } else {
-            $response = [
-               'page_title' => "Confirmation",
-               'status'     => OK,
-               'message'    => "",
-            ];
-            $this->view('users/confirm', $response);
-         }
-      }
-   }
-
 
    public function resetpass($token = '') {
       if (Session::isLoggedIn()) {
@@ -192,21 +127,6 @@ class Users extends Controller {
       // destroy Session
       session_destroy();
       // Redirect_helper::redirect to the login page
-      Helper::redirect('users/login');
+      Helper::redirect('auth/login');
    }
-
-   private function createSessionUser($user) {
-
-      $_SESSION["user_id"] = $user->_id_student;
-      $_SESSION["user_email"] = $user->email;
-      $_SESSION["user_firstname"] = $user->first_name;
-      $_SESSION["user_lastname"] = $user->last_name;
-      $_SESSION["user_branch"] = Helper::levelToString($user->level);
-      $_SESSION["user_level"] = $user->level;
-      $_SESSION["user_section"] = $user->section;
-      $_SESSION["user_group"] = $user->group;
-      $_SESSION["isConfirmed"] = $user->isConfirmed;
-      Helper::redirect('');
-   }
-
 }

@@ -20,6 +20,7 @@ class Auth extends Controller {
    }
 
    public function login() {
+      if (Session::isLoggedIn()) Helper::redirect("");
       if ($_SERVER['REQUEST_METHOD'] != "POST") {
          // URL Request
          $response = [
@@ -58,6 +59,7 @@ class Auth extends Controller {
    }
 
    public function register() {
+      if (Session::isLoggedIn()) Helper::redirect("");
       if ($_SERVER["REQUEST_METHOD"] != 'POST') {
          // Direct Url Request
          $response = [
@@ -112,6 +114,47 @@ class Auth extends Controller {
       $this->view("", $response);
    }
 
+   public function confirm($token = null) {
+      if (!Session::isLoggedIn()) Helper::redirect("");
+      if (!isset($token)) {
+         Helper::redirect("auth/login");
+         return;
+      }
+      // process data to model and confirm email
+      $token = filter_var($token, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+      if (!$this->authentication->findUserByToken($token)) Helper::redirect("");
+      if (!$this->authentication->confirmEmail($token)) die('There is an Error try again');
+      Helper::redirect("auth/login");
+   }
+
+   public function confirmation() {
+      if (!Session::isLoggedIn()) Helper::redirect("");
+      $response = [
+         'page_title' => "Confirm email",
+         "status"     => OK,
+      ];
+      if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+         // send the email and update token in bdd
+         $email = $this->validateEmail($this->request->get("email")) ? $this->request->get("email") : "";
+         $email = $this->authentication->findUserByEmail($email);
+         if (empty($email)) {
+            // this email not exist or invalid
+            $response['status'] = EMAIL_N_EXIST;
+            $response['message'] = "This Email invalid or not exist";
+            $this->view("users/confirm", $response);
+            return;
+         }
+         if (!$this->authentication->updateToken($email)) die("Emailing Error try later");
+         $_SESSION['isConfirmed'] = 1;
+         Session::flash('confirm_email_send', 'Check your email');
+         Helper::redirect('auth/confirmation');
+         return;
+      }
+      // Show view
+      $this->view("auth/confirmation", $response);
+
+
+   }
 
    private function createSessionUser($user) {
       if (empty($this->request->get("ajax"))) {
