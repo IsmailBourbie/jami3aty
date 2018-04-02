@@ -27,4 +27,19 @@ class Saves {
       return $this->db->getAll();
 
    }
+
+   public function updateState($action_save, $id_post, $_id_student) {
+      if (!preg_match("/^[01]?$/", $action_save)) {
+         return false; // Err in url params Action accept just 1 or 0
+      }
+      $this->db->query("UPDATE  saved_notification SET saved = :action_save
+                            where _id_student = :_id_student
+                            and _id_post = :id_post");
+      $this->db->bind(':action_save', $action_save);
+      $this->db->bind(':_id_student', $_id_student);
+      $this->db->bind(':id_post', $id_post);
+      if ($this->db->execute())
+         return true;
+      return false;
+   }
 }

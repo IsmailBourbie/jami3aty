@@ -11,5 +11,5 @@
     <link rel="stylesheet" href="<?= URL_ROOT ?>css/font-awesome.min.css">
     <link rel="stylesheet" href="<?= URL_ROOT ?>css/main.css">
 </head>
-
+<?php if (!Session::isLoggedin()) require_once APP_ROOT . "/views/inc/nav-default.php"; ?>
 <body>

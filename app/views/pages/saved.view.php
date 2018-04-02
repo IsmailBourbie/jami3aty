@@ -32,7 +32,7 @@ require_once APP_ROOT . '/views/inc/header.php';
                            </div>
                        </div>
                        <div class="right">
-                           <a href="<?= URL_ROOT ?>saved/remove/<?= $response->_id_post ?>" title="unsaved"><i
+                           <a href="<?= URL_ROOT ?>saved/state/0/<?= $response->_id_post ?>" title="unsaved"><i
                                        class="fa fa-times"></i></a>
                        </div>
                    </div>
