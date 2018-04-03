@@ -94,7 +94,9 @@ class Helper {
             return 'Affichage';
             break;
          case 3:
-            return "Contrôle";
+            return "Notes";
+         default:
+            return "Affichage";
 
       }
    }

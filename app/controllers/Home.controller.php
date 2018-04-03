@@ -3,33 +3,36 @@ use App\Classes\Helper;
 use App\Classes\Schedule;
 
 class Home extends Controller {
-   private $_scheduleModel;
+   private $request;
+   private $schedule_model;
    private $_today;
 
-   public function __construct() {
+
+   public function __construct($request) {
       if (!Session::isLoggedIn()) {
          Helper::redirect('auth/login');
       }
+      $this->request = $request;
+      $this->schedule_model = $this->model("Schedule");
       $this->_today = date("w") + 1;
    }
 
    public function index($args = "") {
-      $this->my_day();
+      $my_day = $this->my_day();
+      $response = [
+         "page_title" => __CLASS__,
+         "my_day"     => $my_day
+      ];
+      $this->view("home/index", $response);
    }
 
 
    private function my_day() {
-      $this->_scheduleModel = $this->model("Schedule");
       $schedule = new Schedule();
       $schedule->_init_day();
-      $data = $this->_scheduleModel->getScheduleByDay($this->_today);
-      $data = $schedule->arrange_schedule_day($data);
-      $response = [
-         "page_title" => __CLASS__,
-         "data"       => $data
-      ];
-      $this->view("home/index", $response);
-
+      $my_day = $this->schedule_model->getScheduleByDay($this->_today);
+      $my_day = $schedule->arrange_schedule_day($my_day);
+      return $my_day;
    }
 
 

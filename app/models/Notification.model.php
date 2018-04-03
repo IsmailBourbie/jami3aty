@@ -27,7 +27,8 @@ class Notification {
                                        AND saved_notification.`_id_student` = :_id_student)
                                   INNER JOIN professor on post.`_id_professor` = professor._id_professor
                                  )
-                                 INNER JOIN subject ON post.`_id_subject` = subject.`_id_subject`");
+                                 INNER JOIN subject ON post.`_id_subject` = subject.`_id_subject`
+                                 ORDER BY post.date_post DESC ");
       $this->db->bind(':_id_student', $id);
       return $this->db->getAll();
 

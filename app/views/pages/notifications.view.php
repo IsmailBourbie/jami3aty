@@ -1,6 +1,7 @@
 <?php
-$responses = $data["data"];
+require_once APP_ROOT . '/views/inc/css_inc.php';
 require_once APP_ROOT . '/views/inc/header.php';
+$responses = $data["data"];
 ?>
 <?php require_once APP_ROOT . '/views/inc/header.php'; ?>
 <div class="row reset-margin">
@@ -44,4 +45,5 @@ require_once APP_ROOT . '/views/inc/header.php';
         </div>
     </div>
 </div>
+<?php require_once APP_ROOT . '/views/inc/js_inc.php'; ?>
 <?php require_once APP_ROOT . '/views/inc/footer.php'; ?>

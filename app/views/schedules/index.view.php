@@ -1,7 +1,8 @@
 <?php
-$schedule = $data["data"];
+require_once APP_ROOT . '/views/inc/css_inc.php';
 require_once APP_ROOT . '/views/inc/header.php';
-require_once APP_ROOT . '/views/inc/header.php'; ?>
+$schedule = $data["data"];
+?>
 <div class="row reset-margin">
     <div class="aside-left reset-padding">
        <?php require_once APP_ROOT . '/views/inc/navigation-bar.php'; ?>
@@ -217,4 +218,5 @@ require_once APP_ROOT . '/views/inc/header.php'; ?>
             </div>
         </div>
     </div>
+   <?php require_once APP_ROOT . '/views/inc/js_inc.php'; ?>
    <?php require_once APP_ROOT . '/views/inc/footer.php'; ?>

@@ -1,4 +1,5 @@
 <?php
+require_once APP_ROOT . '/views/inc/css_inc.php';
 require_once APP_ROOT . '/views/inc/header.php';
 if ($data["status"] == OK) {
    $responses = $data["data"];
@@ -79,4 +80,5 @@ if ($data["status"] == OK) {
         </div>
     </div>
 </div>
+<?php require_once APP_ROOT . '/views/inc/js_inc.php'; ?>
 <?php require_once APP_ROOT . '/views/inc/footer.php'; ?>
