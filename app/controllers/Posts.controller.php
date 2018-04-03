@@ -15,6 +15,14 @@ class Posts extends Controller {
    }
 
    public function all() {
+      $data = $this->post_model->getAllPosts();
+      header("Content-type: application/json");
+      echo json_encode($data);
+   }
 
+   public function get() {
+      $data = $this->post_model->getPost(2);
+      header("Content-type: application/json");
+      echo json_encode($data);
    }
 }

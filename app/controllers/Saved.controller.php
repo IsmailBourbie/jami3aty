@@ -41,7 +41,7 @@ class Saved extends Controller {
       $data = [
          "action"      => $action,
          "id_post"     => filter_var($id_post, FILTER_SANITIZE_NUMBER_INT),
-         "_id_student" => $_SESSION["user_id"]
+         "_id_student" => isset($_SESSION["user_id"]) ? $_SESSION["user_id"] : ""
       ];
       $response = [
          'page_title' => "Saved",
