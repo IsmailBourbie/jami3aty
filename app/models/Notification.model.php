@@ -30,7 +30,7 @@ class Notification {
                                  INNER JOIN subject ON post.`_id_subject` = subject.`_id_subject`
                                  ORDER BY post.date_post DESC ");
       $this->db->bind(':_id_student', $id);
-      return $this->db->getAll();
+      return \App\Classes\Helper::addColumnDateParsed($this->db->getAll());
 
    }
 }

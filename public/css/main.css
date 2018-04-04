@@ -16,6 +16,7 @@ a:hover {
 #msg-flash {
     text-align: center;
 }
+
 a {
     color: inherit;
 }
@@ -110,19 +111,6 @@ nav .items_icons .list_items .nav > li {
     display: inline-block;
 }
 
-nav .items_icons .list_items ul li:not(.list_gestion) .dropdown-menu {
-    min-width: 500px;
-    padding: 0;
-}
-
-nav .items_icons .list_items ul li:not(.list_gestion) .dropdown-menu li {
-    border-bottom: 1px solid #AAA
-}
-
-nav .items_icons .list_items ul li:not(.list_gestion) .dropdown-menu li a {
-    padding: 15px;
-}
-
 nav .items_icons .list_items .navbar-nav > li > a {
     color: #02b3e4;
 }
@@ -167,6 +155,42 @@ nav .items_icons .search_container .navbar-form input.form-control {
     padding-top: 10px;
     padding-bottom: 10px;
     border-right: none;
+}
+
+
+nav .list_items .notifications .notif_mold a {
+    padding: 10px 10px;
+    display: flex;
+    width: 500px;
+    border-bottom: 1px solid #b9c6d5;
+}
+
+nav .list_items .notifications .notif_mold a .icon {
+    padding-top: 5px;
+    color: #02b3e4;
+}
+
+nav .list_items .notifications .notif_mold a .info {
+    margin-left: 10px;
+    color: #7a7d82;
+}
+
+nav .list_items .notifications .notif_mold a .info b {
+    color: #22313F;
+}
+
+nav .list_items .notifications .notif_mold a .info .title {
+    font-size: 15px;
+}
+
+nav .list_items .notifications .notif_mold a .info .description h4 {
+    display: inline-block;
+    font-size: 14px;
+    color: #22313F;
+}
+
+nav .list_items .notifications .notif_mold a .info .description span.time {
+    color: #7a7d82;
 }
 
 /*Phone respensive Start*/

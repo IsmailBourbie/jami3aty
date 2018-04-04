@@ -116,6 +116,17 @@ class Helper {
       return $obj_arr;
    }
 
+// add column to row
+   public static function addColumnDateParsed($object) {
+      for ($i = 0; $i < count($object); $i++) {
+         $object[$i] = (array)$object[$i];
+         $date_post = $object[$i]["date_post"];
+         $object[$i]["date_parsed"] = \Time::formatTime($date_post);
+         $object[$i] = (object)$object[$i];
+      }
+      return ($object);
+   }
+
    public static function generateToken($length) {
       return bin2hex(openssl_random_pseudo_bytes($length));
    }

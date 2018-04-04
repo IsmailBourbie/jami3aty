@@ -23,20 +23,11 @@
         <!-- Liste items container Start -->
         <div class="col-md-4 col-xs-7 col-md-push-5 list_items ">
             <ul class="nav navbar-nav navbar-right reset-margin">
-                <li class="dropdown notifications">
+                <li class="dropdown notifications" id="notif-btn">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                                <i class="fa fa-bell fa-2x"></i>
-                            </a>
-                    <ul class="dropdown-menu">
-                        <li><a href="#">notification1</a></li>
-                        <li><a href="#">notification2</a></li>
-                        <li><a href="#">notification3</a></li>
-                        <li><a href="#">notification4</a></li>
-                        <li><a href="#">notification5</a></li>
-                        <li><a href="#">notification6</a></li>
-                        <li><a href="#">notification7</a></li>
-                        <li><a href="#">notification8</a></li>
-                    </ul>
+                        <i class="fa fa-bell fa-2x"></i>
+                    </a>
+                    <ul class="dropdown-menu reset-padding" id="notif-list"></ul>
                 </li>
                 <li class="dropdown messages">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
