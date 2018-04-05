@@ -34,4 +34,9 @@ class Session {
          return false;
       }
    }
+
+   public static function get($key) {
+      if (isset($_SESSION[$key])) return $_SESSION[$key];
+      return '';
+   }
 }

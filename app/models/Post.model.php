@@ -7,8 +7,15 @@ class Post {
       $this->db = new Database;
    }
 
-   public function getAllPosts() {
-      $destination = '6.0.3';
+   public function getAllPosts($destination) {
+      $pattern = "/^[1-9]{1,2}[.][0-9][.][0-9]{1,2}$/";
+      if (empty($destination["level"])) {
+         $destination["level"] = Session::get('user_level');
+         $destination["section"] = Session::get('user_section');
+         $destination["group"] = Session::get('user_group');
+      }
+      $destination = $destination['level'] . "." . $destination['section'] . "." . $destination['group'];
+      if (!preg_match($pattern, $destination)) return false;
       $this->db->query("SELECT post.*, concat(professor.degree, '. ',
                                                   professor.first_name, ' ',
                                                    professor.last_name ) as fullName,
