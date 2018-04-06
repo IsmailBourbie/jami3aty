@@ -57,7 +57,7 @@ $(document).ready(function () {
             success: function (response) {
                 notifs_length = response.data.length;
                 for (count_notif; count_notif < notifs_length; count_notif += 1) {
-                    notif_list.append(createNotifMold());
+                    notif_list.children(".loader").before(createNotifMold());
                     notif_list.children("li")
                         .eq(count_notif).find("#prof_name")
                         .html(response.data[count_notif].fullName);
@@ -71,6 +71,7 @@ $(document).ready(function () {
                         .eq(count_notif).find(".time")
                         .html(response.data[count_notif].date_parsed);
                 }
+                notif_list.children(".loader").hide();
             }
         });
     });

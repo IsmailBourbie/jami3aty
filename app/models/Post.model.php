@@ -25,7 +25,7 @@ class Post {
                                        AND post.destination = :destination) 
                             INNER JOIN subject ON post._id_subject = subject._id_subject");
       $this->db->bind(":destination", $destination);
-      return $this->db->getAll();
+      return \App\Classes\Helper::addColumnDateParsed($this->db->getAll());
    }
 
    public function getPost($id_post) {
@@ -42,4 +42,3 @@ class Post {
    }
 
 }
-

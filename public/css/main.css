@@ -49,9 +49,9 @@ form .error {
     }
 
     .main .aside-right {
-        padding-top: 50px;
+        top: 70px !important;
         margin-bottom: 90px !important;
-        right: 2.2%;
+        right: 3.2% !important;
     }
 }
 
@@ -83,9 +83,6 @@ form .error {
 .content .main .row {
     margin-left: 15px;
     margin-right: 15px;
-    -webkit-perspective: 6000px;
-    -moz-perspective: 6000px;
-    perspective: 6000px;
 }
 
 nav .default-nav li a:hover {
@@ -316,6 +313,10 @@ nav .list_items .notifications .notif_mold a .info .description span.time {
     margin-bottom: 0px;
 }
 
+.aside-left .my_data h4 i {
+    width: 20px;
+}
+
 .aside-left .my_data li {
     width: 100%;
     margin-bottom: 10px;
@@ -355,12 +356,12 @@ nav .list_items .notifications .notif_mold a .info .description span.time {
 }
 
 .aside-left .aside-content > div,
-.main .aside-right .aside-content > div {
+.main .aside-right > div {
     margin-top: 10px;
     margin-bottom: 10px;
 }
 
-.main .aside-right .aside-content .ma_journee a,
+.main .aside-right .ma_journee a,
 .aside-left .aside-content .my_data a {
     padding: 12px 0;
     border: none;
@@ -370,41 +371,41 @@ nav .list_items .notifications .notif_mold a .info .description span.time {
     font-weight: bold;
 }
 
-.main .aside-right .aside-content .ma_journee a {
+.main .aside-right .ma_journee a {
     background-color: #d91f2d;
     color: #FFFFFF;
 }
 
-.main .aside-right .aside-content .ma_journee .well,
+.main .aside-right .ma_journee .well,
 .aside-left .aside-content .my_data .well {
     background-color: transparent;
     border: none;
     box-shadow: unset;
 }
 
-.main .aside-right .aside-content .ma_journee .well li {
+.main .aside-right .ma_journee .well li {
     min-height: 50px;
 
 }
 
-.main .aside-right .aside-content .ma_journee .well li h4 {
+.main .aside-right .ma_journee .well li h4 {
     margin: 5px 0;
     font-weight: bolder;
 }
 
-.main .aside-right .aside-content .ma_journee .well li span.course_name,
-.main .aside-right .aside-content .ma_journee .well li span.course_type {
+.main .aside-right .ma_journee .well li span.course_name,
+.main .aside-right .ma_journee .well li span.course_type {
     margin-left: 15px;
 
 }
 
-.main .aside-right .aside-content .ma_journee .well li span.course_type,
-.main .aside-right .aside-content .ma_journee .well li span.course_place {
+.main .aside-right .ma_journee .well li span.course_type,
+.main .aside-right .ma_journee .well li span.course_place {
     font-size: 16px;
     color: #71767b;
 }
 
-.main .aside-right .aside-content .ma_journee .well li span.course_name {
+.main .aside-right .ma_journee .well li span.course_name {
     display: block;
     font-size: 18px
 }
@@ -416,9 +417,7 @@ nav .list_items .notifications .notif_mold a .info .description span.time {
 
 /*** Aside left style End ***/
 
-/*** Main style start ***/
-
-.main .main {}
+/*** Post style start ***/
 
 .main .main .welcom_day {
     padding: 10px;
@@ -437,13 +436,7 @@ nav .list_items .notifications .notif_mold a .info .description span.time {
     letter-spacing: 2px;
     font-weight: bold;
     font-family: monospace;
-}
-
-.main .main .welcom_day p {
-    color: #676767;
-    font-size: 16px;
-    font-weight: 300;
-    line-height: 1.4;
+    text-transform: uppercase;
 }
 
 /* Publication Mold*/
@@ -550,6 +543,12 @@ span.separitor {
     opacity: 0;
 }
 
+.publication_mold .publication_body .react-bar ul li span#see-comments:hover {
+    cursor: pointer;
+    color: #2677af;
+    text-decoration: underline;
+}
+
 .publication_mold:hover .publication_body .react-bar {
     transition: all .1s linear;
     opacity: 1;
@@ -628,17 +627,16 @@ span.separitor {
     font-size: 12px;
 }
 
-/*** Main style End ***/
+/*** Post style End ***/
 
 /*** Aside right style start ***/
 
 .main .aside-right {
     background-color: #FFFFFF;
     position: fixed;
-    top: 20px;
+    top: 90px;
     right: 1%;
-    box-shadow: 2px 4px 8px 0 rgba(46, 61, 73, .2);
-    width: 32%;
+    box-shadow: 2px 4px 8px 0 rgba(46, 61, 73, .2)
 }
 
 /*** Aside right style End ***/
@@ -648,6 +646,12 @@ span.separitor {
 .main .modules {
     margin-top: 25px;
     padding: 10px;
+}
+
+.content .main .modules .row {
+    -webkit-perspective: 2000px;
+    -moz-perspective: 2000px;
+    perspective: 2000px;
 }
 
 .main .modules .card_mold {
@@ -967,7 +971,7 @@ span.separitor {
         width: 100%;
     }
 
-    .main .aside-right .aside-content .ma_journee .well {
+    .main .aside-right .ma_journee .well {
         background: #FFF;
     }
 
@@ -1030,10 +1034,41 @@ span.separitor {
 
 /*FramWork*/
 
+.loader {
+    border: 3px solid #DDD;
+    border-top: 3px solid #46bfbe;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    animation: spin 2s linear infinite;
+    margin: auto;
+}
+
+.lodear-sm {
+    border: 1px solid #DDD;
+    border-top: 1px solid #3498db;
+    width: 20px;
+    height: 20px;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
 .reset-margin {
     margin: 0px !important;
 }
 
 .reset-padding {
     padding: 0px !important;
+}
+
+.btn-transparent {
+    background: transparent !important;
+    border: none !important;
 }

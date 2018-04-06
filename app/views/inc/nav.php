@@ -27,7 +27,9 @@
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
                         <i class="fa fa-bell fa-2x"></i>
                     </a>
-                    <ul class="dropdown-menu reset-padding" id="notif-list"></ul>
+                    <ul class="dropdown-menu reset-padding" id="notif-list">
+                        <div class="loader lodear-sm"></div>
+                    </ul>
                 </li>
                 <li class="dropdown messages">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">

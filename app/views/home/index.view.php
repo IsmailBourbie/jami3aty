@@ -12,70 +12,74 @@ $schedule = $data['my_day'];
             <div class="main">
                 <div class="row reset-margin">
                     <div class="col-lg-3  col-md-12 aside-right">
-                        <div class="calnedar">
-                            <div class="aside-content">
-                                <div class="ma_journee">
-                                    <a class="btn btn-default btn-block" role="button" data-toggle="collapse" href="#ma_journee" aria-expanded="false" aria-controls="ma_journee">
+                        <div class="ma_journee">
+                            <a class="btn btn-default btn-block" role="button" data-toggle="collapse" href="#ma_journee" aria-expanded="false" aria-controls="ma_journee">
                                     Ma Journée Universitaire
-                                </a>
-                                    <div class="collapse in" id="ma_journee">
-                                        <div class="well">
-                                            <ul class="list-unstyled">
-                                                <li>
-                                                    <h4>08:00 - 09:30</h4>
-                                                    <span class="course_name"><?= $schedule[1]["title"] ?></span>
-                                                    <span class="course_type"><?= \App\Classes\Helper::typeOfCourseToString($schedule[1]["type"]) ?></span>
-                                                    <span class="separitor">-</span>
-                                                    <span class="course_place"><?= $schedule[1]["place"] ?></span>
-                                                </li>
-                                                <li>
-                                                    <h4>09:30 - 11:00</h4>
-                                                    <span class="course_name"><?= $schedule[2]["title"] ?></span>
-                                                    <span class="course_type"><?= \App\Classes\Helper::typeOfCourseToString($schedule[2]["type"]) ?></span>
-                                                    <span class="separitor">-</span>
-                                                    <span class="course_place"><?= $schedule[2]["place"] ?></span>
-                                                </li>
-                                                <li>
-                                                    <h4>11:00 - 12:30</h4>
-                                                    <span class="course_name"><?= $schedule[3]["title"] ?></span>
-                                                    <span class="course_type"><?= \App\Classes\Helper::typeOfCourseToString($schedule[3]["type"]) ?></span>
-                                                    <span class="separitor">-</span>
-                                                    <span class="course_place"><?= $schedule[3]["place"] ?></span>
-                                                </li>
-                                                <li>
-                                                    <h4>12:30 - 14:00</h4>
-                                                    <span class="course_name"><?= $schedule[4]["title"] ?></span>
-                                                    <span class="course_type"><?= \App\Classes\Helper::typeOfCourseToString($schedule[4]["type"]) ?></span>
-                                                    <span class="separitor">-</span>
-                                                    <span class="course_place"><?= $schedule[4]["place"] ?></span>
-                                                </li>
-                                                <li>
-                                                    <h4>14:00 - 15:30</h4>
-                                                    <span class="course_name"><?= $schedule[5]["title"] ?></span>
-                                                    <span class="course_type"><?= \App\Classes\Helper::typeOfCourseToString($schedule[5]["type"]) ?></span>
-                                                    <span class="separitor">-</span>
-                                                    <span class="course_place"><?= $schedule[5]["place"] ?></span>
-                                                </li>
-                                                <li>
-                                                    <h4>15:30 - 17:00</h4>
-                                                    <span class="course_name"><?= $schedule[6]["title"] ?></span>
-                                                    <span class="course_type"><?= \App\Classes\Helper::typeOfCourseToString($schedule[6]["type"]) ?></span>
-                                                    <span class="separitor">-</span>
-                                                    <span class="course_place"><?= $schedule[6]["place"] ?></span>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
+                                    </a>
+                            <div class="collapse in" id="ma_journee">
+                                <div class="well">
+                                    <ul class="list-unstyled">
+                                        <li>
+                                            <h4>08:00 - 09:30</h4>
+                                            <span class="course_name"><?= $schedule[1]["title"] ?></span>
+                                            <span class="course_type"><?= \App\Classes\Helper::typeOfCourseToString($schedule[1]["type"]) ?></span>
+                                            <span class="separitor">-</span>
+                                            <span class="course_place"><?= $schedule[1]["place"] ?></span>
+                                        </li>
+                                        <li>
+                                            <h4>09:30 - 11:00</h4>
+                                            <span class="course_name"><?= $schedule[2]["title"] ?></span>
+                                            <span class="course_type"><?= \App\Classes\Helper::typeOfCourseToString($schedule[2]["type"]) ?></span>
+                                            <span class="separitor">-</span>
+                                            <span class="course_place"><?= $schedule[2]["place"] ?></span>
+                                        </li>
+                                        <li>
+                                            <h4>11:00 - 12:30</h4>
+                                            <span class="course_name"><?= $schedule[3]["title"] ?></span>
+                                            <span class="course_type"><?= \App\Classes\Helper::typeOfCourseToString($schedule[3]["type"]) ?></span>
+                                            <span class="separitor">-</span>
+                                            <span class="course_place"><?= $schedule[3]["place"] ?></span>
+                                        </li>
+                                        <li>
+                                            <h4>12:30 - 14:00</h4>
+                                            <span class="course_name"><?= $schedule[4]["title"] ?></span>
+                                            <span class="course_type"><?= \App\Classes\Helper::typeOfCourseToString($schedule[4]["type"]) ?></span>
+                                            <span class="separitor">-</span>
+                                            <span class="course_place"><?= $schedule[4]["place"] ?></span>
+                                        </li>
+                                        <li>
+                                            <h4>14:00 - 15:30</h4>
+                                            <span class="course_name"><?= $schedule[5]["title"] ?></span>
+                                            <span class="course_type"><?= \App\Classes\Helper::typeOfCourseToString($schedule[5]["type"]) ?></span>
+                                            <span class="separitor">-</span>
+                                            <span class="course_place"><?= $schedule[5]["place"] ?></span>
+                                        </li>
+                                        <li>
+                                            <h4>15:30 - 17:00</h4>
+                                            <span class="course_name"><?= $schedule[6]["title"] ?></span>
+                                            <span class="course_type"><?= \App\Classes\Helper::typeOfCourseToString($schedule[6]["type"]) ?></span>
+                                            <span class="separitor">-</span>
+                                            <span class="course_place"><?= $schedule[6]["place"] ?></span>
+                                        </li>
+                                    </ul>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-8 col-md-12 main">
-                        <div class="welcom_day">
-                            <h2 class="text-center">Bonjour <span>ISMAIL</span></h2>
-                            <p class="text-center">Aucune événement aujourd'hui</p>
+                    <!--Start Modal of new Comments-->
+                    <div class="modal fade comment-modal" tabindex="-1" role="dialog">
+                        <div class="modal-dialog modal-sm" role="document">
+                            <div class="modal-content">
+                                <textarea></textarea>
+                                <button>Send</button>
+                            </div>
                         </div>
-                        <div class="publication_mold">
+                    </div>
+                    <div class="col-lg-8 col-md-12 main" id="main-posts">
+                        <div class="welcom_day">
+                            <h2 class="text-center">Bonjour <span><?=Session::get('user_lastname')?></span></h2>
+                        </div>
+                        <article class="publication_mold hide">
                             <div class="row publication_head reset-margin">
                                 <div class="col-xs-10 course_info">
                                     <div class="teacher_logo">
@@ -120,9 +124,15 @@ $schedule = $data['my_day'];
                                 <div class="react-bar">
                                     <hr>
                                     <ul class="list-inline reset-margin clearfix">
-                                        <li><i class="fa fa-comment fa-2x"></i></li>
-                                        <li><i class="fa fa-envelope fa-2x"></i></li>
-                                        <li class="pull-right"><i class="fa fa-bookmark fa-2x"></i></li>
+                                        <li>
+                                            <button type="button" class="btn-transparent" data-toggle="modal" data-target=".comment-modal">
+                                               <i class="fa fa-comment fa-2x"></i> 
+                                            </button>
+                                        </li>
+                                        <li><i class="fa fa-bookmark fa-2x"></i></li>
+                                        <li class="pull-right">
+                                            <span id="see-comments">Voire Tout</span>
+                                        </li>
                                     </ul>
                                 </div>
                             </div>
@@ -145,28 +155,11 @@ $schedule = $data['my_day'];
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="comment_mold">
-                                        <div class="row reset-margin">
-                                            <div class="col-xs-1 student_logo">
-                                                <span>R</span>
-                                            </div>
-                                            <div class="col-xs-9 student_data">
-                                                <h5 class="student_name reset-margin">Redouane Baya</h5>
-                                                <p class="student_comment reset-margin">Lorem ipsum dolor sit amet, consectetur.
-                                                </p>
-                                                <span class="time_comment">25 min</span>
-                                                <span class="arrow"></span>
-                                            </div>
-                                            <div class="col-xs-2 hide text-right">
-                                                <i class="fa fa-exclamation-circle" style="font-size: 17px"></i>
-                                            </div>
-                                        </div>
-                                    </div>
                                 </div>
-
                                 <div class="input_comment"></div>
                             </div>
-                        </div>
+                        </article>
+                        <div class="loader"></div>
                     </div>
                 </div>
             </div>
@@ -174,4 +167,5 @@ $schedule = $data['my_day'];
 
     </div>
     <?php require_once APP_ROOT . '/views/inc/js_inc.php'; ?>
+    <script src="<?=URL_ROOT?>js/plugins-posts.js"></script>
     <?php require_once APP_ROOT . '/views/inc/footer.php'; ?>

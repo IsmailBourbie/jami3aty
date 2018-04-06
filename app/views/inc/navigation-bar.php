@@ -8,10 +8,10 @@
             </div>
             <div class="user_info">
                 <h3>
-                   <?= $_SESSION['user_firstname'] . ' ' . $_SESSION['user_lastname'] ?>
+                    <?= $_SESSION['user_firstname'] . ' ' . $_SESSION['user_lastname'] ?>
                 </h3>
                 <p class="lead">
-                   <?= $_SESSION['user_branch'] ?>
+                    <?= $_SESSION['user_branch'] ?>
                 </p>
             </div>
 
@@ -21,61 +21,70 @@
             <div class="well">
                 <ul class="list-unstyled">
                     <li id="home">
-                        <h4>
-                            <i class="fa fa-home"></i>
-                            <a href="<?= URL_ROOT ?>home">Acueil</a>
-                        </h4>
+                        <a href="<?= URL_ROOT ?>home">
+                            <h4>
+                                <i class="fa fa-home"></i> Acueil
+                            </h4>
+                        </a>
                     </li>
                     <li id="messages">
-                        <h4>
-                            <i class="fa fa-envelope"></i>
-                            <a href="<?= URL_ROOT ?>messages">Messages</a>
-                        </h4>
+                        <a href="<?= URL_ROOT ?>messages">
+                            <h4>
+                                <i class="fa fa-envelope"></i> Messages
+                            </h4>
+                        </a>
                     </li>
                     <li id="notifications">
-                        <h4>
-                            <i class="fa fa-bell"></i>
-                            <a href="<?= URL_ROOT ?>notifications">Notifications</a>
-                        </h4>
+                        <a href="<?= URL_ROOT ?>notifications">
+                            <h4>
+                                <i class="fa fa-bell"></i> Notifications
+                            </h4>
+                        </a>
                     </li>
                     <li>
                         <hr>
                     </li>
                     <li id="modules">
-                        <h4>
-                            <i class="fa fa-book"></i>
-                            <a href="<?= URL_ROOT ?>modules">Modules</a>
-                        </h4>
+                        <a href="<?= URL_ROOT ?>modules">
+                            <h4>
+                                <i class="fa fa-book"></i> Modules
+                            </h4>
+                        </a>
                     </li>
                     <li id="notes">
-                        <h4>
-                            <i class="fa fa-calculator"></i>
-                            <a href="<?= URL_ROOT ?>notes">Notes</a>
-                        </h4>
+                        <a href="<?= URL_ROOT ?>notes">
+                            <h4>
+                                <i class="fa fa-calculator"></i> Notes
+                            </h4>
+                        </a>
                     </li>
                     <li id="planning">
-                        <h4>
-                            <i class="fa fa-calendar"></i>
-                            <a href="<?= URL_ROOT ?>schedules">Planning</a>
-                        </h4>
+                        <a href="<?= URL_ROOT ?>schedules">
+                            <h4>
+                                <i class="fa fa-calendar"></i> Planning
+                            </h4>
+                        </a>
                     </li>
                     <li id="évènements">
-                        <h4>
-                            <i class="fa fa-bullhorn"></i>
-                            <a href="<?= URL_ROOT ?>events">Évènements</a>
-                        </h4>
+                        <a href="<?= URL_ROOT ?>events">
+                            <h4>
+                                <i class="fa fa-bullhorn"></i> Évènements
+                            </h4>
+                        </a>
                     </li>
                     <li id="Enregistré">
-                        <h4>
-                            <i class="fa fa-bookmark"></i>
-                            <a href="<?= URL_ROOT ?>saved">Enregistrement</a>
-                        </h4>
+                        <a href="<?= URL_ROOT ?>saved">
+                            <h4>
+                                <i class="fa fa-bookmark"></i> Enregistrement
+                            </h4>
+                        </a>
                     </li>
                     <li id="aide">
-                        <h4>
-                            <i class="fa fa-question-circle"></i>
-                            <a href="<?= URL_ROOT ?>help">Aide</a>
-                        </h4>
+                        <a href="<?= URL_ROOT ?>help">
+                            <h4>
+                                <i class="fa fa-question-circle"></i> Aide
+                            </h4>
+                        </a>
                     </li>
                 </ul>
                 <div class="copyright">
