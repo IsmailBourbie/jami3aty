@@ -38,7 +38,6 @@ $(document).ready(function () {
                 return "Notes";
             default:
                 return "Affichage";
-
         }
 
     }
@@ -70,6 +69,12 @@ $(document).ready(function () {
                     notif_list.children("li")
                         .eq(count_notif).find(".time")
                         .html(response.data[count_notif].date_parsed);
+                    notif_list.children("li")
+                        .eq(count_notif).find("a")
+                        .attr("href", "http://localhost/jami3aty/posts/get/" + response.data[count_notif]._id_post);
+                    if (response.data[count_notif].seen == 0) {
+                        notif_list.children("li").addClass("not-seen");
+                    }
                 }
                 notif_list.children(".loader").hide();
             }
