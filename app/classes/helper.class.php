@@ -121,7 +121,9 @@ class Helper {
       for ($i = 0; $i < count($object); $i++) {
          $object[$i] = (array)$object[$i];
          $date_post = $object[$i]["date_post"];
+         $type_post = $object[$i]["type"];
          $object[$i]["date_parsed"] = \Time::formatTime($date_post);
+         $object[$i]["type_parsed"] = self::typeOfPostToString($type_post);
          $object[$i] = (object)$object[$i];
       }
       return ($object);

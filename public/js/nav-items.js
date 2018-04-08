@@ -2,7 +2,8 @@
 /*global $, alert, console*/
 $(document).ready(function () {
     "use strict";
-    var count_notif = 0;
+    var count_notif = 0,
+        url_post = "http://localhost/jami3aty/posts/get/";
 
     function createNotifMold() {
         var notifHTML = '<li class="notif_mold">' +
@@ -26,21 +27,6 @@ $(document).ready(function () {
             '</li>';
         return notifHTML;
     }
-
-    function typeOfPostToString(type) {
-        type = Number(type);
-        switch (type) {
-            case 1:
-                return 'Consultation';
-            case 2:
-                return 'Affichage';
-            case 3:
-                return "Notes";
-            default:
-                return "Affichage";
-        }
-
-    }
     // get data with ajax when notif clicked
     $("#notif-btn").click(function () {
         var notif_list = $("#notif-list"),
@@ -62,7 +48,7 @@ $(document).ready(function () {
                         .html(response.data[count_notif].fullName);
                     notif_list.children("li")
                         .eq(count_notif).find("#type_post")
-                        .html(typeOfPostToString(response.data[count_notif].type));
+                        .html(response.data[count_notif].type_parsed);
                     notif_list.children("li")
                         .eq(count_notif).find("h4")
                         .html(response.data[count_notif].title);
@@ -71,7 +57,7 @@ $(document).ready(function () {
                         .html(response.data[count_notif].date_parsed);
                     notif_list.children("li")
                         .eq(count_notif).find("a")
-                        .attr("href", "http://localhost/jami3aty/posts/get/" + response.data[count_notif]._id_post);
+                        .attr("href", url_post + response.data[count_notif]._id_post);
                     if (response.data[count_notif].seen == 0) {
                         notif_list.children("li").addClass("not-seen");
                     }

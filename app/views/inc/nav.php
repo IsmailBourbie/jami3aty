@@ -29,6 +29,9 @@
                     </a>
                     <ul class="dropdown-menu reset-padding" id="notif-list">
                         <div class="loader lodear-sm"></div>
+                        <div class="see_more_notif text-center">
+                            <a href="<?=URL_ROOT?>notifications">Voir tous</a>
+                        </div>
                     </ul>
                 </li>
                 <li class="dropdown messages">
