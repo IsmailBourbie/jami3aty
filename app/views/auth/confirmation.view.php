@@ -1,5 +1,6 @@
 <?php
 require_once APP_ROOT . '/views/inc/header.php';
+require_once APP_ROOT . '/views/inc/css_inc.php';
 ?>
     <div class="container">
         <form class="col-md-5 col-md-push-3" action="<?= URL_ROOT ?>auth/confirmation" method="post" style="
@@ -27,5 +28,6 @@ require_once APP_ROOT . '/views/inc/header.php';
             <?php Session::flash('confirm_email_send')?>
         </form>
         <?php
+require_once APP_ROOT . '/views/inc/js_inc.php';
 require_once APP_ROOT . '/views/inc/footer.php';
 ?>

@@ -41,7 +41,7 @@ class Saved extends Controller {
       $data = [
          "action"      => $action,
          "id_post"     => filter_var($id_post, FILTER_SANITIZE_NUMBER_INT),
-         "_id_student" => isset($_SESSION["user_id"]) ? $_SESSION["user_id"] : ""
+         "_id_student" => Session::get('user_id')
       ];
       $response = [
          'page_title' => "Saved",
@@ -52,6 +52,7 @@ class Saved extends Controller {
          $data["action"] = $this->request->get('action');
          $data["id_post"] = filter_var($this->request->get('id_post'), FILTER_SANITIZE_NUMBER_INT);
          $data["_id_student"] = filter_var($this->request->get('_id_student'), FILTER_SANITIZE_NUMBER_INT);
+         $data['_id_student'] = !empty($data['_id_student']) ? $data['_id_student'] : Session::get('user_id');
       }
       if (!$this->saved_pub->updateState($data["action"], $data["id_post"], $data["_id_student"])) {
          // if there is a problem

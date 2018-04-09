@@ -28,8 +28,7 @@ $(document).ready(function () {
             url: "http://localhost/jami3aty/notifications/all",
             type: "post",
             data: {
-                '_id_student': 10101012,
-                ajax: "hello"
+                ajax: true
             },
             dataType: "json",
             success: function (response) {
@@ -48,8 +47,7 @@ $(document).ready(function () {
                     notif_layout.children(".notif_mold").last()
                         .find(".description .time").html(response.data[count_notifs].date_parsed);
                     if (response.data[count_notifs].seen == 0) {
-                        console.log(1);
-                        notif_layout.children(".notif_mold").addClass("not-seen");
+                        notif_layout.children(".notif_mold").last().addClass("not-seen");
                     }
                 }
                 notif_layout.children(".loader").hide();

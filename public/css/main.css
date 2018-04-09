@@ -171,7 +171,7 @@ nav .list_items .notifications .notif_mold a {
     border-bottom: 1px solid #b9c6d5;
 }
 
-nav .list_items .notifications .notif_mold a:last-of-type {
+nav .list_items .notifications .notif_mold:last-of-type a {
     border-bottom: none;
 }
 
@@ -1122,5 +1122,5 @@ span.separitor {
 
 .notifications .not-seen {
     text-decoration: none;
-    background-color: #f5f5f5 !important;
+    background-color: #e8e6e6 !important;
 }

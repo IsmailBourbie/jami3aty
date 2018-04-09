@@ -15,24 +15,22 @@ class Notifications extends Controller {
    }
 
    public function index() {
-      $this->all();
-   }
-
-   public function all() {
       $response = [
          'page_title' => "Notifications",
          "status"     => OK,
       ];
-      if ($_SERVER['REQUEST_METHOD'] == "POST") {
-         $id = $this->request->get("_id_student");
-         $response['data'] = $this->notif->getAll($id);
-         $this->view("pages/notifications", $response);
-         return;
-      }
-      $id = $_SESSION['user_id'];
+      $this->view("pages/notifications", $response);
+   }
+
+   public function all() {
+      if ($_SERVER['REQUEST_METHOD'] != "POST") \App\Classes\Helper::redirect("");
+      $response = [
+         'page_title' => "Notifications",
+         "status"     => OK,
+      ];
+      $id = !empty($this->request->get("_id_student")) ? $this->request->get("_id_student") : Session::get("user_id");
       $response['data'] = $this->notif->getAll($id);
       $this->view("pages/notifications", $response);
       return;
    }
-
 }

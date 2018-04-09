@@ -35,8 +35,7 @@ $(document).ready(function () {
             url: "http://localhost/jami3aty/notifications/all",
             type: "post",
             data: {
-                '_id_student': 10101012,
-                ajax: "hello"
+                ajax: true
             },
             dataType: "json",
             success: function (response) {
@@ -59,11 +58,30 @@ $(document).ready(function () {
                         .eq(count_notif).find("a")
                         .attr("href", url_post + response.data[count_notif]._id_post);
                     if (response.data[count_notif].seen == 0) {
-                        notif_list.children("li").addClass("not-seen");
+                        notif_list.children("li").eq(count_notif).addClass("not-seen");
                     }
                 }
                 notif_list.children(".loader").hide();
             }
         });
     });
+
+    // set save with ajax
+    $('#main-posts').on("click", ".save-post", function () {
+        console.log($(this).attr('data-target'));
+        $.ajax({
+            url: "http://localhost/jami3aty/saved/state",
+            type: "post",
+            data: {
+                "action": 1,
+                "id_post": $(this).attr('data-target'),
+                "ajax": true
+            },
+            dataType: "json",
+            success: function (data) {
+                console.log(data);
+            }
+        });
+    });
+
 });

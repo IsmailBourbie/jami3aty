@@ -28,7 +28,8 @@ class Post {
       return \App\Classes\Helper::addColumnDateParsed($this->db->getAll());
    }
 
-   public function getPost($id_post) {
+   public function getPost($id_post, $id_student) {
+      $this->setSeen($id_post, $id_student);
       $this->db->query("SELECT post.*, concat(professor.degree, '. ',
                                                   professor.first_name, ' ',
                                                    professor.last_name ) as fullName,
@@ -41,4 +42,12 @@ class Post {
       return $this->db->get();
    }
 
+   private function setSeen($id_post, $id_student) {
+      $this->db->query("UPDATE saved_notification SET seen = 1 
+                            WHERE _id_student = :_id_student AND _id_post = :id_post");
+
+      $this->db->bind(":id_post", $id_post);
+      $this->db->bind(":_id_student", $id_student);
+      $this->db->execute();
+   }
 }

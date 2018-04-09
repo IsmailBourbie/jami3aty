@@ -29,7 +29,7 @@ $(document).ready(function () {
             '<div class="publication_body"><p class="lead"></p><div class="react-bar"><hr>' +
             '<ul class="list-inline reset-margin clearfix"><li>' +
             '<i class="fa fa-comment fa-2x"></i></li>' +
-            '<li><i class="fa fa-bookmark fa-2x"></i></li>' +
+            '<li><button class="btn-transparent save-post"><i class="fa fa-bookmark fa-2x"></i></button></li>' +
             '<li class="pull-right"><span id="see-comments">Voire Tout</span>' +
             '</li></ul></div></div>' +
             '<div class="publication_footer">' +
@@ -42,12 +42,11 @@ $(document).ready(function () {
         var posts_length,
             posts_mold = '<article class="publication_mold">' + $(".publication_mold").html() + '</article>',
             myPostMold;
-        //        $(".publication_mold.first").remove();
         $.ajax({
             url: "http://localhost/jami3aty/posts/all",
             type: "post",
             data: {
-                ajax: "hello"
+                ajax: true
             },
             dataType: "json",
             success: function (response) {
@@ -57,7 +56,6 @@ $(document).ready(function () {
                     console.log("There is no Posts");
                     return;
                 }
-                console.log(response.data);
                 for (count_posts; count_posts < posts_length; count_posts += 1) {
                     $('#main-posts .loader').before(createPostMold());
                     myPostMold = $(".publication_mold");
@@ -68,6 +66,8 @@ $(document).ready(function () {
                         .find(".module_teacher .module_name").html(response.data[count_posts].title);
                     myPostMold.last()
                         .find(".publication_body p").html(response.data[count_posts].text_post);
+                    myPostMold.last()
+                        .find(".react-bar .save-post").attr("data-target", response.data[count_posts]._id_post);
                 }
                 $('#main-posts .loader').hide();
             }

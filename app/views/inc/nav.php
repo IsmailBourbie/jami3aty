@@ -8,7 +8,7 @@
                <span aria-hidden=" true ">&times;</span>
         </button>
 
-        <a class="alert-link " href="<?=URL_ROOT ?>users/confirm"> 
+        <a class="alert-link " href="<?=URL_ROOT ?>auth/confirmation"> 
            You don't confirm your email! please confirm it now
         </a>
     </div>

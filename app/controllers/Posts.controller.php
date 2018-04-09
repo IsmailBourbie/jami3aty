@@ -47,16 +47,17 @@ class Posts extends Controller {
       ];
       // get the id from the url
       $id_post = filter_var($id_post, FILTER_SANITIZE_NUMBER_INT);
+      $id_student = Session::get('user_id');
       if ($_SERVER["REQUEST_METHOD"] == "POST") {
       // change
          $id_post = filter_var($this->request->get('id_post'), FILTER_SANITIZE_NUMBER_INT);
       }
-      if (!$this->post_model->getPost($id_post)) {
+      if (!$this->post_model->getPost($id_post, $id_student)) {
          $response["status"] = 300;
          $this->view("", $response);
          return;
       }
-      $response["data"] = $this->post_model->getPost($id_post);
+      $response["data"] = $this->post_model->getPost($id_post, $id_student);
       $this->view("pages/post", $response);
    }
 }
