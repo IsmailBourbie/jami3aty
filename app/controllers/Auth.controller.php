@@ -162,6 +162,7 @@ class Auth extends Controller {
          $_SESSION["user_email"] = $user->email;
          $_SESSION["user_firstname"] = $user->first_name;
          $_SESSION["user_lastname"] = $user->last_name;
+         $_SESSION["user_fullname"] = $user->last_name . ' ' . $user->first_name;
          $_SESSION["user_branch"] = Helper::levelToString($user->level);
          $_SESSION["user_level"] = $user->level;
          $_SESSION["user_section"] = $user->section;
