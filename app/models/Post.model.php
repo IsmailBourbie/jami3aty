@@ -19,11 +19,12 @@ class Post {
       $this->db->query("SELECT post.*, concat(professor.degree, '. ',
                                                   professor.first_name, ' ',
                                                    professor.last_name ) as fullName,
-                                   subject.title 
-                            FROM (post INNER JOIN professor 
+                                   subject.title , saved_notification.saved
+                            FROM ((post INNER JOIN professor 
                                        on professor._id_professor = post._id_professor 
                                        AND post.destination = :destination) 
-                            INNER JOIN subject ON post._id_subject = subject._id_subject");
+                            INNER JOIN subject ON post._id_subject = subject._id_subject) 
+                            INNER JOIN saved_notification ON post._id_post = saved_notification._id_post");
       $this->db->bind(":destination", $destination);
       return \App\Classes\Helper::addColumnDateParsed($this->db->getAll());
    }

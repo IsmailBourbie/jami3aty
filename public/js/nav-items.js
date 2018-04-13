@@ -27,6 +27,7 @@ $(document).ready(function () {
             '</li>';
         return notifHTML;
     }
+
     // get data with ajax when notif clicked
     $("#notif-btn").click(function () {
         var notif_list = $("#notif-list"),
@@ -68,7 +69,7 @@ $(document).ready(function () {
 
     // set save with ajax
     $('#main-posts').on("click", ".save-post", function () {
-        console.log($(this).attr('data-target'));
+        var status = null;
         $.ajax({
             url: "http://localhost/jami3aty/saved/state",
             type: "post",
@@ -77,11 +78,17 @@ $(document).ready(function () {
                 "id_post": $(this).attr('data-target'),
                 "ajax": true
             },
+            async: false,
             dataType: "json",
             success: function (data) {
-                console.log(data);
+                status = data.status;
             }
         });
+        if (status == 200) {
+            $(this).children("i").removeClass("fa-bookmark");
+            $(this).children("i").addClass("fa-check");
+            $(this).removeClass("save-post");
+        }
     });
 
 });

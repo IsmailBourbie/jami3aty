@@ -11,7 +11,7 @@ $responses = $data["data"];
         <div class="content">
             <?php require_once APP_ROOT . '/views/inc/nav.php'; ?>
             <div class="main">
-                <div class="posts">
+                <div class="posts" id="main-posts">
                     <article class="publication_mold">
                         <div class="row publication_head reset-margin">
                             <div class="col-xs-10 course_info">
@@ -66,7 +66,11 @@ $responses = $data["data"];
                                                <i class="fa fa-comment fa-2x"></i> 
                                             </button>
                                     </li>
-                                    <li><i class="fa fa-bookmark fa-2x"></i></li>
+                                    <li>
+                                        <button class="btn-transparent save-post" data-target="<?=$responses->_id_post?>">
+                                            <i class="fa fa-bookmark fa-2x"></i>
+                                        </button>
+                                    </li>
                                     <li class="pull-right">
                                         <span id="see-comments">Voire Tout</span>
                                     </li>

@@ -53,7 +53,7 @@ $(document).ready(function () {
                 posts_length = response.data.length;
                 if (posts_length === 0) {
                     // there is no posts so hide the first mold
-                    console.log("There is no Posts");
+                    alert("There is no Posts");
                     return;
                 }
                 for (count_posts; count_posts < posts_length; count_posts += 1) {
@@ -68,6 +68,15 @@ $(document).ready(function () {
                         .find(".publication_body p").html(response.data[count_posts].text_post);
                     myPostMold.last()
                         .find(".react-bar .save-post").attr("data-target", response.data[count_posts]._id_post);
+                    if (response.data[count_posts].saved == 1) {
+                        myPostMold.last().find(".react-bar .save-post")
+                            .children("i").removeClass("fa-bookmark");
+
+                        myPostMold.last().find(".react-bar .save-post")
+                            .children("i").addClass("fa-check");
+                        myPostMold.last().find(".react-bar .save-post")
+                            .removeClass("save-post");
+                    }
                 }
                 $('#main-posts .loader').hide();
             }
