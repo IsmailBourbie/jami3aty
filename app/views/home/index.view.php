@@ -137,21 +137,26 @@ $schedule = $data['my_day'];
                                 </div>
                             </div>
                             <div class="publication_footer">
-                                <div class="current_comments">
+                                <div class="current_comments show">
                                     <div class="comment_mold">
                                         <div class="row reset-margin">
                                             <div class="col-xs-1 student_logo">
-                                                <span>Y</span>
+
                                             </div>
-                                            <div class="col-xs-9 student_data">
+                                            <div class="col-xs-8 student_data">
                                                 <h5 class="student_name reset-margin">Charfaoui Younes</h5>
                                                 <p class="student_comment reset-margin">Lorem ipsum dolor sit amet, consectetur.
                                                 </p>
                                                 <span class="time_comment">10 min</span>
                                                 <span class="arrow"></span>
                                             </div>
-                                            <div class="col-xs-2 hide text-right">
-                                                <i class="fa fa-exclamation-circle" style="font-size: 17px"></i>
+                                            <div class="change-comment col-xs-2 text-right">
+                                                <button class="btn-transparent edit">
+                                                    <i class="fa fa-edit fa-lg"></i>
+                                                </button>
+                                                <button class="btn-transparent remove">
+                                                    <i class="fa fa-trash fa-lg"></i>
+                                                </button>
                                             </div>
                                         </div>
                                     </div>
@@ -168,4 +173,5 @@ $schedule = $data['my_day'];
     </div>
     <?php require_once APP_ROOT . '/views/inc/js_inc.php'; ?>
     <script src="<?=URL_ROOT?>js/plugins-posts.js"></script>
+    <script src="<?=URL_ROOT?>js/plugins-comment.js"></script>
     <?php require_once APP_ROOT . '/views/inc/footer.php'; ?>

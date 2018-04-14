@@ -69,26 +69,27 @@ $(document).ready(function () {
 
     // set save with ajax
     $('#main-posts').on("click", ".save-post", function () {
-        var status = null;
+        var status = null,
+            mySave = $(this);
         $.ajax({
             url: "http://localhost/jami3aty/saved/state",
             type: "post",
             data: {
                 "action": 1,
-                "id_post": $(this).attr('data-target'),
+                "id_post": $(this).parents(".publication_mold").attr('data-target'),
                 "ajax": true
             },
-            async: false,
             dataType: "json",
             success: function (data) {
                 status = data.status;
             }
+        }).done(function () {
+            if (status == 200) {
+                mySave.children("i").removeClass("fa-bookmark");
+                mySave.children("i").addClass("fa-check");
+                mySave.removeClass("save-post");
+            }
         });
-        if (status == 200) {
-            $(this).children("i").removeClass("fa-bookmark");
-            $(this).children("i").addClass("fa-check");
-            $(this).removeClass("save-post");
-        }
     });
 
 });

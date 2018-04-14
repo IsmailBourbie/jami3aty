@@ -30,10 +30,10 @@ $(document).ready(function () {
             '<ul class="list-inline reset-margin clearfix"><li>' +
             '<i class="fa fa-comment fa-2x"></i></li>' +
             '<li><button class="btn-transparent save-post"><i class="fa fa-bookmark fa-2x"></i></button></li>' +
-            '<li class="pull-right"><span id="see-comments">Voire Tout</span>' +
+            '<li class="pull-right"><span class="see-comments">Voir les commentaires</span>' +
             '</li></ul></div></div>' +
             '<div class="publication_footer">' +
-            '<div class="current_comments"></div>' +
+            '<div class="current_comments"><div class="loader lodear-sm"></div></div>' +
             '<div class="input_comment"></div></div></article>';
         return postHTML;
     }
@@ -57,7 +57,7 @@ $(document).ready(function () {
                     return;
                 }
                 for (count_posts; count_posts < posts_length; count_posts += 1) {
-                    $('#main-posts .loader').before(createPostMold());
+                    $('#main-posts > .loader').before(createPostMold());
                     myPostMold = $(".publication_mold");
                     myPostMold.last().find(".module_teacher h3").html(response.data[count_posts].fullName);
                     myPostMold.last()
@@ -66,8 +66,7 @@ $(document).ready(function () {
                         .find(".module_teacher .module_name").html(response.data[count_posts].title);
                     myPostMold.last()
                         .find(".publication_body p").html(response.data[count_posts].text_post);
-                    myPostMold.last()
-                        .find(".react-bar .save-post").attr("data-target", response.data[count_posts]._id_post);
+                    myPostMold.last().attr("data-target", response.data[count_posts]._id_post);
                     if (response.data[count_posts].saved == 1) {
                         myPostMold.last().find(".react-bar .save-post")
                             .children("i").removeClass("fa-bookmark");
@@ -78,7 +77,7 @@ $(document).ready(function () {
                             .removeClass("save-post");
                     }
                 }
-                $('#main-posts .loader').hide();
+                $('#main-posts > .loader').hide();
             }
         });
     }

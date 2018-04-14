@@ -21,6 +21,9 @@ class Comments extends Controller {
          "status" => OK,
          "data"   => ""
       ];
+      // add user id from session
+      if (!empty(Session::get('user_id')))
+         $response["user_id"] = Session::get('user_id');
       $id_post = filter_var($this->request->get("id_post"), FILTER_SANITIZE_NUMBER_INT);
       // check if there is empty data
       if (empty($id_post))

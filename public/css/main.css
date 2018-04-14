@@ -164,6 +164,11 @@ nav .list_items .notifications ul .see_more_notif a {
     text-decoration: underline;
 }
 
+nav .list_items .notifications ul#notif-list {
+    min-width: 500px;
+    min-height: 30px;
+}
+
 nav .list_items .notifications .notif_mold a {
     padding: 10px 10px;
     display: flex;
@@ -573,7 +578,7 @@ span.separitor {
     opacity: 0;
 }
 
-.publication_mold .publication_body .react-bar ul li span#see-comments:hover {
+.publication_mold .publication_body .react-bar ul li span.see-comments:hover {
     cursor: pointer;
     color: #2677af;
     text-decoration: underline;
@@ -597,7 +602,12 @@ span.separitor {
 
 .publication_mold .publication_footer {
     border-top: 1px solid rgba(34, 49, 63, .2);
-    background-color: #f1f4f6;
+    background-color: #eceff1;
+}
+
+.publication_mold .publication_footer .current_comments {
+    padding: 10px 0;
+    display: none;
 }
 
 .publication_mold .publication_footer .current_comments .comment_mold {
@@ -607,35 +617,40 @@ span.separitor {
 }
 
 .publication_mold .publication_footer .current_comments .comment_mold .row > .col-xs-2 {
-    width: 14.666667%;
+    width: 19.666667%;
 }
+
+.publication_mold .publication_footer .current_comments .comment_mold .row > .change-comment {
+    padding: 10px;
+}
+
+.publication_mold .publication_footer .current_comments .comment_mold .row > .change-comment button {
+    padding: 4px;
+    font-size: 18px;
+    color: #f74d5a;
+}
+
+.publication_mold .publication_footer .current_comments .comment_mold .row > .change-comment .edit {
+    color: #37c592;
+    position: relative;
+    top: 2px;
+}
+
 
 .publication_mold .publication_footer .current_comments .comment_mold .row:hover .hide {
     display: block !important;
 }
 
 .publication_mold .publication_footer .current_comments .comment_mold .student_logo {
-    position: relative;
-    min-height: 10px;
-}
-
-.publication_mold .publication_footer .current_comments .comment_mold .student_logo span {
-    position: absolute;
-    right: 2px;
-    width: 40px;
-    height: 40px;
-    background: green;
-    font-size: 21px;
-    text-align: center;
-    border-radius: 50%;
-    padding: 5px;
+    color: #5c97bf;
 }
 
 .publication_mold .publication_footer .current_comments .comment_mold .student_data {
     position: relative;
     background: #FFF;
     padding: 10px;
-    margin-left: 10px;
+    margin-left: 20px;
+    border-radius: 7px 20px 20px 20px;
 }
 
 .publication_mold .publication_footer .current_comments .comment_mold .student_data > span.arrow {
@@ -655,6 +670,7 @@ span.separitor {
 
 .publication_mold .publication_footer .current_comments .comment_mold .student_data span.time_comment {
     font-size: 12px;
+    color: #92969a;
 }
 
 /*** Post style End ***/

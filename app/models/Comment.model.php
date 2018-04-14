@@ -16,7 +16,7 @@ class Comment {
    public function getAll($id_post) {
       $this->db->query("SELECT * FROM comments WHERE comments._id_post = :id_post");
       $this->db->bind(':id_post', $id_post);
-      return $this->db->getAll();
+      return \App\Classes\Helper::addColumnDateParsed($this->db->getAll());
    }
 
    public function editComment($data) {
