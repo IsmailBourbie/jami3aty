@@ -70,8 +70,8 @@ $schedule = $data['my_day'];
                     <div class="modal fade comment-modal" tabindex="-1" role="dialog">
                         <div class="modal-dialog modal-sm" role="document">
                             <div class="modal-content">
-                                <textarea></textarea>
-                                <button>Send</button>
+                                <textarea cols="10" rows="20" placeholder="Commentaire"></textarea>
+                                <button id="">Send</button>
                             </div>
                         </div>
                     </div>
@@ -79,7 +79,7 @@ $schedule = $data['my_day'];
                         <div class="welcom_day">
                             <h2 class="text-center">Bonjour <span><?=Session::get('user_lastname')?></span></h2>
                         </div>
-                        <article class="publication_mold hide">
+                        <article class="publication_mold">
                             <div class="row publication_head reset-margin">
                                 <div class="col-xs-10 course_info">
                                     <div class="teacher_logo">
@@ -119,7 +119,7 @@ $schedule = $data['my_day'];
                                 </div>
                             </div>
                             <div class="publication_body">
-                                <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nemo vero beatae a, atque repellat obcaecati explicabo placeat. Praesentium eum laboriosam officia tenetur magni provident quo veritatis, id repellat vero quae ut eligendi quasi, quidem! Ipsam soluta inventore earum facilis esse veritatis expedita placeat? Cumque necessitatibus explicabo nihil perspiciatis, aut autem.</p>
+                                <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nemo vero beatae</p>
 
                                 <div class="react-bar">
                                     <hr>
@@ -160,8 +160,14 @@ $schedule = $data['my_day'];
                                             </div>
                                         </div>
                                     </div>
+                                    <hr>
                                 </div>
-                                <div class="input_comment"></div>
+                                <div class="new_comment text-center" data-target="add">
+                                    <textarea class="comment-input autosize" placeholder="Ajouter un commentaire"></textarea>
+                                    <span class="cancel-edit" title="annuler">
+                                        <i class="fa fa-times"></i>
+                                    </span>
+                                </div>
                             </div>
                         </article>
                         <div class="loader"></div>

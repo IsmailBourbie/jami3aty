@@ -24,7 +24,8 @@ a {
 .btn:active,
 .btn:focus,
 button:active,
-button:focus {
+button:focus,
+textarea:focus {
     box-shadow: unset;
     outline: none;
 }
@@ -482,6 +483,7 @@ nav .list_items .notifications .notif_mold a .info .description span.time {
     border-radius: 6px;
     box-shadow: 0px 0px 6px 0 rgba(46, 61, 73, .2);
     background: #FaFbFc;
+    overflow: hidden;
 }
 
 .publication_mold .publication_head .options_dropdown .dropdown button {
@@ -606,7 +608,7 @@ span.separitor {
 }
 
 .publication_mold .publication_footer .current_comments {
-    padding: 10px 0;
+    padding: 10px 0 0;
     display: none;
 }
 
@@ -671,6 +673,33 @@ span.separitor {
 .publication_mold .publication_footer .current_comments .comment_mold .student_data span.time_comment {
     font-size: 12px;
     color: #92969a;
+}
+
+.publication_mold .publication_footer .new_comment {
+    position: relative;
+    background: #FFFFFF;
+    padding: 10px 0;
+}
+
+.publication_mold .publication_footer .new_comment textarea {
+    width: 90%;
+    padding: 10px 0;
+    border: none;
+    font-size: 16px;
+}
+
+.publication_mold .publication_footer .new_comment span.cancel-edit {
+    display: none;
+    position: absolute;
+    right: 40px;
+    top: 18px;
+    color: #808080;
+    opacity: .8;
+}
+
+.publication_mold .publication_footer .new_comment span.cancel-edit:hover {
+    cursor: pointer;
+    opacity: 1;
 }
 
 /*** Post style End ***/
@@ -1139,4 +1168,10 @@ span.separitor {
 .notifications .not-seen {
     text-decoration: none;
     background-color: #e8e6e6 !important;
+}
+
+textarea.autosize {
+    overflow: hidden;
+    resize: none;
+    max-height: 240px;
 }

@@ -74,7 +74,7 @@ $(document).ready(function () {
         $(this).parents(".publication_body").siblings(".publication_footer")
             .children(".current_comments").slideDown();
         getComments(myCurrentsComments, id_post);
-        $(this).hide();
+        $(this).removeClass("see-comments").hide();
     });
 
     // delete Comment 
@@ -101,4 +101,67 @@ $(document).ready(function () {
             }
         });
     });
+
+    /* add and edit comment start */
+    $('#main-posts').on("click", ".react-bar .comment-btn", function () {
+        $(this).parents(".publication_mold").find(".new_comment  .comment-input").focus();
+    });
+    $('#main-posts').on("keypress", ".new_comment  .comment-input", function (e) {
+        if (e.which == 13 && !e.shiftKey) {
+            var status,
+                myComment = $(this),
+                text_input = $(this).val().trim(),
+                id_post = $(this).parents(".publication_mold").attr('data-target');
+            e.preventDefault();
+            if (text_input.length == 0) {
+                return false;
+            }
+            // do ajax call 
+            $.ajax({
+                url: 'http://localhost/jami3aty/comments/add',
+                type: 'post',
+                data: {
+                    'id_post': id_post,
+                    'text_added': text_input
+                },
+                success: function (response) {
+                    status = response.status;
+                }
+            }).done(function () {
+                if (status == 200) {
+                    // reset the value of
+                    myComment.val("");
+                    // remove all the comments
+                    myComment.parent().siblings(".current_comments").children().not(".loader").remove();
+                    // click button and get the new comments
+                    myComment.parents(".publication_footer").siblings(".publication_body")
+                        .children('.react-bar')
+                        .find(".pull-right").children("span").addClass("see-comments").trigger("click");
+                }
+            });
+        }
+    });
+
+    function addComment(id_post, text_added) {
+        $.ajax({
+            url: 'http://localhost/jami3aty/comments/add',
+            type: 'post',
+            data: {
+                'id_post': id_post,
+                'text_added': text_added
+            },
+            async: false,
+            success: function (response) {
+                status = response.status;
+            }
+        });
+    }
+    /* add and edit comment end */
+
+
+
+
+
+
+
 });

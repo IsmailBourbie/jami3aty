@@ -28,13 +28,17 @@ $(document).ready(function () {
             '<div>Signaler une erreur</div></li></ul></div></div></div>' +
             '<div class="publication_body"><p class="lead"></p><div class="react-bar"><hr>' +
             '<ul class="list-inline reset-margin clearfix"><li>' +
-            '<i class="fa fa-comment fa-2x"></i></li>' +
+            '<button class="btn-transparent comment-btn"><i class="fa fa-comment fa-2x"></i></button></li>' +
             '<li><button class="btn-transparent save-post"><i class="fa fa-bookmark fa-2x"></i></button></li>' +
             '<li class="pull-right"><span class="see-comments">Voir les commentaires</span>' +
             '</li></ul></div></div>' +
             '<div class="publication_footer">' +
             '<div class="current_comments"><div class="loader lodear-sm"></div></div>' +
-            '<div class="input_comment"></div></div></article>';
+            '<div class="new_comment text-center" data-target="add">' +
+            '<textarea class ="comment-input autosize" maxlength="150" placeholder="Ajouter uncommentaire"></textarea>' +
+            '<span class="cancel-edit" title="annuler">' +
+            '<i class="fa fa-times"></i></span></div>' +
+            '</div></article>';
         return postHTML;
     }
     // get Post's data with ajax after login
@@ -78,8 +82,27 @@ $(document).ready(function () {
                     }
                 }
                 $('#main-posts > .loader').hide();
+            },
+            complete: function () {
+                autosize();
             }
         });
     }
     getPosts();
+
+
+
+    // function helper 
+    /* Auto size textarea start */
+    function autosize() {
+        $('textarea.autosize').each(function () {
+            $(this).attr('style', 'height:' + (this.scrollHeight - 25) + 'px;');
+        }).on('input', function () {
+            this.style.height = "auto";
+            this.style.height = (this.scrollHeight - 25) + "px";
+
+        });
+    }
+
+    /* Auto size textarea end */
 });

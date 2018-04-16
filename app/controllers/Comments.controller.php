@@ -62,6 +62,8 @@ class Comments extends Controller {
       ];
       // check if there is no id student from request
       $data['_id_student'] = !empty($data['_id_student']) ? $data['_id_student'] : Session::get('user_id');
+      // check if there is no username student from request
+      $data['user_name'] = !empty($data['user_name']) ? $data['user_name'] : Session::get('user_fullname');
       // check if there is empty data
       if (empty($data['_id_student']) || empty($data['id_post']) || empty($data['user_name']) || empty($data['text_added']))
          die('Error in request data');
