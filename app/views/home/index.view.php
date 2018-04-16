@@ -79,7 +79,7 @@ $schedule = $data['my_day'];
                         <div class="welcom_day">
                             <h2 class="text-center">Bonjour <span><?=Session::get('user_lastname')?></span></h2>
                         </div>
-                        <article class="publication_mold">
+                        <article class="publication_mold hide">
                             <div class="row publication_head reset-margin">
                                 <div class="col-xs-10 course_info">
                                     <div class="teacher_logo">

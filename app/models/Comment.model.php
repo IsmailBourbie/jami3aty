@@ -24,7 +24,7 @@ class Comment {
                                                 comments.date_comment = UNIX_TIMESTAMP() 
                             WHERE comments._id_comments = :id_comment");
       $this->db->bind(':id_comment', $data['id_comment']);
-      $this->db->bind(':text_edited', $data['text']);
+      $this->db->bind(':text_edited', $data['text_edited']);
       if ($this->db->execute())
          return true;
       return false;

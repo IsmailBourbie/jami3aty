@@ -679,6 +679,7 @@ span.separitor {
     position: relative;
     background: #FFFFFF;
     padding: 10px 0;
+    border-radius: 0 0 6px 6px
 }
 
 .publication_mold .publication_footer .new_comment textarea {

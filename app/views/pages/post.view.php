@@ -81,7 +81,10 @@ $responses = $data["data"];
                             <div class="current_comments">
                                 <div class="loader lodear-sm"></div>
                             </div>
-                            <div class="input_comment"></div>
+                            <div class="new_comment text-center" data-target="add">
+                                <textarea class="comment-input autosize" maxlength="150" placeholder="Ajouter uncommentaire"></textarea>
+                                <span class="cancel-edit" title="annuler"><i class="fa fa-times"></i></span>
+                            </div>
                         </div>
                     </article>
                 </div>

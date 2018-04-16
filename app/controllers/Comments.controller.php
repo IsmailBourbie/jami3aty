@@ -39,7 +39,7 @@ class Comments extends Controller {
       ];
       $data = [
          'id_comment'  => filter_var($this->request->get("id_comment"), FILTER_SANITIZE_NUMBER_INT),
-         'text_edited' => $this->request->get("text_edited")
+         'text_edited' => $_POST["text_edited"]
       ];
       // check if there is empty data
       if (empty($data['id_comment']) || empty($data['text_edited']))
@@ -58,7 +58,7 @@ class Comments extends Controller {
          '_id_student' => filter_var($this->request->get("_id_student"), FILTER_SANITIZE_NUMBER_INT),
          'id_post'     => filter_var($this->request->get("id_post"), FILTER_SANITIZE_NUMBER_INT),
          'user_name'   => filter_var($this->request->get("user_name"), FILTER_SANITIZE_STRING),
-         'text_added'  => $this->request->get("text_added")
+         'text_added'  => $_POST["text_added"]
       ];
       // check if there is no id student from request
       $data['_id_student'] = !empty($data['_id_student']) ? $data['_id_student'] : Session::get('user_id');
