@@ -3,7 +3,7 @@
 $(document).ready(function () {
     "use strict";
     var data_comments,
-        user_id,
+        user_id = Number($('#_std_id').text()),
         myComment_text;
 
     function createCommentMold() {
@@ -42,7 +42,6 @@ $(document).ready(function () {
             success: function (response) {
                 if (response.status == 200) {
                     data_comments = response.data;
-                    user_id = response.user_id;
                 }
 
             },
@@ -124,6 +123,7 @@ $(document).ready(function () {
                 type: 'post',
                 data: {
                     'id_post': id_post,
+                    '_id_student': user_id,
                     'text_added': text_input
                 },
                 success: function (response) {

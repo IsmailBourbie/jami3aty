@@ -4,6 +4,7 @@
       <w>acueil</w>
       <w>affichage</w>
       <w>atyapp</w>
+      <w>boite</w>
       <w>bourbieismail</w>
       <w>bourbieyounes</w>
       <w>contrôle</w>
@@ -11,6 +12,7 @@
       <w>enregistrement</w>
       <w>enregistré</w>
       <w>enseignant</w>
+      <w>envoyée</w>
       <w>evenment</w>
       <w>fichiers</w>
       <w>firstname</w>
@@ -28,7 +30,10 @@
       <w>notif</w>
       <w>publier</w>
       <w>resetpass</w>
+      <w>reçoit</w>
+      <w>reçu</w>
       <w>smtp</w>
+      <w>stdall</w>
       <w>timestring</w>
       <w>tusers</w>
       <w>urbie</w>

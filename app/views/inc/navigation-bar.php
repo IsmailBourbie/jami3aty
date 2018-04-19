@@ -7,11 +7,12 @@
 
             </div>
             <div class="user_info">
+                <span class="student_id" id="_std_id"><?= Session::get("user_id") ?></span>
                 <h3>
-                    <?= $_SESSION['user_firstname'] . ' ' . $_SESSION['user_lastname'] ?>
+                   <?= Session::get('user_fullname') ?>
                 </h3>
                 <p class="lead">
-                    <?= $_SESSION['user_branch'] ?>
+                   <?= Session::get('user_branch') ?>
                 </p>
             </div>
 

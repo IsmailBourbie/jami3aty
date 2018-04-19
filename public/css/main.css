@@ -302,6 +302,13 @@ nav .list_items .notifications .notif_mold a .info .description span.time {
     padding: 3px 0 0;
     text-align: left;
 }
+.aside-left .my_data .user_info > span.student_id {
+    position: absolute;
+    bottom: -40px;
+    left: -100px;
+    color: transparent;
+    display: none !important;
+}
 
 .aside-left .my_data > a {
     display: flex;
