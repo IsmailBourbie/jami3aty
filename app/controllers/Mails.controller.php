@@ -100,4 +100,32 @@ class Mails extends Controller {
       $this->view('api/json', $response);
    }
 
+   public function profs() {
+//      if ($_SERVER['REQUEST_METHOD'] == 'GET') \App\Classes\Helper::redirect("");
+      $response = [
+         "status" => OK,
+         "data"   => ""
+      ];
+      $data = [
+         'level'   => $this->request->get('level'),
+         'section' => $this->request->get('section'),
+         'group'   => $this->request->get('group'),
+      ];
+
+      if (empty($data['level']) || empty($data['section']) || empty($data['group'])) {
+         if (empty(Session::get('user_level'))) {
+            die("empty data");
+         } else {
+            $data['level'] = Session::get('user_level');
+            $data['section'] = Session::get('user_section');
+            $data['group'] = Session::get('user_group');
+         }
+      }
+
+
+      $response['data'] = $this->mail_model->getProfs($data);
+      $this->view('api/json', $response);
+
+   }
+
 }

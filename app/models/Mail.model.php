@@ -69,4 +69,22 @@ class Mail {
       return false;
    }
 
+   public function getProfs($data) {
+      $this->db->query("SELECT DISTINCT professor._id_professor,
+                                            concat(professor.degree, '. ',
+                                            professor.first_name, ' ',
+                                            professor.last_name) AS fullName
+                            FROM ((subject INNER JOIN assignment
+                                  ON (assignment.`group` 
+                                  IN (0,:group)) 
+                                  AND subject.`_id_subject` = assignment.`_id_subject` 
+                                  AND assignment.section = :section AND subject.level = :level)
+                            INNER JOIN professor 
+                                  ON professor.`_id_professor` = assignment.`_id_professor`)");
+      $this->db->bind(':level', $data['level']);
+      $this->db->bind(':section', $data['section']);
+      $this->db->bind(':group', $data['group']);
+      return $this->db->getAll();
+   }
+
 }
