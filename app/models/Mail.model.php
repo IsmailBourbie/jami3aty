@@ -11,12 +11,15 @@ class Mail {
    public function studentAllMails($_id_student) {
       $this->db->query("SELECT mail._id_mail, mail.message,
                                    mail.subject, mail.date,
-                                   mail.sender , concat(professor.degree, '. ',
-                                                        professor.first_name , ' ',
-                                                        professor.last_name) AS fullNameP
-                             FROM (mail INNER JOIN professor 
+                                   mail.sender , mail._id_professor,
+                                   mail._id_student,
+                                   concat( student.first_name , ' ',
+                                                        student.last_name) AS fullNameS,
+                                   concat(professor.degree, '. ',                                  professor.first_name , ' ',
+                                          professor.last_name) AS fullNameP
+                             FROM ((mail INNER JOIN professor 
                                         ON professor._id_professor = mail._id_professor 
-                                        AND mail._id_student = :_id_student)");
+                                        AND mail._id_student = :_id_student) inner join student on mail._id_student = student._id_student) ORDER BY mail.date DESC");
       $this->db->bind(':_id_student', $_id_student);
       return $this->db->getAll();
    }
@@ -32,6 +35,7 @@ class Mail {
                                         AND mail._id_student = :_id_student AND mail.sender = :sender)");
       $this->db->bind(':_id_student', $_id_student);
       $this->db->bind(':sender', $sender);
+      die(var_dump($this->db->getAll()));
       return $this->db->getAll();
    }
 

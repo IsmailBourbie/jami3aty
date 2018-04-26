@@ -120,13 +120,11 @@ class Helper {
    public static function addColumnDateParsed($object) {
       for ($i = 0; $i < count($object); $i++) {
          $object[$i] = (array)$object[$i];
-         if (isset($object[$i]["date_comment"])) {
-            $date = $object[$i]["date_comment"];
-         } else {
-            $date = $object[$i]["date_post"];
+         if (isset($object[$i]["type"])) {
             $type_post = $object[$i]["type"];
             $object[$i]["type_parsed"] = self::typeOfPostToString($type_post);
          }
+         $date = $object[$i]["date"];
          $object[$i]["date_parsed"] = \Time::formatTime($date);
          $object[$i] = (object)$object[$i];
       }

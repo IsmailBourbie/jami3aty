@@ -21,7 +21,7 @@ class Comment {
 
    public function editComment($data) {
       $this->db->query("UPDATE comments SET comments.text_comment= :text_edited,
-                                                comments.date_comment = UNIX_TIMESTAMP() 
+                                                comments.date = UNIX_TIMESTAMP() 
                             WHERE comments._id_comments = :id_comment");
       $this->db->bind(':id_comment', $data['id_comment']);
       $this->db->bind(':text_edited', $data['text_edited']);

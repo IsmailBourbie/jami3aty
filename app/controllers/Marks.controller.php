@@ -21,20 +21,23 @@ class Marks extends Controller {
    }
 
    public function all() {
-      if ($_SERVER['REQUEST_METHOD'] == 'GET') \App\Classes\Helper::redirect("");
       $response = [
-         "status" => OK,
-         "data"   => ""
+         "page_title" => "Notes",
+         "status"     => OK,
+         "data"       => ""
       ];
       $_id_student = filter_var($this->request->get("_id_student"), FILTER_VALIDATE_INT);
       if ($_id_student === false) {
-         $response['status'] = ERR_EMAIL;
-         $this->view("api/json", $response);
-         return;
+         $_id_student = Session::get('user_id');
+         if (empty($_id_student)) {
+            $response['status'] = ERR_EMAIL;
+            $this->view("Marks/index", $response);
+            return;
+         }
       }
 
       $response['data'] = $this->mark_model->getMarks($_id_student);
-      $this->view("api/json", $response);
+      $this->view("Marks/index", $response);
    }
 
 }

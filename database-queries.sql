@@ -7,6 +7,7 @@ DROP TABLE IF EXISTS devices;
 DROP TABLE IF EXISTS exam_schedule;
 DROP TABLE IF EXISTS saved_notification;
 DROP TABLE IF EXISTS comments;
+DROP TABLE IF EXISTS trace;
 DROP TABLE IF EXISTS post;
 DROP TABLE IF EXISTS assignment;
 DROP TABLE IF EXISTS marks;
@@ -57,17 +58,13 @@ CREATE TABLE mail(
     _id_student INTEGER NOT NULL,
     message VARCHAR(500) NOT NULL,
     subject VARCHAR(100) NOT NULL,
-    date DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,  
+    `date` INTEGER(11) NOT NULL,  
     sender BOOLEAN NOT NULL,
     FOREIGN KEY (_id_professor) REFERENCES professor(_id_professor),
     FOREIGN KEY (_id_student) REFERENCES student(_id_student)
 );
 
--- todo add the trace table
 
-
-
--- add the subject utility and the content of the subject
 CREATE TABLE subject(
     _id_subject INTEGER PRIMARY KEY AUTO_INCREMENT,
     title VARCHAR(50) NOT NULL,
@@ -99,9 +96,9 @@ CREATE TABLE assignment(
 CREATE TABLE marks(
     _id_subject INTEGER NOT NULL ,
     _id_student INTEGER NOT NULL ,
-    td_mark FLOAT NOT NULL , 
-    tp_mark FLOAT NOT NULL , 
-    course_mark FLOAT NOT NULL ,
+    td_mark FLOAT  , 
+    tp_mark FLOAT  , 
+    course_mark FLOAT  ,
     FOREIGN KEY (_id_subject) REFERENCES subject(_id_subject),
     FOREIGN KEY (_id_student) REFERENCES student(_id_student)
 );
@@ -119,6 +116,15 @@ CREATE TABLE post(
     FOREIGN KEY (_id_subject) REFERENCES subject(_id_subject)
 );
 
+
+-- todo add the trace table
+CREATE TABLE trace(
+    _id_trace INTEGER PRIMARY KEY AUTO_INCREMENT,
+    _id_post INTEGER NOT NULL ,
+    operation VARCHAR(255) NOT NULL,
+    date_operation INTEGER(11) NOT NULL,
+    FOREIGN KEY (_id_post) REFERENCES post(_id_post)
+);
 CREATE TABLE saved_notification(
     _id_post INTEGER NOT NULL ,
     _id_student INTEGER NOT NULL,
@@ -676,3 +682,10 @@ INSERT INTO mail VALUES(null,7,10101014,'Message Four' , 'Subject 4',UNIX_TIMEST
 INSERT INTO mail VALUES(null,8,10101014,'Message Four' , 'Subject 4',UNIX_TIMESTAMP(),0);
 INSERT INTO mail VALUES(null,9,10101014,'Message Four' , 'Subject 4',UNIX_TIMESTAMP(),1);
 INSERT INTO mail VALUES(null,10,10101014,'Message Four' , 'Subject 4',UNIX_TIMESTAMP(),0);
+
+
+ INSERT marks values(40,10101012,18,18,20);
+ INSERT marks values(41,10101012,null,null,20);
+ INSERT marks values(42,10101012,19,null,20);
+ INSERT marks values(43,10101012,20,null,20);
+ INSERT marks values(44,10101012,18,null,20);
