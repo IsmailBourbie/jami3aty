@@ -12,25 +12,28 @@ class Mails extends Controller {
    }
 
    public function index() {
-
+      if ($_SERVER['REQUEST_METHOD'] != 'GET') \App\Classes\Helper::redirect("");
+      $this->all();
    }
 
    public function all() {
-      if ($_SERVER['REQUEST_METHOD'] == 'GET') \App\Classes\Helper::redirect("");
       $response = [
+         "page_title" => "Mails",
          "status" => OK,
          "data"   => ""
       ];
       $_id_student = filter_var($this->request->get("_id_student"), FILTER_VALIDATE_INT);
       if ($_id_student === false) {
-         $response['status'] = ERR_EMAIL;
-         $this->view("api/json", $response);
-         return;
+         $_id_student = Session::get('user_id');
+         if (empty($_id_student)) {
+            $response['status'] = ERR_EMAIL;
+            $this->view("api/json", $response);
+            return;
+         }
       }
-
       $response['data'] = $this->mail_model->studentAllMails($_id_student);
 
-      $this->view("api/json", $response);
+      $this->view("mails/index", $response);
    }
 
    public function sent() {
@@ -41,7 +44,7 @@ class Mails extends Controller {
       ];
       $sender = "1";
       $_id_student = Session::get("user_id");
-      $this->response['data'] = $this->mail_model->bySender($_id_student, $sender);
+      $response['data'] = $this->mail_model->bySender($_id_student, $sender);
       $this->view('mails/sent', $response);
    }
 
@@ -53,7 +56,7 @@ class Mails extends Controller {
       ];
       $sender = "0";
       $_id_student = Session::get("user_id");
-      $this->response['data'] = $this->mail_model->bySender($_id_student, $sender);
+      $response['data'] = $this->mail_model->bySender($_id_student, $sender);
       $this->view('mails/received', $response);
    }
 

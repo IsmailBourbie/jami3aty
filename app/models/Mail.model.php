@@ -32,7 +32,6 @@ class Mail {
                                         AND mail._id_student = :_id_student AND mail.sender = :sender)");
       $this->db->bind(':_id_student', $_id_student);
       $this->db->bind(':sender', $sender);
-      die(var_dump($this->db->getAll()));
       return $this->db->getAll();
    }
 
