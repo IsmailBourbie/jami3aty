@@ -13,7 +13,7 @@ class Saves {
                                         post._id_post,  
                                         concat( professor.degree , '. ' ,professor.first_name,' ' ,professor.last_name ) 
                                             AS fullName,
-                                        subject.title,post.date_post
+                                        subject.title,post.date
                             FROM 
                             (
                                (saved_notification

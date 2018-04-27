@@ -11,10 +11,14 @@ class Authentication {
    }
 
    public function findUserByEmail($email) {
-
-      $this->db->query('SELECT * FROM student WHERE email = :email');
+      $this->db->query('SELECT * FROM professor WHERE email = :email');
       $this->db->bind(':email', $email);
       $row = $this->db->get();
+      if ($this->db->rowCount() == 0) {
+         $this->db->query('SELECT * FROM student WHERE email = :email');
+         $this->db->bind(':email', $email);
+         $row = $this->db->get();
+      }
       // Check row
       if ($this->db->rowCount() > 0) {
          return $row->email;
@@ -47,9 +51,14 @@ class Authentication {
    }
 
    public function getUser($email, $password) {
-      $this->db->query('SELECT * FROM student WHERE email = :email');
+      $this->db->query('SELECT * FROM professor WHERE email = :email');
       $this->db->bind(':email', $email);
       $row = $this->db->get();
+      if ($this->db->rowCount() == 0) {
+         $this->db->query('SELECT * FROM student WHERE email = :email');
+         $this->db->bind(':email', $email);
+         $row = $this->db->get();
+      }
       $hashed_password = isset($row->password) ? $row->password : "";
       if (password_verify($password, $hashed_password)) {
          unset($row->password, $row->token);
@@ -83,8 +92,9 @@ class Authentication {
       if ($this->db->execute()) {
          return (new Mailer())->sendConfirmationEmail($email, $token);
       }
-         return false;
+      return false;
    }
+
    public function findUserByToken($token) {
       $this->db->query('SELECT * FROM student WHERE token = :token');
       $this->db->bind(':token', $token);
@@ -97,6 +107,7 @@ class Authentication {
          return false;
       }
    }
+
    public function confirmEmail($token) {
       $this->db->query('UPDATE student SET isConfirmed = 1, token = " " WHERE token = :token');
       $this->db->bind(':token', $token);

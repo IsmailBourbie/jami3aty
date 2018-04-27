@@ -24,7 +24,7 @@ $responses = $data["data"];
                                    <div class="description">
                                        <h4><?= \App\Classes\Helper::typeOfPostToString($response->type); ?></h4>
                                        <span class="separitor">.</span>
-                                       <span class="time"><?= Time::formatTime($response->date_post) ?></span>
+                                       <span class="time"><?= Time::formatTime($response->date) ?></span>
                                    </div>
                                </div>
                            </a>

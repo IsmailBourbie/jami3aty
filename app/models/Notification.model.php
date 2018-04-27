@@ -18,7 +18,7 @@ class Notification {
                                         concat( professor.degree , '. ' ,professor.first_name,' ' ,professor.last_name ) 
                                             AS fullName,
                                         saved_notification.seen,
-                                        subject.title,post.date_post
+                                        subject.title,post.date
                             FROM 
                             (
                                (saved_notification
@@ -28,7 +28,7 @@ class Notification {
                                   INNER JOIN professor on post.`_id_professor` = professor._id_professor
                                  )
                                  INNER JOIN subject ON post.`_id_subject` = subject.`_id_subject`
-                                 ORDER BY post.date_post DESC ");
+                                 ORDER BY post.date DESC ");
       $this->db->bind(':_id_student', $id);
       return \App\Classes\Helper::addColumnDateParsed($this->db->getAll());
 

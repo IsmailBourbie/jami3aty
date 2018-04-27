@@ -52,7 +52,11 @@ class Auth extends Controller {
          $this->view("auth/login", $response);
          return;
       }
-      $this->createSessionUser($user);
+      if (isset($user->bac_average)) {
+         $this->createSessionStudent($user);
+      } else {
+         $this->createSessionProf($user);
+      }
       $response["data"] = $user;
       $this->view("", $response);
       return;
@@ -156,7 +160,7 @@ class Auth extends Controller {
 
    }
 
-   private function createSessionUser($user) {
+   private function createSessionStudent($user) {
       if (empty($this->request->get("ajax"))) {
          $_SESSION["user_id"] = $user->_id_student;
          $_SESSION["user_email"] = $user->email;
@@ -168,6 +172,16 @@ class Auth extends Controller {
          $_SESSION["user_section"] = $user->section;
          $_SESSION["user_group"] = $user->group;
          $_SESSION["isConfirmed"] = $user->isConfirmed;
+      }
+   }
+   private function createSessionProf($user) {
+      if (empty($this->request->get("ajax"))) {
+         $_SESSION["user_id"] = $user->_id_professor;
+         $_SESSION["user_email"] = $user->email;
+         $_SESSION["user_degree"] = $user->degree;
+         $_SESSION["user_firstname"] = $user->first_name;
+         $_SESSION["user_lastname"] = $user->last_name;
+         $_SESSION["user_fullname"] = $user->last_name . ' ' . $user->first_name;
       }
    }
 }

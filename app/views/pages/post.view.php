@@ -23,7 +23,7 @@ $responses = $data["data"];
                                         <?= $responses->fullName ?>
                                     </h3>
                                     <span class="separitor">.</span>
-                                    <span class="time_pub"><?= Time::formatTime($responses->date_post) ?></span>
+                                    <span class="time_pub"><?= Time::formatTime($responses->date) ?></span>
                                     <span class="module_name show"><?= $responses->title ?></span>
                                 </div>
                             </div>

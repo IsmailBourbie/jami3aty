@@ -18,12 +18,19 @@ class Home extends Controller {
    }
 
    public function index($args = "") {
-      $my_day = $this->my_day();
-      $response = [
-         "page_title" => __CLASS__,
-         "my_day"     => $my_day
-      ];
-      $this->view("home/index", $response);
+      if (empty(!Session::get("user_degree"))) {
+         $response = [
+            "page_title" => __CLASS__
+         ];
+         $this->view("home/teacher", $response);
+      } else {
+         $my_day = $this->my_day();
+         $response = [
+            "page_title" => __CLASS__,
+            "my_day"     => $my_day
+         ];
+         $this->view("home/index", $response);
+      }
    }
 
 
