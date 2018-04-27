@@ -6,6 +6,9 @@ class Mails extends Controller {
    private $request;
 
    public function __construct($request) {
+      if ($_SERVER['REQUEST_METHOD'] == 'GET' && !Session::isLoggedIn()) {
+         \App\Classes\Helper::redirect('users/login');
+      }
       $this->request = $request;
       $this->mail_model = $this->model('Mail');
       $this->setAjax($this->request->get('ajax'));
@@ -22,16 +25,20 @@ class Mails extends Controller {
          "status"     => OK,
          "data"       => ""
       ];
-      $_id_student = filter_var($this->request->get("_id_student"), FILTER_VALIDATE_INT);
-      if ($_id_student === false) {
-         $_id_student = Session::get('user_id');
-         if (empty($_id_student)) {
+      $id = filter_var($this->request->get("id"), FILTER_VALIDATE_INT);
+      $type = filter_var($this->request->get("type"), FILTER_VALIDATE_INT);
+      if ($id === false || $type === false) {
+         $type = 1;
+         $id = Session::get('user_id');
+         if (empty($id)) {
             $response['status'] = ERR_EMAIL;
             $this->view("api/json", $response);
             return;
          }
       }
-      $response['data'] = $this->mail_model->studentAllMails($_id_student);
+      if (!Session::isProf())
+         $type = 2;
+      $response['data'] = $this->mail_model->allMails($id, $type);
 
       $this->view("mails/index", $response);
    }
@@ -56,7 +63,7 @@ class Mails extends Controller {
          '_id_student'  => filter_var($this->request->get("_id_student"), FILTER_VALIDATE_INT),
          'message'      => $_POST["message"],
          'subject'      => $_POST["subject"],
-         'sender'       => $this->request->get('sender'),
+         'sender'       => filter_var($this->request->get('sender'), FILTER_VALIDATE_INT),
       ];
       // check for valid ids
       if ($data['id_professor'] === false || $data['_id_student'] === false)

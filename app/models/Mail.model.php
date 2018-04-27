@@ -8,19 +8,29 @@ class Mail {
       $this->db = new Database;
    }
 
-   public function studentAllMails($_id_student) {
-      $this->db->query("SELECT mail._id_mail, mail.message,
+   public function allMails($id, $type) {
+      if ($type == 1) {
+         $this->db->query("SELECT mail._id_mail, mail.message,
                                    mail.subject, mail.date,
-                                   mail.sender , mail._id_professor,
-                                   mail._id_student,
-                                   concat( student.first_name , ' ',
-                                                        student.last_name) AS fullNameS,
-                                   concat(professor.degree, '. ',                                  professor.first_name , ' ',
+                                   mail.sender , mail._id_professor, mail._id_student,
+                                   concat( student.first_name, ' ', student.last_name) AS fullNameS,
+                                   concat(professor.degree, '. ', professor.first_name, ' ',
                                           professor.last_name) AS fullNameP
                              FROM ((mail INNER JOIN professor 
                                         ON professor._id_professor = mail._id_professor 
-                                        AND mail._id_student = :_id_student) inner join student on mail._id_student = student._id_student) ORDER BY mail.date DESC");
-      $this->db->bind(':_id_student', $_id_student);
+                                        AND mail._id_professor = :id) inner join student on mail._id_student = student._id_student) ORDER BY mail.date DESC");
+      } elseif ($type == 2) {
+         $this->db->query("SELECT mail._id_mail, mail.message,
+                                   mail.subject, mail.date,
+                                   mail.sender , mail._id_professor, mail._id_student,
+                                   concat( student.first_name, ' ', student.last_name) AS fullNameS,
+                                   concat(professor.degree, '. ', professor.first_name, ' ',
+                                          professor.last_name) AS fullNameP
+                                FROM ((mail INNER JOIN professor 
+                                        ON professor._id_professor = mail._id_professor 
+                                        AND mail._id_student = :id) inner join student on mail._id_student = student._id_student) ORDER BY mail.date DESC");
+      }
+      $this->db->bind(':id', $id);
       return $this->db->getAll();
    }
 

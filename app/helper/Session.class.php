@@ -35,7 +35,14 @@ class Session {
       }
    }
 
-   public static function get($key) {
+   public static function isProf() {
+      if (isset($_SESSION['user_level']))
+         return false;
+      return true;
+   }
+
+   public
+   static function get($key) {
       if (isset($_SESSION[$key])) return $_SESSION[$key];
       return '';
    }

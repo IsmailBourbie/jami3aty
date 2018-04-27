@@ -11,6 +11,9 @@ class Marks extends Controller {
    private $request;
 
    public function __construct($request) {
+      if ($_SERVER['REQUEST_METHOD'] == 'GET' && !Session::isLoggedIn()) {
+         \App\Classes\Helper::redirect('users/login');
+      }
       $this->request = $request;
       $this->mark_model = $this->model('Mark');
       $this->setAjax($this->request->get('ajax'));

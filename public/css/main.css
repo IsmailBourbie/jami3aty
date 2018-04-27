@@ -541,6 +541,10 @@ nav .list_items .notifications .notif_mold a .info .description span.time {
 .publication_mold .publication_head .course_info .teacher_logo {
     position: relative;
     width: 50px;
+    padding: 8px 0px;
+    font-size: 14px;
+    text-align: center;
+    color: #46bfbe;
 }
 
 .publication_mold .publication_head .course_info .teacher_logo span {
@@ -653,13 +657,13 @@ span.separitor {
 
 .publication_mold .publication_footer .current_comments .comment_mold .student_logo {
     color: #5c97bf;
+    margin-right: 20px;
 }
 
 .publication_mold .publication_footer .current_comments .comment_mold .student_data {
     position: relative;
     background: #FFF;
     padding: 10px;
-    margin-left: 20px;
     border-radius: 7px 20px 20px 20px;
 }
 
@@ -1109,6 +1113,18 @@ span.separitor {
     width: 20%;
 }
 
+.main .mails .body table tr td.sender > div,
+.main .mails .body table tr td.time > div {
+    overflow: hidden;
+    white-space: nowrap;
+    width: 170px;
+    text-overflow: ellipsis;
+}
+
+.main .mails .body table tr td.time > div {
+    width: 60px;
+}
+
 
 .main .mails .body table tr td.content {
     width: 68%;
@@ -1244,6 +1260,27 @@ span.separitor {
     .content .posts article.publication_mold {
         margin-top: 80px;
         width: 80%;
+    }
+    .content article.publication_mold .course_info .module_teacher > h3 {
+        white-space: nowrap;
+        overflow-x: hidden;
+        text-overflow: ellipsis;
+        max-width: 125px;
+        font-size: 17px;
+        margin-bottom: -5px;
+    }
+    .content article.publication_mold .course_info .module_teacher > .time_pub {
+        font-size: 13px;
+    }
+    .content article.publication_mold .publication_footer .comment_mold {
+        padding: 10px 0;
+    }
+    .content article.publication_mold .publication_footer .comment_mold .student_logo {
+        margin-right: 40px;
+    }
+    .publication_mold .publication_footer .current_comments .comment_mold .row > .col-xs-2 {
+        width: 9.666667%;
+        padding: 3px;
     }
 }
 

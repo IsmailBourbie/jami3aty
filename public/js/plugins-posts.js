@@ -8,7 +8,7 @@ $(document).ready(function () {
         var postHTML = '<article class="publication_mold">' +
             '<div class="row publication_head reset-margin">' +
             '<div class="col-xs-10 course_info">' +
-            '<div class="teacher_logo"><span>O</span></div>' +
+            '<div class="teacher_logo"><i class="fa fa-user fa-3x"></i></div>' +
             '<div class="module_teacher">' +
             '<h3>Ouared Aek</h3>' +
             '<span class="separitor"> . </span>' +

@@ -90,7 +90,7 @@
                 </ul>
                 <div class="copyright">
                     <p>
-                        <span>&copy; </span>Ismail Bourbie, Inc. 2018
+                        <span>&copy; </span>Jami3aty, Inc. <?= date("Y")?>
                     </p>
                 </div>
             </div>
