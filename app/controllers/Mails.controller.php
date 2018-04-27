@@ -19,8 +19,8 @@ class Mails extends Controller {
    public function all() {
       $response = [
          "page_title" => "Mails",
-         "status" => OK,
-         "data"   => ""
+         "status"     => OK,
+         "data"       => ""
       ];
       $_id_student = filter_var($this->request->get("_id_student"), FILTER_VALIDATE_INT);
       if ($_id_student === false) {
@@ -34,30 +34,6 @@ class Mails extends Controller {
       $response['data'] = $this->mail_model->studentAllMails($_id_student);
 
       $this->view("mails/index", $response);
-   }
-
-   public function sent() {
-      $response = [
-         'page_title' => 'Message envoyée',
-         'status'     => OK,
-         'data'       => ''
-      ];
-      $sender = "1";
-      $_id_student = Session::get("user_id");
-      $response['data'] = $this->mail_model->bySender($_id_student, $sender);
-      $this->view('mails/sent', $response);
-   }
-
-   public function received() {
-      $response = [
-         'page_title' => 'Message reçu',
-         'status'     => OK,
-         'data'       => ''
-      ];
-      $sender = "0";
-      $_id_student = Session::get("user_id");
-      $response['data'] = $this->mail_model->bySender($_id_student, $sender);
-      $this->view('mails/received', $response);
    }
 
    public function id() {
@@ -92,19 +68,8 @@ class Mails extends Controller {
 
    }
 
-   public function remove() {
-      if ($_SERVER['REQUEST_METHOD'] == 'GET') \App\Classes\Helper::redirect("");
-      $response['status'] = ERR_EMAIL;
-      $id_mail = filter_var($this->request->get('id_mail'), FILTER_VALIDATE_INT);
-      if ($id_mail === false) die("Err id mail");
-
-      if ($this->mail_model->removeMail($id_mail))
-         $response['status'] = OK;
-      $this->view('api/json', $response);
-   }
-
    public function profs() {
-//      if ($_SERVER['REQUEST_METHOD'] == 'GET') \App\Classes\Helper::redirect("");
+      if ($_SERVER['REQUEST_METHOD'] == 'GET') \App\Classes\Helper::redirect("");
       $response = [
          "status" => OK,
          "data"   => ""
@@ -114,8 +79,7 @@ class Mails extends Controller {
          'section' => $this->request->get('section'),
          'group'   => $this->request->get('group'),
       ];
-
-      if (empty($data['level']) || empty($data['section']) || empty($data['group'])) {
+      if (empty($data['level']) || strlen($data['section']) == 0 || empty($data['group'])) {
          if (empty(Session::get('user_level'))) {
             die("empty data");
          } else {

@@ -1,5 +1,5 @@
 <nav class="navbar navbar-default navbar-fixed-top">
-    <?php if ($_SESSION['isConfirmed'] == 0 && !strchr(basename($_SERVER['REQUEST_URI']),"confirm")): ?>
+    <?php if (isset($_SESSION['isConfirmed'])) if ($_SESSION['isConfirmed'] == 0 && !strchr(basename($_SERVER['REQUEST_URI']),"confirm")): ?>
     <div class="alert alert-danger alert-dismissible" role="alert" style="padding: 0;
                                                                           margin: auto;
                                                                           text-align: center">

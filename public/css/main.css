@@ -1074,7 +1074,7 @@ span.separitor {
     color: #22313F;
     padding: 7px 10px;
     border: 1px solid #35a8c7;
-    font-size: 13.9px;
+    font-size: 13.8px;
 }
 
 .main .mails .header .filter ul {
@@ -1090,11 +1090,7 @@ span.separitor {
 .main .mails .header .filter ul li:hover {
     transition: all .2s;
     transform: translateX(3px);
-}
-
-.main .mails .header .filter ul li > a:hover,
-.main .mails .header .filter ul li > a:focus {
-    background: initial;
+    cursor: pointer;
 }
 
 .main .mails .body {

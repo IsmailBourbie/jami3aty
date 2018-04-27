@@ -44,8 +44,22 @@ $(document).ready(function () {
     });
 
     /* Auto size textarea end */
+    // chagne style of select tag 
     $('select').change(function () {
         $(this).css('color', '#22313F');
         $(this).parents('.modal').find('#send-message-btn').fadeIn();
+    });
+    
+    // filteration of Messages
+    $("#all-message").click(function(){
+        $('.icon_send').parent().show();
+    });
+    $("#sent-message").click(function(){
+        $('.icon_send .fa-arrow-circle-down').parents("tr").hide();
+        $('.icon_send .fa-arrow-circle-up').parents("tr").show();
+    });
+    $("#received-message").click(function(){
+        $('.icon_send .fa-arrow-circle-down').parents("tr").show();
+        $('.icon_send .fa-arrow-circle-up').parents("tr").hide();
     });
 });

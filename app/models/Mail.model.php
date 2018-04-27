@@ -24,20 +24,6 @@ class Mail {
       return $this->db->getAll();
    }
 
-   public function bySender($_id_student, $sender) {
-      $this->db->query("SELECT mail._id_mail, mail.message,
-                                   mail.subject, mail.date,
-                                   mail.sender , concat(professor.degree, '. ',
-                                                        professor.first_name , ' ',
-                                                        professor.last_name) AS fullNameP
-                             FROM (mail INNER JOIN professor 
-                                        ON professor._id_professor = mail._id_professor 
-                                        AND mail._id_student = :_id_student AND mail.sender = :sender)");
-      $this->db->bind(':_id_student', $_id_student);
-      $this->db->bind(':sender', $sender);
-      return $this->db->getAll();
-   }
-
    public function byId($id_mail) {
       $this->db->query("SELECT mail._id_mail, mail.message,
                                    mail.subject, mail.date, mail.sender,

@@ -4,7 +4,8 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                aria-hidden="true">&times;</span></button>
                     <h4 class="modal-title" id="gridSystemModalLabel">Message</h4>
                 </div>
                 <div class="modal-body">
@@ -32,7 +33,7 @@
                     <!-- body of body hahaha -->
                     <div class="text-message">
                         <div class="input-group">
-                               <label for="text-message">Message</label>
+                            <label for="text-message">Message</label>
                             <textarea id="text-message"></textarea>
                         </div>
                     </div>
@@ -48,36 +49,40 @@
         <div class="filter">
             <div class="dropdown">
                 <button id="filter-mail" type="button" data-toggle="dropdown">
-               Filtrer les messages
-               <span class="caret"></span>
-            </button>
+                    Filtrer les messages
+                    <span class="caret"></span>
+                </button>
                 <ul class="dropdown-menu reset-margin" aria-labelledby="filter-mail">
-                    <li><a class="reset-padding" href="<?=URL_ROOT?>mails">Tout les messages</a></li>
-                    <li><a class="reset-padding" href="<?=URL_ROOT?>mails/sent">Messages envoyées</a></li>
-                    <li><a class="reset-padding" href="<?=URL_ROOT?>mails/received">Messages reçus</a></li>
+                    <li><a class="reset-padding" href="<?= URL_ROOT ?>mails">Tout les messages</a></li>
+                    <li><a class="reset-padding" href="<?= URL_ROOT ?>mails/sent">Messages envoyées</a></li>
+                    <li><a class="reset-padding" href="<?= URL_ROOT ?>mails/received">Messages reçus</a></li>
                 </ul>
             </div>
         </div>
         <div class="new_message">
-            <button type="button" class="new_message_btn" data-toggle="modal" data-target=".sendMessageModal">Nouveau Message</button>
+           <?php if (isset($_SESSION["level"])): ?>
+               <button type="button" class="new_message_btn" data-toggle="modal" data-target=".sendMessageModal">Nouveau
+                   Message
+               </button>
+           <?php endif; ?>
         </div>
     </div>
     <div class="body">
         <div class="table-responsive">
             <table class="table table-hover">
                 <tbody>
-                    <?php foreach ($mails as $mail):
-               if ($mail->sender == 1) {
-                  $sender_status = "down";
-               } else {
-                  $sender_status = "up";
-               } ?>
+                <?php foreach ($mails as $mail):
+                   if ($mail->sender == 1) {
+                      $sender_status = "down";
+                   } else {
+                      $sender_status = "up";
+                   } ?>
                     <tr data-target="<?= $mail->_id_mail ?>">
                         <td class="icon_send">
                             <i class="fa fa-arrow-circle-<?= $sender_status ?>"></i>
                         </td>
                         <td class="sender">
-                            <?= $mail->fullNameP ?>
+                           <?= $mail->fullNameP ?>
                         </td>
                         <td class="content">
                             <div class="nowrap">
@@ -86,10 +91,10 @@
                             </div>
                         </td>
                         <td class="time">
-                            <?= Time::formatTime($mail->date) ?>
+                           <?= Time::formatTime($mail->date) ?>
                         </td>
                     </tr>
-                    <?php endforeach; ?>
+                <?php endforeach; ?>
                 </tbody>
             </table>
         </div>
