@@ -1,16 +1,45 @@
 <div class="mails">
     <!-- Modal of show message-->
-    <div class="modal fade showMessageModal" tabindex="-1" role="dialog" aria-labelledby="showMessageModal">
+    <div class="modal fade sendMessageModal" tabindex="-1" role="dialog" aria-labelledby="sendMessageModal">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                     <h4 class="modal-title" id="gridSystemModalLabel">Message</h4>
                 </div>
-                <div class="modal-body"></div>
+                <div class="modal-body">
+                    <!-- Header of body -->
+                    <div class="row data-message">
+                        <div class="col-md-6 subject">
+                            <div class="input-group">
+                                <span class="input-group-addon" id="basic-addon1">
+                                <i class="fa fa-clipboard"></i>
+                                </span>
+                                <input type="text" id="subject-message" class="form-control" placeholder="Sujet">
+                            </div>
+                        </div>
+                        <div class="col-md-6 to">
+                            <div class="input-group">
+                                <span class="input-group-addon" id="basic-addon1">
+                                <i class="fa fa-graduation-cap"></i>
+                                </span>
+                                <select id="list-profs">
+                                    <option disabled selected hidden="hidden">Enseignant</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- body of body hahaha -->
+                    <div class="text-message">
+                        <div class="input-group">
+                               <label for="text-message">Message</label>
+                            <textarea id="text-message"></textarea>
+                        </div>
+                    </div>
+                </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".sendMessageModal">Large modal</button>
-
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                    <button type="button" id="send-message-btn" class="btn btn-primary">Send</button>
                 </div>
             </div>
         </div>
@@ -30,7 +59,7 @@
             </div>
         </div>
         <div class="new_message">
-            <button type="button" class="new_message_btn" data-toggle="modal" data-target=".showMessageModal">Nouveau Message</button>
+            <button type="button" class="new_message_btn" data-toggle="modal" data-target=".sendMessageModal">Nouveau Message</button>
         </div>
     </div>
     <div class="body">
@@ -63,19 +92,6 @@
                     <?php endforeach; ?>
                 </tbody>
             </table>
-        </div>
-    </div>
-        <!-- Modal of send message-->
-    <div class="modal fade sendMessageModal" tabindex="-1" role="dialog" aria-labelledby="sendMessageModal">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title" id="gridSystemModalLabel">Send</h4>
-                </div>
-                <div class="modal-body"></div>
-                <div class="modal-footer"></div>
-            </div>
         </div>
     </div>
 </div>

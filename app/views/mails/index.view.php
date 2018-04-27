@@ -16,4 +16,5 @@ $sender_status = "up";
         </div>
     </div>
    <?php require_once APP_ROOT . '/views/inc/js_inc.php'; ?>
+   <script src="<?=URL_ROOT?>js/plugins-mails.js"></script>
    <?php require_once APP_ROOT . '/views/inc/footer.php'; ?>

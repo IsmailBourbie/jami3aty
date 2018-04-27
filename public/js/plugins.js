@@ -44,4 +44,8 @@ $(document).ready(function () {
     });
 
     /* Auto size textarea end */
+    $('select').change(function () {
+        $(this).css('color', '#22313F');
+        $(this).parents('.modal').find('#send-message-btn').fadeIn();
+    });
 });
