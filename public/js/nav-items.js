@@ -153,8 +153,8 @@ $(document).ready(function () {
                         .children('.fa').removeAttr("class");
                     mails_list.children("li").eq(count_mails).find(".icon")
                         .children('i').addClass('fa ' + sender_arrow + ' fa-2x');
-                    mails_list.children("li").eq(count_notif).children("a")
-                        .attr("href", url_mail + response.data[count_notif]._id_mail);
+                    mails_list.children("li").eq(count_mails).children("a")
+                        .attr("href", url_mail + response.data[count_mails]._id_mail);
                 }
                 mails_list.children(".loader").hide();
             }

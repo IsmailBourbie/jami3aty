@@ -21,7 +21,7 @@ class Mails extends Controller {
 
    public function all() {
       $response = [
-         "page_title" => "Mails",
+         "page_title" => "Messages",
          "status"     => OK,
          "data"       => ""
       ];
@@ -43,16 +43,22 @@ class Mails extends Controller {
       $this->view("mails/index", $response);
    }
 
-   public function id() {
-      if ($_SERVER['REQUEST_METHOD'] == 'GET') \App\Classes\Helper::redirect("");
+   public function id($id = null) {
+      if ($_SERVER['REQUEST_METHOD'] == 'GET' && is_null($id))
+         \App\Classes\Helper::redirect("");
       $response = [
+         "page_title" => 'Message',
          "status" => OK,
          "data"   => ""
       ];
       $id_mail = filter_var($this->request->get('id_mail'), FILTER_VALIDATE_INT);
-      if ($id_mail === false) die('Err id mail');
+      if ($id_mail === false) {
+         $id_mail = filter_var($id, FILTER_VALIDATE_INT);
+         if ($id === false) die('invalid id');
+      }
+
       $response['data'] = $this->mail_model->byId($id_mail);
-      $this->view('api/json', $response);
+      $this->view('mails/byid', $response);
    }
 
    public function insert() {
