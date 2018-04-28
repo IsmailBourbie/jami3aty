@@ -31,7 +31,7 @@ class Mail {
                                         AND mail._id_student = :id) inner join student on mail._id_student = student._id_student) ORDER BY mail.date DESC");
       }
       $this->db->bind(':id', $id);
-      return $this->db->getAll();
+      return \App\Classes\Helper::addColumnDateParsed($this->db->getAll());
    }
 
    public function byId($id_mail) {

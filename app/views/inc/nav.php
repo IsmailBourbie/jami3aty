@@ -29,24 +29,20 @@
                     </a>
                     <ul class="dropdown-menu reset-padding" id="notif-list">
                         <div class="loader lodear-sm"></div>
-                        <div class="see_more_notif text-center">
+                        <div class="see_more_ text-center">
                             <a href="<?=URL_ROOT?>notifications">Voir tous</a>
                         </div>
                     </ul>
                 </li>
-                <li class="dropdown messages">
+                <li class="dropdown mails" id="mails-nav-btn">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
                                 <i class="fa fa-envelope fa-2x"></i>
                             </a>
-                    <ul class="dropdown-menu">
-                        <li><a href="#">message1</a></li>
-                        <li><a href="#">message2</a></li>
-                        <li><a href="#">message3</a></li>
-                        <li><a href="#">message4</a></li>
-                        <li><a href="#">message5</a></li>
-                        <li><a href="#">message6</a></li>
-                        <li><a href="#">message7</a></li>
-                        <li><a href="#">message8</a></li>
+                    <ul class="dropdown-menu" id="mails-nav-list">
+                       <div class="loader lodear-sm"></div>
+                       <div class="see_more_ text-center">
+                            <a href="<?=URL_ROOT?>mails">Voir tous</a>
+                        </div>
                     </ul>
                 </li>
                 <li class="dropdown list_gestion">

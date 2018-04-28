@@ -155,11 +155,13 @@ nav .items_icons .search_container .navbar-form input.form-control {
     border-right: none;
 }
 
-nav .list_items .notifications ul .see_more_notif {
+nav .list_items .notifications ul .see_more_,
+nav .list_items .mails ul .see_more_ {
     padding-bottom: 10px
 }
 
-nav .list_items .notifications ul .see_more_notif a {
+nav .list_items .notifications ul .see_more_ a,
+nav .list_items .mails ul .see_more_ a {
     font-size: 14px;
     color: #17667b;
     text-decoration: underline;
@@ -170,14 +172,16 @@ nav .list_items .notifications ul#notif-list {
     min-height: 30px;
 }
 
-nav .list_items .notifications .notif_mold a {
+nav .list_items .notifications .notif_mold a,
+nav .list_items .mails .mail_mold a {
     padding: 10px 10px;
     display: flex;
     width: 500px;
     border-bottom: 1px solid #b9c6d5;
 }
 
-nav .list_items .notifications .notif_mold:last-of-type a {
+nav .list_items .notifications .notif_mold:last-of-type a,
+nav .list_items .mails .mail_mold:last-of-type a {
     border-bottom: none;
 }
 
@@ -191,31 +195,35 @@ nav .list_items .notifications .notif_mold a:hover .info {
     transform: translateX(5px);
 }
 
-nav .list_items .notifications .notif_mold a .icon {
+nav .list_items .notifications .notif_mold a .icon,
+nav .list_items .mails .mail_mold a .icon {
     padding-top: 5px;
     color: #02b3e4;
 }
 
-nav .list_items .notifications .notif_mold a .info {
+nav .list_items .notifications .notif_mold a .info,
+nav .list_items .mails .mail_mold a .info {
     margin-left: 10px;
     color: #7a7d82;
 }
 
-nav .list_items .notifications .notif_mold a .info b {
+nav .list_items .info b {
     color: #22313F;
 }
 
-nav .list_items .notifications .notif_mold a .info .title {
+nav .list_items a .info .title {
     font-size: 15px;
 }
 
-nav .list_items .notifications .notif_mold a .info .description h4 {
+nav .list_items .notifications .notif_mold a .info .description h4,
+nav .list_items .mails .mail_mold a .info .subject h4 {
     display: inline-block;
     font-size: 14px;
     color: #22313F;
 }
 
-nav .list_items .notifications .notif_mold a .info .description span.time {
+nav .list_items a .info .description span.time,
+nav .list_items a .info .subject span.time {
     color: #7a7d82;
 }
 
