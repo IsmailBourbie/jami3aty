@@ -35,7 +35,7 @@ class Mail {
    }
 
    public function byId($id_mail) {
-      $this->db->query("SELECT mail._id_mail, mail.message,
+      $this->db->query("SELECT mail._id_mail, mail.message, mail._id_professor,
                                    mail.subject, mail.date, mail.sender,
                                    concat(professor.degree, '. ', professor.first_name,
                                    ' ', professor.last_name) as fullNameP 

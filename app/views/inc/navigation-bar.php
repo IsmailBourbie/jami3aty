@@ -29,7 +29,7 @@
                         </a>
                     </li>
                     <li id="messages">
-                        <a href="<?= URL_ROOT ?>messages">
+                        <a href="<?= URL_ROOT ?>mails">
                             <h4>
                                 <i class="fa fa-envelope"></i> Messages
                             </h4>
@@ -53,7 +53,7 @@
                         </a>
                     </li>
                     <li id="notes">
-                        <a href="<?= URL_ROOT ?>notes">
+                        <a href="<?= URL_ROOT ?>marks">
                             <h4>
                                 <i class="fa fa-calculator"></i> Notes
                             </h4>

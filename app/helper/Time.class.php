@@ -19,7 +19,7 @@ class Time {
       if ($secs >= 0) $timestring = "now";
       if ($mins > 0) $timestring = $mins . " min";
       if ($hours > 0) $timestring = $hours . " h";
-      if ($days > 0) $timestring = date('l H:i', $timestamp);
+      if ($days > 0) $timestring = date('D H:i', $timestamp);
       if ($sem > 0) $timestring = date('j M H:i', $timestamp);
       return $timestring;
    }

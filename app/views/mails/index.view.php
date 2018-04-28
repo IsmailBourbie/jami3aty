@@ -3,7 +3,6 @@ require_once APP_ROOT . '/views/inc/css_inc.php';
 require_once APP_ROOT . '/views/inc/header.php';
 $mails = $data["data"];
 $sender_status = "up";
-//die(var_dump($mails));
 ?>
 <div class="row reset-margin">
     <div class="aside-left reset-padding">
@@ -22,7 +21,7 @@ $sender_status = "up";
                                             aria-hidden="true">&times;</span></button>
                                 <h4 class="modal-title" id="gridSystemModalLabel">Message</h4>
                             </div>
-                            <div class="modal-body">
+                            <div class="modal-body" id="md-body">
                                 <!-- Header of body -->
                                 <div class="row data-message">
                                     <div class="col-md-6 subject">
@@ -99,7 +98,7 @@ $sender_status = "up";
                                      $sender_status = "down";
                                   }
                                } ?>
-                                <tr data-target="<?= $mail->_id_mail ?>">
+                                <tr onclick="document.location = '<?= URL_ROOT . 'mails/id/' . $mail->_id_mail ?>'">
                                     <td class="icon_send">
                                         <i class="fa fa-arrow-circle-<?= $sender_status ?>"></i>
                                     </td>
@@ -119,7 +118,7 @@ $sender_status = "up";
                                         </div>
                                     </td>
                                     <td class="time">
-                                      <div>
+                                      <div title="<?= Time::formatTime($mail->date) ?>">
                                        <?= Time::formatTime($mail->date) ?>
                                        </div>
                                     </td>

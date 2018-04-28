@@ -3,9 +3,13 @@
 $(document).ready(function () {
     "use strict";
     var selectElement = $('#list-profs'),
-        modalBody = selectElement.parents(".modal-content").children(".modal-body"),
+        modalBody = $("#md-body"),
         user_id = Number($('#_std_id').text()),
-        countProfs = 0;
+        countProfs = 0,
+        isProf = true;
+    if ($('body').attr("data-type") == 0) {
+        isProf = true;
+    }
 
     function optionMold(value, text) {
         return '<option value="' + value + '">' + text + '</option>';
@@ -33,9 +37,13 @@ $(document).ready(function () {
     $('#send-message-btn').click(function () {
         var messageSubject = $('#subject-message'),
             messageText = $('#text-message'),
-            profId = selectElement.val();
+            profId = selectElement.val(),
+            sender = isProf ? 0 : 1;
         // validate inputs
-        validateInputs(messageSubject, messageText);
+        if (!validateInputs(messageSubject, messageText)) {
+            return false;
+
+        }
         // send data with ajax
         modalBody.html("<div class='loader'></div>");
         $.ajax({
@@ -46,7 +54,7 @@ $(document).ready(function () {
                 _id_student: user_id,
                 message: messageText.val(),
                 subject: messageSubject.val(),
-                sender: 0,
+                sender: sender,
                 ajax: true
             },
             dataType: "json",
@@ -60,7 +68,40 @@ $(document).ready(function () {
         });
     });
 
+    // repley Message 
+    $('#send-reply-btn').click(function () {
+        var messageSubject = $('#subject-reply').text(),
+            messageText = $('#text-reply-message'),
+            profId = $('#id_prof').text(),
+            sender = isProf ? 0 : 1;
+        // validate inputs
+        if (!validateText(messageText)) {
+            return false;
+        }
 
+        // send data with ajax
+        modalBody.html("<div class='loader'></div>");
+        $.ajax({
+            url: "http://localhost/jami3aty/mails/insert",
+            type: "post",
+            data: {
+                id_professor: profId,
+                _id_student: user_id,
+                message: messageText.val(),
+                subject: messageSubject,
+                sender: sender,
+                ajax: true
+            },
+            dataType: "json",
+            success: function (response) {
+                var status = response.status;
+                modalBody.children().fadeOut(function () {
+                    modalBody.html('<div class="alert-success">Message Envoyée</div>');
+                    modalBody.siblings('.modal-footer').children().last().hide();
+                });
+            }
+        });
+    });
 
     // helper fuction
     function validateInputs(subject, text) {
@@ -70,6 +111,7 @@ $(document).ready(function () {
             return false;
         } else {
             subject.parent().css('border', '1px solid #5cb85c');
+            return true;
         }
         if (text.val().length === 0) {
             text.focus();
@@ -77,6 +119,18 @@ $(document).ready(function () {
             return false;
         } else {
             text.css('border', '1px solid #5cb85c');
+            return true;
+        }
+    }
+
+    function validateText(text) {
+        if (text.val().length === 0) {
+            text.focus();
+            text.css('border', '1px solid #C00');
+            return false;
+        } else {
+            text.css('border', '1px solid #5cb85c');
+            return true;
         }
     }
 });
