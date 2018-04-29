@@ -29,6 +29,15 @@ class Post {
       return \App\Classes\Helper::addColumnDateParsed($this->db->getAll());
    }
 
+   public function getAllPostsProf($id_professor) {
+      $this->db->query('SELECT post.*, subject.title 
+                            FROM post  INNER JOIN subject 
+                                           ON post._id_subject = subject._id_subject 
+                                              WHERE _id_professor = :id_professor');
+      $this->db->bind(':id_professor', $id_professor);
+      return \App\Classes\Helper::addColumnDateParsed($this->db->getAll());
+   }
+
    public function getPost($id_post, $id_student) {
       $this->setSeen($id_post, $id_student);
       $this->db->query("SELECT post.*, concat(professor.degree, '. ',

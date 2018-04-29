@@ -45,14 +45,14 @@ class Posts extends Controller {
       //init response
       $response = [
          'page_title' => __CLASS__,
-         'status' => OK,
-         "data"   => ""
+         'status'     => OK,
+         "data"       => ""
       ];
       // get the id from the url
       $id_post = filter_var($id_post, FILTER_SANITIZE_NUMBER_INT);
       $id_student = Session::get('user_id');
       if ($_SERVER["REQUEST_METHOD"] == "POST") {
-      // change
+         // change
          $id_post = filter_var($this->request->get('id_post'), FILTER_SANITIZE_NUMBER_INT);
       }
       if (!$this->post_model->getPost($id_post, $id_student)) {
@@ -62,5 +62,23 @@ class Posts extends Controller {
       }
       $response["data"] = $this->post_model->getPost($id_post, $id_student);
       $this->view("pages/post", $response);
+   }
+
+   // for professor
+   public function myposts() {
+      // if direct access redirect to main page
+//      if ($_SERVER["REQUEST_METHOD"] != "POST") \App\Classes\Helper::redirect("");
+      // init response
+      $response = [
+         'page_title' => "Mes Publication",
+         'status'     => OK,
+         "data"       => ""
+      ];
+      // sanitize data from post request
+      $id_professor = filter_var($this->request->get("id_professor"), FILTER_VALIDATE_INT);
+      // check the response from model
+      if ($id_professor === false ) die("invalid id");
+      $response['data'] = $this->post_model->getAllPostsProf(1);
+      $this->view("api/json", $response);
    }
 }
