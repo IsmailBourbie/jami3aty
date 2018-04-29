@@ -17,7 +17,7 @@ $minus_font = "<i class='fa fa-minus text-red'></i>"
                         <table class="table table-hover">
                             <thead class="text-center">
                                 <tr>
-                                    <th><i class="fa fa-hashtag"></i></th>
+                                    <th>Modules</th>
                                     <th>Examn</th>
                                     <th>TD</th>
                                     <th>TP</th>

@@ -2,9 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="012501ea-d36b-474e-bf18-f866c6e62f26" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/Marks.controller.php" afterPath="$PROJECT_DIR$/app/controllers/Marks.controller.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/Marks/index.view.php" afterPath="$PROJECT_DIR$/app/views/Marks/index.view.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/css/main.css" afterPath="$PROJECT_DIR$/public/css/main.css" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -31,8 +29,8 @@
       <file leaf-file-name="index.view.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/views/Marks/index.view.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="405">
-              <caret line="33" column="54" lean-forward="false" selection-start-line="33" selection-start-column="54" selection-end-line="33" selection-end-column="54" />
+            <state relative-caret-position="189">
+              <caret line="19" column="47" lean-forward="false" selection-start-line="19" selection-start-column="47" selection-end-line="19" selection-end-column="47" />
               <folding />
             </state>
           </provider>
@@ -593,12 +591,12 @@
       <workItem from="1524913605261" duration="1369000" />
       <workItem from="1524919613989" duration="5452000" />
       <workItem from="1524993444488" duration="782000" />
-      <workItem from="1525007706573" duration="2893000" />
+      <workItem from="1525007706573" duration="3523000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="369220000" />
+    <option name="totallyTimeSpent" value="369850000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1279,8 +1277,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/views/Marks/index.view.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="405">
-          <caret line="33" column="54" lean-forward="false" selection-start-line="33" selection-start-column="54" selection-end-line="33" selection-end-column="54" />
+        <state relative-caret-position="189">
+          <caret line="19" column="47" lean-forward="false" selection-start-line="19" selection-start-column="47" selection-end-line="19" selection-end-column="47" />
           <folding />
         </state>
       </provider>
