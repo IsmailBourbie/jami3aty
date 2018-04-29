@@ -5,13 +5,16 @@ use App\Classes\Module;
 class Modules extends Controller {
    private $modulesModel;
    private $_module;
+   private $request;
 
-   public function __construct() {
+   public function __construct($request) {
       if ($_SERVER['REQUEST_METHOD'] == 'GET' && !Session::isLoggedIn()) {
          Helper::redirect('users/login');
       }
       $this->modulesModel = $this->model("Module");
       $this->_module = new Module($this->modulesModel);
+      $this->request = $request;
+      $this->setAjax($this->request->get('ajax'));
    }
 
    public function index() {
@@ -20,10 +23,14 @@ class Modules extends Controller {
          'status'     => OK,
          'data'       => null,
       ];
-      $object = $this->modulesModel->getModules($_SESSION['user_level'], $_SESSION['user_section'], $_SESSION['user_group']);
-      $this->_module->setModule($object);
-
-      $response['data'] = $this->_module->arrange_rows();
+      if (Session::isProf()) {
+         $object = $this->modulesModel->getProfModules(Session::get("user_id"));
+         $response['data'] = $object;
+      } else {
+         $object = $this->modulesModel->getModules($_SESSION['user_level'], $_SESSION['user_section'], $_SESSION['user_group']);
+         $this->_module->setModule($object);
+         $response['data'] = $this->_module->arrange_rows();
+      }
       $this->view("modules/index", $response);
    }
 
@@ -46,11 +53,23 @@ class Modules extends Controller {
          } else {
             $response['status'] = ERR_EMAIL;
          }
-         header('Content-type: application/json');
          $this->view('api/json', $response);
          return;
       } else {
          die("request specified with {$level}/{$section}/{$group}");
       }
+   }
+
+   public function profModules() {
+      if ($_SERVER['REQUEST_METHOD'] != 'POST') Helper::redirect("");
+      $response = [
+         "page_title" => __CLASS__,
+         'status'     => OK,
+         'data'       => "",
+      ];
+      $id_professor = filter_var($this->request->get('id_professor'),FILTER_VALIDATE_INT);
+      if ($id_professor === false) die('invalid  id');
+      $response['data'] = $this->modulesModel->getProfModules($id_professor);
+      $this->view('api/json', $response['data']);
    }
 }

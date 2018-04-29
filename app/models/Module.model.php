@@ -28,4 +28,16 @@ class Module {
       $this->db->bind(':group', $group);
       return $this->db->getAll();
    }
+
+   public function getProfModules($id_professor) {
+      $this->db->query("SELECT DISTINCT subject.* 
+                            FROM (professor INNER JOIN assignment 
+                                                  ON professor._id_professor = assignment._id_professor 
+                                                  AND professor.`_id_professor` = :id_professor)
+                                            INNER JOIN subject 
+                                                  ON assignment._id_subject = subject._id_subject");
+      $this->db->bind(':id_professor', $id_professor);
+      return $this->db->getAll();
+   }
 }
+
