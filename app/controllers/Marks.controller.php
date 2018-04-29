@@ -20,7 +20,7 @@ class Marks extends Controller {
    }
 
    public function index() {
-
+      $this->all();
    }
 
    public function all() {

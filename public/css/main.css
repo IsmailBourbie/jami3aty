@@ -50,8 +50,8 @@ form .error {
     }
 
     .main .aside-right {
+        z-index: 1000;
         top: 70px !important;
-        margin-bottom: 90px !important;
         right: 3.2% !important;
     }
 }
@@ -1262,12 +1262,45 @@ span.separitor {
 
 /*Mails page End*/
 
+/*Marks page Start*/
+
+.main .marks {
+    width: 90%;
+    margin: 20px auto;
+    padding: 10px 20px;
+}
+
+.main .marks table {
+    border-radius: 7px;
+    overflow: hidden;
+    box-shadow: 0px 0px 6px 0 rgba(46, 61, 73, .2);
+}
+
+.main .marks table tr > * {
+    font-size: 16px;
+
+}
+
+.main .marks table thead {
+    background: #46bfbe;
+    color: #d91e29;
+}
+
+.main .marks table tbody tr {
+    background-color: #f5f5f5;
+}
+
+.main .marks table tbody tr:nth-of-type(2n) {
+    background: rgba(70, 191, 190, 0.18);
+}
+
+/*Marks page End*/
+
 /****Responsive Start****/
 
 @media (max-width: 1200px) {
     .main .aside-right {
         position: relative;
-        margin-bottom: 110px;
         margin-left: 10px;
         background-color: transparent;
         box-shadow: unset;
@@ -1317,17 +1350,22 @@ span.separitor {
 }
 
 @media (max-width: 767px) {
-    .content .posts article.publication_mold {
-        margin-top: 80px;
-        width: 80%;
+    .content .main {
+        padding-top: 60px;
     }
-    .main .mails {
-        margin-top: 60px;
+    .content .posts article.publication_mold {
+        width: 80%;
     }
 
     .main .mail_layout .header .mail_detail .name_sender_receiv > h3,
     .main .mail_layout .header .mail_detail .name_sender_receiv > span i {
         font-size: 20px;
+    }
+    .main .mail_layout .header .mail_detail .name_sender_receiv > h3 {
+        max-width: 160px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
     }
     .content article.publication_mold .course_info .module_teacher > h3 {
         white-space: nowrap;
@@ -1349,6 +1387,12 @@ span.separitor {
     .publication_mold .publication_footer .current_comments .comment_mold .row > .col-xs-2 {
         width: 9.666667%;
         padding: 3px;
+    }
+    .main .saved .saved_mold .header .info h3 {
+        width: 210px;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow: hidden;
     }
 }
 
@@ -1431,4 +1475,8 @@ textarea.autosize {
 
 #id_prof {
     display: none !important;
+}
+
+i.fa.text-red {
+    color: #d91e29;
 }
