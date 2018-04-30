@@ -1,20 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="012501ea-d36b-474e-bf18-f866c6e62f26" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dictionaries/IsMail_BoUrbie.xml" afterPath="$PROJECT_DIR$/.idea/dictionaries/IsMail_BoUrbie.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/classes/helper.class.php" afterPath="$PROJECT_DIR$/app/classes/helper.class.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/Home.controller.php" afterPath="$PROJECT_DIR$/app/controllers/Home.controller.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/Posts.controller.php" afterPath="$PROJECT_DIR$/app/controllers/Posts.controller.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/helper/Time.class.php" afterPath="$PROJECT_DIR$/app/helper/Time.class.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/Mail.model.php" afterPath="$PROJECT_DIR$/app/models/Mail.model.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/Post.model.php" afterPath="$PROJECT_DIR$/app/models/Post.model.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/inc/navigation-bar.php" afterPath="$PROJECT_DIR$/app/views/inc/navigation-bar.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/mails/byid.view.php" afterPath="$PROJECT_DIR$/app/views/mails/byid.view.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/js/nav-items.js" afterPath="$PROJECT_DIR$/public/js/nav-items.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/js/plugins-mails.js" afterPath="$PROJECT_DIR$/public/js/plugins-mails.js" />
-    </list>
+    <list default="true" id="012501ea-d36b-474e-bf18-f866c6e62f26" name="Default" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -41,7 +28,7 @@
         <entry file="file://$PROJECT_DIR$/app/classes/helper.class.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="60">
-              <caret line="136" column="3" lean-forward="false" selection-start-line="136" selection-start-column="3" selection-end-line="136" selection-end-column="3" />
+              <caret line="136" column="0" lean-forward="false" selection-start-line="136" selection-start-column="0" selection-end-line="136" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -622,12 +609,12 @@
       <workItem from="1524993444488" duration="782000" />
       <workItem from="1525007706573" duration="4144000" />
       <workItem from="1525039398877" duration="2960000" />
-      <workItem from="1525096586633" duration="17299000" />
+      <workItem from="1525096586633" duration="17398000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="390730000" />
+    <option name="totallyTimeSpent" value="390829000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -640,9 +627,8 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="0" />
-    <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.22181553" sideWeight="0.5" order="1" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.22181553" sideWeight="0.5" order="1" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.329653" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -1468,7 +1454,7 @@
     <entry file="file://$PROJECT_DIR$/app/classes/helper.class.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="60">
-          <caret line="136" column="3" lean-forward="false" selection-start-line="136" selection-start-column="3" selection-end-line="136" selection-end-column="3" />
+          <caret line="136" column="0" lean-forward="false" selection-start-line="136" selection-start-column="0" selection-end-line="136" selection-end-column="0" />
           <folding />
         </state>
       </provider>

@@ -68,7 +68,7 @@ class Post {
                                                     subject.title, subject.level 
                             FROM assignment INNER JOIN subject 
                                             ON subject._id_subject = assignment._id_subject 
-                            WHERE _id_professor = :id_professor');
+                            WHERE _id_professor = :id_professor ORDER BY subject._id_subject');
       $this->db->bind(':id_professor', $id_professor);
       return $this->db->getAll();
    }
