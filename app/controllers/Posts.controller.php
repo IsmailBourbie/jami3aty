@@ -1,5 +1,5 @@
 <?php
-
+use App\Classes\Helper;
 
 class Posts extends Controller {
    private $post_model;
@@ -7,7 +7,7 @@ class Posts extends Controller {
 
    public function __construct($request) {
       if ($_SERVER['REQUEST_METHOD'] == 'GET' && !Session::isLoggedIn()) {
-         \App\Classes\Helper::redirect('users/login');
+         Helper::redirect('users/login');
       }
       $this->request = $request;
       $this->post_model = $this->model("Post");
@@ -20,7 +20,7 @@ class Posts extends Controller {
 
    public function all() {
       // if direct access redirect to main page
-      if ($_SERVER["REQUEST_METHOD"] != "POST") \App\Classes\Helper::redirect("");
+      if ($_SERVER["REQUEST_METHOD"] != "POST") Helper::redirect("");
       // init response
       $response = [
          'status' => OK,
@@ -67,7 +67,7 @@ class Posts extends Controller {
    // for professor
    public function myposts() {
       // if direct access redirect to main page
-//      if ($_SERVER["REQUEST_METHOD"] != "POST") \App\Classes\Helper::redirect("");
+//      if ($_SERVER["REQUEST_METHOD"] != "POST") Helper::redirect("");
       // init response
       $response = [
          'page_title' => "Mes Publication",
@@ -77,8 +77,43 @@ class Posts extends Controller {
       // sanitize data from post request
       $id_professor = filter_var($this->request->get("id_professor"), FILTER_VALIDATE_INT);
       // check the response from model
-      if ($id_professor === false ) die("invalid id");
-      $response['data'] = $this->post_model->getAllPostsProf(1);
+      if ($id_professor === false) die("invalid id");
+      $response['data'] = $this->post_model->getAllPostsProf($id_professor);
       $this->view("api/json", $response);
+   }
+
+   public function addPost() {
+      $response = [
+         'page_title' => "Mes Publication",
+         'status'     => OK,
+         "data"       => ""
+      ];
+      $data = [
+         'id_professor' => filter_var($this->request->get('id_professor'), FILTER_VALIDATE_INT),
+         'id_subject'   => filter_var($this->request->get('id_subject'), FILTER_VALIDATE_INT),
+         'level'        => filter_var($this->request->get('level'), FILTER_VALIDATE_INT),
+         'section'      => filter_var($this->request->get('section'), FILTER_VALIDATE_INT),
+         'group'        => filter_var($this->request->get('group'), FILTER_VALIDATE_INT),
+         //         'post_text'    => $_POST['post_text'],
+         'type'         => filter_var($this->request->get('type'), FILTER_VALIDATE_INT),
+         'file_path'    => "",
+      ];
+      foreach ($data as $d) {
+         if ($d === false) die("invalid " . array_search($d, $data));
+      }
+   }
+
+   public function profInfo() {
+//      if ($_SERVER["REQUEST_METHOD"] != "POST") Helper::redirect("");
+      $response = [
+         'page_title' => "Mes Publication",
+         'status'     => OK,
+         "data"       => ""
+      ];
+      $id_professor = filter_var($this->request->get('id_professor'), FILTER_VALIDATE_INT);
+//      if ($id_professor === false) die("invalid id");
+      $response['data'] = $this->post_model->getprofInfo(1);
+      $response['data'] = Helper::arrangePInfo(Helper::obj_arr($response['data']));
+      $this->view('api/json', $response);
    }
 }

@@ -16,7 +16,7 @@ class Time {
       $mins = intval($remain / 60);
       $secs = $remain % 60;
 
-      if ($secs >= 0) $timestring = "now";
+      if ($secs >= 0) $timestring = "À l'instant";
       if ($mins > 0) $timestring = $mins . " min";
       if ($hours > 0) $timestring = $hours . " h";
       if ($days > 0) $timestring = date('D H:i', $timestamp);

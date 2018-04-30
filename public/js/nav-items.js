@@ -8,7 +8,10 @@ $(document).ready(function () {
         max_notf = 7,
         url_post = "http://localhost/jami3aty/posts/get/",
         url_mail = "http://localhost/jami3aty/mails/id/",
-        isProf = $(".isProf").length > 0 ? true : false;
+        isProf = false;
+    if ($('body').attr("data-type") == 0) {
+        isProf = true;
+    }
 
     function createNotifMold() {
         var notifHTML = '<li class="notif_mold">' +
@@ -58,7 +61,7 @@ $(document).ready(function () {
             },
             dataType: "json",
             success: function (response) {
-                max_notf = response.data.length <= max_notf ? response.data.length : max_notf ;
+                max_notf = response.data.length <= max_notf ? response.data.length : max_notf;
                 for (count_notif; count_notif < max_notf; count_notif += 1) {
                     notif_list.children(".loader").before(createNotifMold());
                     notif_list.children("li")
@@ -126,7 +129,7 @@ $(document).ready(function () {
             success: function (response) {
                 max_mails = response.data.length <= max_mails ? response.data.length : max_mails;
                 console.log(response);
-                
+
                 for (count_mails; count_mails < max_mails; count_mails += 1) {
                     if (isProf) {
                         message_to = response.data[count_mails].fullNameS;

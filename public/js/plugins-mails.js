@@ -6,7 +6,7 @@ $(document).ready(function () {
         modalBody = $("#md-body"),
         user_id = Number($('#_std_id').text()),
         countProfs = 0,
-        isProf = true;
+        isProf = false;
     if ($('body').attr("data-type") == 0) {
         isProf = true;
     }
@@ -74,6 +74,8 @@ $(document).ready(function () {
             messageText = $('#text-reply-message'),
             profId = $('#id_prof').text(),
             sender = isProf ? 0 : 1;
+        
+        user_id = $('#id_std').text();
         // validate inputs
         if (!validateText(messageText)) {
             return false;
@@ -87,8 +89,8 @@ $(document).ready(function () {
             data: {
                 id_professor: profId,
                 _id_student: user_id,
-                message: messageText.val(),
-                subject: messageSubject,
+                message: messageText.val().trim(),
+                subject: messageSubject.trim(),
                 sender: sender,
                 ajax: true
             },

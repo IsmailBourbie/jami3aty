@@ -60,4 +60,16 @@ class Post {
       $this->db->bind(":_id_student", $id_student);
       $this->db->execute();
    }
+
+   // get prof info
+
+   public function getprofInfo($id_professor) {
+      $this->db->query('SELECT DISTINCT `group`, `section`, subject._id_subject,
+                                                    subject.title, subject.level 
+                            FROM assignment INNER JOIN subject 
+                                            ON subject._id_subject = assignment._id_subject 
+                            WHERE _id_professor = :id_professor');
+      $this->db->bind(':id_professor', $id_professor);
+      return $this->db->getAll();
+   }
 }

@@ -4,10 +4,10 @@ require_once APP_ROOT . '/views/inc/header.php';
 $mail = $data["data"];
 if ($mail->sender == 1) {
    $sender = $mail->fullNameP;
-   $receiver = Session::get('user_fullname');
+   $receiver = $mail->fullNameS;
 } else {
+   $sender = $mail->fullNameS;
    $receiver = $mail->fullNameP;
-   $sender = Session::get('user_fullname');
 }
 //die(var_dump($mail));
 ?>
@@ -64,6 +64,7 @@ if ($mail->sender == 1) {
                         <div class="mail_detail">
                             <div class="name_sender_receiv">
                                 <h3 class="name_sender reset-margin">
+                                   <span id="id_std" class="hide"><?= $mail->_id_student ?></span>
                                     <?= $sender ?>
                                 </h3>
                                 <span><i class="fa fa-angle-double-right fa-2x"></i></span>

@@ -36,12 +36,13 @@ class Mail {
 
    public function byId($id_mail) {
       $this->db->query("SELECT mail._id_mail, mail.message, mail._id_professor,
-                                   mail.subject, mail.date, mail.sender,
+                                   mail.subject, mail.date, mail.sender, mail._id_student,
+                                   concat( student.first_name, ' ', student.last_name) AS fullNameS,
                                    concat(professor.degree, '. ', professor.first_name,
                                    ' ', professor.last_name) as fullNameP 
-                            FROM (mail INNER JOIN professor 
+                            FROM ((mail INNER JOIN professor 
                                        ON professor._id_professor = mail._id_professor 
-                                       AND mail._id_mail= :id_mail)");
+                                       AND mail._id_mail= :id_mail) INNER JOIN student on mail._id_student = student._id_student) ORDER BY mail.date DESC");
       $this->db->bind(':id_mail', $id_mail);
       return $this->db->get();
    }

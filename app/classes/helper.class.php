@@ -134,4 +134,47 @@ class Helper {
    public static function generateToken($length) {
       return bin2hex(openssl_random_pseudo_bytes($length));
    }
+   
+   public static function arrangePInfo($object) {
+      $arrange_obj = [];
+      for ($i = 0; $i < count($object); $i++) {
+         if (empty($arrange_obj)) {
+            array_push($arrange_obj, [
+               '_id_subject' => $object[$i]['_id_subject'],
+               'title'       => $object[$i]['title'],
+               'level'       => $object[$i]['level'],
+               'section'     => [
+                  $object[$i]['section'] => [$object[$i]['group'],]
+               ],
+
+            ]);
+         } else {
+            $last_subject_index = count($arrange_obj) - 1;
+            $last_sec_index = count($arrange_obj[$last_subject_index]['section']) - 1;
+            // if there is subject in my Array
+            if (in_array($object[$i]['_id_subject'], end($arrange_obj))) {
+               // Check for section
+               if ($object[$i]['section'] == key(end($arrange_obj)['section'])) {
+                  array_push($arrange_obj[$last_subject_index]['section'][$last_sec_index], $object[$i]['group']);
+               } else {
+                  array_push($arrange_obj[$last_subject_index]['section'], $object[$i]['group']);
+                  array_push($arrange_obj[$last_subject_index]['section'][$last_sec_index + 1], $object[$i]['group']);
+               }
+            } else {
+               // no id in my array
+               array_push($arrange_obj, [
+                  '_id_subject' => $object[$i]['_id_subject'],
+                  'title'       => $object[$i]['title'],
+                  'level'       => $object[$i]['level'],
+                  'section'     => [
+                     $object[$i]['section'] => [$object[$i]['group'],]
+                  ],
+
+               ]);
+
+            }
+         }
+      }
+      die(var_dump(self::obj_arr($arrange_obj)));
+   }
 }

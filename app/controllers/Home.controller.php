@@ -18,7 +18,7 @@ class Home extends Controller {
    }
 
    public function index($args = "") {
-      if (Session::isProf()) {
+      if (!Session::isProf()) {
          $response = [
             "page_title" => __CLASS__
          ];

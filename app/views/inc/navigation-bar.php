@@ -7,7 +7,11 @@
 
             </div>
             <div class="user_info">
-                <span class="student_id" id="_std_id"><?= Session::get("user_id") ?></span>
+               <?php if (!Session::isProf()): ?>
+                   <span class="student_id" id="_std_id"><?= Session::get("user_id") ?></span>
+               <?php else : ?>
+                   <span class="prof_id" id="_prf_id"><?= Session::get("user_id") ?></span>
+               <?php endif; ?>
                 <h3>
                    <?= Session::get('user_fullname') ?>
                 </h3>
@@ -90,7 +94,7 @@
                 </ul>
                 <div class="copyright">
                     <p>
-                        <span>&copy; </span>Jami3aty, Inc. <?= date("Y")?>
+                        <span>&copy; </span>Jami3aty, Inc. <?= date("Y") ?>
                     </p>
                 </div>
             </div>
