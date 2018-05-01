@@ -7,11 +7,7 @@
 
             </div>
             <div class="user_info">
-               <?php if (!Session::isProf()): ?>
-                   <span class="student_id" id="_std_id"><?= Session::get("user_id") ?></span>
-               <?php else : ?>
-                   <span class="prof_id" id="_prf_id"><?= Session::get("user_id") ?></span>
-               <?php endif; ?>
+                   <span class="student_id" id="_user_id"><?= Session::get("user_id") ?></span>
                 <h3>
                    <?= Session::get('user_fullname') ?>
                 </h3>

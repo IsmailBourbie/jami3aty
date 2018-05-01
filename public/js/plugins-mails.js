@@ -4,7 +4,7 @@ $(document).ready(function () {
     "use strict";
     var selectElement = $('#list-profs'),
         modalBody = $("#md-body"),
-        user_id = Number($('#_std_id').text()),
+        user_id = Number($('#_user_id').text()),
         countProfs = 0,
         isProf = false;
     if ($('body').attr("data-type") == 0) {
@@ -73,7 +73,7 @@ $(document).ready(function () {
         var messageSubject = $('#subject-reply').text(),
             messageText = $('#text-reply-message'),
             profId = $('#id_prof').text(),
-            sender = isProf ? 0 : 1;
+            sender = isProf ? 1 : 0;
         
         user_id = $('#id_std').text();
         // validate inputs

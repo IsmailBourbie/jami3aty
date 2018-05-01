@@ -55,7 +55,7 @@ class Comments extends Controller {
          "status" => OK,
       ];
       $data = [
-         '_id_student' => filter_var($this->request->get("_id_student"), FILTER_SANITIZE_NUMBER_INT),
+         '_id_person' => filter_var($this->request->get("_id_person"), FILTER_SANITIZE_NUMBER_INT),
          'id_post'     => filter_var($this->request->get("id_post"), FILTER_SANITIZE_NUMBER_INT),
          'user_name'   => filter_var($this->request->get("user_name"), FILTER_SANITIZE_STRING),
          'text_added'  => $_POST["text_added"]
@@ -63,7 +63,7 @@ class Comments extends Controller {
       // check if there is no username student from request
       $data['user_name'] = !empty($data['user_name']) ? $data['user_name'] : Session::get('user_fullname');
       // check if there is empty data
-      if (empty($data['_id_student']) || empty($data['id_post']) || empty($data['user_name']) || empty($data['text_added']))
+      if (empty($data['_id_person']) || empty($data['id_post']) || empty($data['user_name']) || empty($data['text_added']))
          die('Error in request data');
       if (!$this->comment_model->addComment($data))
          $response['status'] = ERR_EMAIL;

@@ -36,9 +36,7 @@ if ($mail->sender == 1) {
                                                 <span class="input-group-addon" id="basic-addon1">
                                                         <i class="fa fa-clipboard"></i>
                                                     </span>
-                                                <div id="subject-reply" class="form-control">
-                                                    <?=$mail->subject?>
-                                                </div>
+                                                <div id="subject-reply" class="form-control">RE: <?=$mail->subject?></div>
                                             </div>
                                         </div>
                                     </div>

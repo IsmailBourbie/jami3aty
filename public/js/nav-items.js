@@ -90,6 +90,11 @@ $(document).ready(function () {
 
     // set save with ajax
     $('#main-posts').on("click", ".save-post", function () {
+        if(isProf) {
+            return;
+        }
+        alert("test");
+        return;
         var status = null,
             mySave = $(this);
         $.ajax({

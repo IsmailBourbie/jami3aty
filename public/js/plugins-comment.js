@@ -3,9 +3,8 @@
 $(document).ready(function () {
     "use strict";
     var data_comments,
-        user_id = Number($('#_std_id').text()),
+        user_id = Number($('#_user_id').text()),
         myComment_text;
-
     function createCommentMold() {
         var commentHTML = '<div class="comment_mold">' +
             '<div class="row reset-margin">' +
@@ -123,7 +122,7 @@ $(document).ready(function () {
                 type: 'post',
                 data: {
                     'id_post': id_post,
-                    '_id_student': user_id,
+                    '_id_person': user_id,
                     'text_added': text_input
                 },
                 success: function (response) {

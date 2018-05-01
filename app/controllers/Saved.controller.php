@@ -6,7 +6,7 @@ class Saved extends Controller {
    private $saved_pub;
 
    public function __construct($request) {
-      if ($_SERVER['REQUEST_METHOD'] == "GET" && !Session::isLoggedIn()) {
+      if (($_SERVER['REQUEST_METHOD'] == "GET" && !Session::isLoggedIn()) || Session::isProf()) {
          \App\Classes\Helper::redirect("");
       }
       $this->request = $request;

@@ -1,8 +1,13 @@
-/*jslint vars: true*/
+/*jslint eqeq: true, nomen: true, vars: true*/
 /*global $, alert, console*/
 $(document).ready(function () {
     "use strict";
-    var count_posts = 0;
+    var count_posts = 0,
+        isProf = false;
+
+    if ($('body').attr("data-type") == 0) {
+        isProf = true;
+    }
 
     function createPostMold() {
         var postHTML = '<article class="publication_mold">' +
@@ -28,8 +33,10 @@ $(document).ready(function () {
             '<div>Signaler une erreur</div></li></ul></div></div></div>' +
             '<div class="publication_body"><p class="lead"></p><div class="react-bar"><hr>' +
             '<ul class="list-inline reset-margin clearfix"><li>' +
-            '<button class="btn-transparent comment-btn"><i class="fa fa-comment fa-2x"></i></button></li>' +
-            '<li><button class="btn-transparent save-post"><i class="fa fa-bookmark fa-2x"></i></button></li>' +
+            '<button class="btn-transparent comment-btn" title="Commenter">' +
+            '<i class="fa fa-comment fa-2x"></i></button></li>' +
+            '<li><button class="btn-transparent save-post" title="Sauvgarder">' +
+            '<i class="fa fa-bookmark fa-2x"></i></button></li>' +
             '<li class="pull-right"><span class="see-comments">Voir les commentaires</span>' +
             '</li></ul></div></div>' +
             '<div class="publication_footer">' +
@@ -41,10 +48,9 @@ $(document).ready(function () {
             '</div></article>';
         return postHTML;
     }
-    // get Post's data with ajax after login
-    function getPosts() {
+    // get Post's Student data with ajax after login
+    function getStdPosts() {
         var posts_length,
-            posts_mold = '<article class="publication_mold">' + $(".publication_mold").html() + '</article>',
             myPostMold;
         $.ajax({
             url: "http://localhost/jami3aty/posts/all",
@@ -72,6 +78,8 @@ $(document).ready(function () {
                         .find(".publication_body p").html(response.data[count_posts].text_post);
                     myPostMold.last().attr("data-target", response.data[count_posts]._id_post);
                     if (response.data[count_posts].saved == 1) {
+                        myPostMold.last().find(".react-bar .save-post").attr("title", "Sauvegardé")
+                        
                         myPostMold.last().find(".react-bar .save-post")
                             .children("i").removeClass("fa-bookmark");
 
@@ -88,7 +96,61 @@ $(document).ready(function () {
             }
         });
     }
-    getPosts();
+
+    // get Post's Professor data with ajax after login
+    function getProfPosts() {
+        var posts_length,
+            myPostMold;
+        $.ajax({
+            url: "http://localhost/jami3aty/posts/myposts",
+            type: "post",
+            data: {
+                ajax: true
+            },
+            dataType: "json",
+            success: function (response) {
+                posts_length = response.data.length;
+                console.log(response.data);
+
+                if (posts_length === 0) {
+                    // there is no posts so hide the first mold
+                    alert("There is no Posts");
+                    return;
+                }
+                for (count_posts; count_posts < posts_length; count_posts += 1) {
+                    $('#main-posts > .loader').before(createPostMold());
+                    myPostMold = $(".publication_mold");
+                    myPostMold.last().find(".module_teacher h3").html(response.data[count_posts].title);
+                    myPostMold.last()
+                        .find(".module_teacher .time_pub").html(response.data[count_posts].date_parsed);
+                    myPostMold.last()
+                        .find(".module_teacher .module_name").html(response.data[count_posts].type_parsed);
+                    myPostMold.last()
+                        .find(".publication_body p").html(response.data[count_posts].text_post);
+                    myPostMold.last().attr("data-target", response.data[count_posts]._id_post);
+
+                    // change Save to Delete 
+                    myPostMold.last().find(".publication_body .react-bar li .save-post")
+                        .removeClass('save-post').addClass('delet-post').attr('title', 'Supprimer');
+                    myPostMold.last().find(".publication_body .react-bar li .delet-post")
+                        .children("i.fa").attr("class", "fa fa-trash fa-2x");
+                }
+                $('#main-posts > .loader').hide();
+            },
+            complete: function () {
+                autosize();
+            }
+        });
+    }
+
+    // check for student or Prof
+    if (isProf) {
+        console.log(isProf);
+        getProfPosts();
+    } else {
+        console.log("he");
+        getStdPosts();
+    }
 
 
 

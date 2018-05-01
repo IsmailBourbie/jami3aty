@@ -32,11 +32,11 @@ class Comment {
 
    public function addComment($data) {
       $this->db->query("INSERT INTO comments 
-                                   VALUES(NULL, :id_post, :_id_student, UNIX_TIMESTAMP(),
+                                   VALUES(NULL, :id_post, :_id_person, UNIX_TIMESTAMP(),
                                           :text_added, :user_name);
                      ");
       $this->db->bind(':id_post', $data['id_post']);
-      $this->db->bind(':_id_student', $data['_id_student']);
+      $this->db->bind(':_id_person', $data['_id_person']);
       $this->db->bind(':text_added', $data['text_added']);
       $this->db->bind(':user_name', $data['user_name']);
       if ($this->db->execute())

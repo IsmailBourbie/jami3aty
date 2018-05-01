@@ -67,7 +67,7 @@ class Posts extends Controller {
    // for professor
    public function myposts() {
       // if direct access redirect to main page
-//      if ($_SERVER["REQUEST_METHOD"] != "POST") Helper::redirect("");
+      if ($_SERVER["REQUEST_METHOD"] != "POST") Helper::redirect("");
       // init response
       $response = [
          'page_title' => "Mes Publication",
@@ -77,7 +77,10 @@ class Posts extends Controller {
       // sanitize data from post request
       $id_professor = filter_var($this->request->get("id_professor"), FILTER_VALIDATE_INT);
       // check the response from model
-      if ($id_professor === false) die("invalid id");
+      if ($id_professor === false) {
+         $id_professor = Session::get("user_id");
+         if (empty($id_professor)) die("invalid id");
+      }
       $response['data'] = $this->post_model->getAllPostsProf($id_professor);
       $this->view("api/json", $response);
    }
