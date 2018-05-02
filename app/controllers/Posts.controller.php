@@ -86,10 +86,10 @@ class Posts extends Controller {
    }
 
    public function addPost() {
+      if ($_SERVER["REQUEST_METHOD"] != "POST") Helper::redirect("");
       $response = [
          'page_title' => "Mes Publication",
          'status'     => OK,
-         "data"       => ""
       ];
       $data = [
          'id_professor' => filter_var($this->request->get('id_professor'), FILTER_VALIDATE_INT),
@@ -97,13 +97,20 @@ class Posts extends Controller {
          'level'        => filter_var($this->request->get('level'), FILTER_VALIDATE_INT),
          'section'      => filter_var($this->request->get('section'), FILTER_VALIDATE_INT),
          'group'        => filter_var($this->request->get('group'), FILTER_VALIDATE_INT),
-         //         'post_text'    => $_POST['post_text'],
+         'text_post'    => isset($_POST['text_post']) ? $_POST['text_post'] : "",
          'type'         => filter_var($this->request->get('type'), FILTER_VALIDATE_INT),
-         'file_path'    => "",
+         'path_file'    => "path/test.pdf",
       ];
+      if (empty($data['text_post'])) die('invalid text');
       foreach ($data as $d) {
          if ($d === false) die("invalid " . array_search($d, $data));
       }
+      // if you are here so all $data is valid
+      $response_status = $this->post_model->addNewPost($data);
+      if (!$response_status)
+         $response['status'] = 300;
+      $this->view('api/json', $response);
+
    }
 
    public function profInfo() {
@@ -114,8 +121,8 @@ class Posts extends Controller {
          "data"       => ""
       ];
       $id_professor = filter_var($this->request->get('id_professor'), FILTER_VALIDATE_INT);
-//      if ($id_professor === false) die("invalid id");
-      $response['data'] = $this->post_model->getprofInfo(1);
+      if ($id_professor === false) die("invalid id");
+      $response['data'] = $this->post_model->getprofInfo($id_professor);
       $response['data'] = Helper::arrangePInfo(Helper::obj_arr($response['data']));
       $this->view('api/json', $response);
    }

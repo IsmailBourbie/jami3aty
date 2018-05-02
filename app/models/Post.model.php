@@ -72,4 +72,28 @@ class Post {
       $this->db->bind(':id_professor', $id_professor);
       return $this->db->getAll();
    }
+
+   // add post by prof
+   public function addNewPost($data) {
+      $pattern = "/^[1-9]{1,2}[.][0-9][.][0-9]{1,2}$/";
+      if (empty($data["level"])) {
+         $data["level"] = Session::get('user_level');
+         $data["section"] = Session::get('user_section');
+         $data["group"] = Session::get('user_group');
+      }
+      $destination = $data['level'] . "." . $data['section'] . "." . $data['group'];
+      if (!preg_match($pattern, $destination)) return false;
+      $this->db->query('INSERT INTO post VALUES (null,:id_professor, :id_subject, :type, :destination,
+                                                  :text,:file,UNIX_TIMESTAMP())');
+      $this->db->bind(':id_professor', $data['id_professor']);
+      $this->db->bind(':id_subject', $data['id_subject']);
+      $this->db->bind(':type', $data['type']);
+      $this->db->bind(':destination', $destination);
+      $this->db->bind(':text', $data['text_post']);
+      $this->db->bind(':file', $data['path_file']);
+
+      if ($this->db->execute())
+         return true;
+      return false;
+   }
 }
