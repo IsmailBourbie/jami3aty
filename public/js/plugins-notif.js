@@ -2,8 +2,9 @@
 /*global $, alert, console*/
 $(document).ready(function () {
     "use strict";
-    var count_notifs = 0,
-        url_post = "http://localhost/jami3aty/posts/get/";
+    var site_host = 'http://' + location.host + "/jami3aty/",
+        count_notifs = 0,
+        url_post = site_host + "posts/get/";
 
     function createNotifMoldView() {
         var notifHTML = '<div class="notif_mold">' +
@@ -25,7 +26,7 @@ $(document).ready(function () {
         var notif_layout = $("#notif-view"),
             notifs_length;
         $.ajax({
-            url: "http://localhost/jami3aty/notifications/all",
+            url: site_host + "notifications/all",
             type: "post",
             data: {
                 ajax: true

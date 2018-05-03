@@ -2,12 +2,13 @@
 /*global $, alert, console*/
 $(document).ready(function () {
     "use strict";
-    var count_notif = 0,
+    var site_host = 'http://' + location.host + "/jami3aty/",
+        count_notif = 0,
         count_mails = 0,
         max_mails = 7,
         max_notf = 7,
-        url_post = "http://localhost/jami3aty/posts/get/",
-        url_mail = "http://localhost/jami3aty/mails/id/",
+        url_post = site_host + "posts/get/",
+        url_mail = site_host + "mails/id/",
         isProf = false;
     if ($('body').attr("data-type") == 0) {
         isProf = true;
@@ -54,7 +55,7 @@ $(document).ready(function () {
         var notif_list = $("#notif-list"),
             notifs_length;
         $.ajax({
-            url: "http://localhost/jami3aty/notifications/all",
+            url: site_host + "notifications/all",
             type: "post",
             data: {
                 ajax: true
@@ -90,7 +91,7 @@ $(document).ready(function () {
 
     // set save with ajax
     $('#main-posts').on("click", ".save-post", function () {
-        if(isProf) {
+        if (isProf) {
             return;
         }
         alert("test");
@@ -98,7 +99,7 @@ $(document).ready(function () {
         var status = null,
             mySave = $(this);
         $.ajax({
-            url: "http://localhost/jami3aty/saved/state",
+            url: site_host + "saved/state",
             type: "post",
             data: {
                 "action": 1,
@@ -125,7 +126,7 @@ $(document).ready(function () {
             message_to,
             sender_arrow = 'fa-arrow-circle-up';
         $.ajax({
-            url: "http://localhost/jami3aty/mails/all",
+            url: site_host + "mails/all",
             type: "post",
             data: {
                 ajax: true

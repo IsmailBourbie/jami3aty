@@ -2,7 +2,8 @@
 /*global $, alert, console, confirm*/
 $(document).ready(function () {
     "use strict";
-    var data_comments,
+    var site_host = 'http://' + location.host + "/jami3aty/",
+        data_comments,
         user_id = Number($('#_user_id').text()),
         myComment_text;
     function createCommentMold() {
@@ -31,7 +32,7 @@ $(document).ready(function () {
     function getComments(myCurrentsComments, id_post) {
         var count_comments = 0;
         $.ajax({
-            url: "http://localhost/jami3aty/comments/all",
+            url: site_host + "comments/all",
             type: "post",
             data: {
                 id_post: id_post,
@@ -86,7 +87,7 @@ $(document).ready(function () {
             return false;
         }
         $.ajax({
-            url: 'http://localhost/jami3aty/comments/remove',
+            url: site_host + 'comments/remove',
             type: 'post',
             data: {
                 id_comment: id_comment,
@@ -118,7 +119,7 @@ $(document).ready(function () {
             }
             // do ajax call 
             $.ajax({
-                url: 'http://localhost/jami3aty/comments/add',
+                url: site_host + 'comments/add',
                 type: 'post',
                 data: {
                     'id_post': id_post,
@@ -148,7 +149,7 @@ $(document).ready(function () {
                 return false;
             }
             $.ajax({
-                url: 'http://localhost/jami3aty/comments/edit',
+                url: site_host + 'comments/edit',
                 type: 'post',
                 data: {
                     'id_comment': id_comment,

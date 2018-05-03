@@ -2,7 +2,8 @@
 /*global $, alert, console*/
 $(document).ready(function () {
     "use strict";
-    var count_posts = 0,
+    var site_host = 'http://' + location.host + "/jami3aty/",
+        count_posts = 0,
         isProf = false;
 
     if ($('body').attr("data-type") == 0) {
@@ -53,7 +54,7 @@ $(document).ready(function () {
         var posts_length,
             myPostMold;
         $.ajax({
-            url: "http://localhost/jami3aty/posts/all",
+            url: site_host + "posts/all",
             type: "post",
             data: {
                 ajax: true
@@ -79,7 +80,7 @@ $(document).ready(function () {
                     myPostMold.last().attr("data-target", response.data[count_posts]._id_post);
                     if (response.data[count_posts].saved == 1) {
                         myPostMold.last().find(".react-bar .save-post").attr("title", "Sauvegardé")
-                        
+
                         myPostMold.last().find(".react-bar .save-post")
                             .children("i").removeClass("fa-bookmark");
 
@@ -102,7 +103,7 @@ $(document).ready(function () {
         var posts_length,
             myPostMold;
         $.ajax({
-            url: "http://localhost/jami3aty/posts/myposts",
+            url: site_host + "posts/myposts",
             type: "post",
             data: {
                 ajax: true

@@ -2,7 +2,8 @@
 /*global $, alert, console*/
 $(document).ready(function () {
     "use strict";
-    var selectElement = $('#list-profs'),
+    var site_host = 'http://' + location.host + "/jami3aty/",
+        selectElement = $('#list-profs'),
         modalBody = $("#md-body"),
         user_id = Number($('#_user_id').text()),
         countProfs = 0,
@@ -17,7 +18,7 @@ $(document).ready(function () {
     // get Profs Name and id
     $('.new_message .new_message_btn').click(function () {
         $.ajax({
-            url: "http://localhost/jami3aty/mails/profs",
+            url: site_host + "mails/profs",
             type: "post",
             data: {
                 ajax: true
@@ -38,7 +39,7 @@ $(document).ready(function () {
         var messageSubject = $('#subject-message'),
             messageText = $('#text-message'),
             profId = selectElement.val(),
-            sender = isProf ? 0 : 1;
+            sender = isProf ? 1 : 0;
         // validate inputs
         if (!validateInputs(messageSubject, messageText)) {
             return false;
@@ -47,7 +48,7 @@ $(document).ready(function () {
         // send data with ajax
         modalBody.html("<div class='loader'></div>");
         $.ajax({
-            url: "http://localhost/jami3aty/mails/insert",
+            url: site_host + "mails/insert",
             type: "post",
             data: {
                 id_professor: profId,
@@ -74,7 +75,7 @@ $(document).ready(function () {
             messageText = $('#text-reply-message'),
             profId = $('#id_prof').text(),
             sender = isProf ? 1 : 0;
-        
+
         user_id = $('#id_std').text();
         // validate inputs
         if (!validateText(messageText)) {
@@ -84,7 +85,7 @@ $(document).ready(function () {
         // send data with ajax
         modalBody.html("<div class='loader'></div>");
         $.ajax({
-            url: "http://localhost/jami3aty/mails/insert",
+            url: site_host + "mails/insert",
             type: "post",
             data: {
                 id_professor: profId,
