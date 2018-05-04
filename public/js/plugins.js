@@ -36,10 +36,10 @@ $(document).ready(function () {
     /* responsive navbar-left end */
     /* Auto size textarea start */
     $('textarea.autosize').each(function () {
-        $(this).attr('style', 'height:' + (this.scrollHeight - 25) + 'px;');
+        $(this).attr('style', 'height:' + (this.scrollHeight - 10) + 'px;');
     }).on('input', function () {
         this.style.height = "auto";
-        this.style.height = (this.scrollHeight - 25) + "px";
+        this.style.height = (this.scrollHeight - 10) + "px";
 
     });
 

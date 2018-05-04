@@ -1,0 +1,59 @@
+.main .new-post {
+    margin-top: -20px;
+    padding: 10px;
+}
+.main .new-post form {
+    padding: 30px;
+}
+.main .new-post form.infocus {
+    margin-top: 30px;
+    background: #FFF;
+    transition: all .5s ease-in-out
+}
+
+.main .new-post .text-pub {
+    margin: 0 30px 10px;
+    background: #FFF;
+    border: 1px solid #ccc;
+    border-radius: 0 4px 4px 0;
+    padding: 10px 12px 0px;
+}
+
+.main .new-post .text-pub textarea {
+    width: 100%;
+    padding: 10px 0;
+    font-size: 18px;
+    border: none;
+}
+
+.main .new-post .data select {
+    width: 100%;
+    height: 34px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 0 4px 4px 0;
+    padding: 6px 12px;
+    color: #a9a9a9;
+}
+
+.main .new-post .footer {
+    margin: 0 30px 10px;
+}
+
+.main .new-post .footer input.publier-btn {
+    background-color: #46bfbe;
+    border: 1px solid;
+    border-color: #3e9c9c;
+    border-radius: 4px;
+    padding: 6px 10px;
+}
+
+.main .new-post .footer input.publier-btn:hover {
+    background-color: #45adad;
+    border-color: #348888;
+}
+
+.main .new-post .footer,
+.main .new-post .data {
+    display: none;
+}

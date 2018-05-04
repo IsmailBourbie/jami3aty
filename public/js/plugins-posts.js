@@ -113,8 +113,6 @@ $(document).ready(function () {
             dataType: "json",
             success: function (response) {
                 posts_length = response.data.length;
-                console.log(response.data);
-
                 if (posts_length === 0) {
                     // there is no posts so hide the first mold
                     alert("There is no Posts");
@@ -158,7 +156,7 @@ $(document).ready(function () {
     // function helper 
     /* Auto size textarea start */
     function autosize() {
-        $('textarea.autosize').each(function () {
+        $('textarea.autosize.comment-input').each(function () {
             $(this).attr('style', 'height:' + (this.scrollHeight - 25) + 'px;');
         }).on('input', function () {
             this.style.height = "auto";
