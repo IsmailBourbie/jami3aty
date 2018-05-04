@@ -30,12 +30,20 @@ class Module {
    }
 
    public function getProfModules($id_professor) {
-      $this->db->query("SELECT DISTINCT subject.* 
-                            FROM (professor INNER JOIN assignment 
-                                                  ON professor._id_professor = assignment._id_professor 
-                                                  AND professor.`_id_professor` = :id_professor)
-                                            INNER JOIN subject 
-                                                  ON assignment._id_subject = subject._id_subject");
+      $this->db->query("SELECT DISTINCT subject.*, 
+                                   assignment.type, 
+                                   concat(professor.degree , '. ' , 
+                                   professor.first_name , ' ', 
+                                   professor.last_name) 
+                            as fullName 
+                            FROM((
+                                    assignment INNER JOIN subject 
+                                    ON subject._id_subject = assignment._id_subject
+                                    AND (assignment._id_professor = :id_professor) 
+                                    AND subject.`_id_subject` = assignment.`_id_subject` )
+                                    INNER JOIN professor 
+                                    ON professor.`_id_professor` = assignment.`_id_professor`)
+                                    ORDER BY subject.coefficient, subject.title DESC ");
       $this->db->bind(':id_professor', $id_professor);
       return $this->db->getAll();
    }

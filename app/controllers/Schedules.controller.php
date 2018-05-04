@@ -19,11 +19,16 @@ class Schedules extends Controller {
    }
 
    public function index() {
-      $level = $_SESSION["user_level"];
-      $section = $_SESSION["user_section"];
-      $group = $_SESSION["user_group"];
+      $level = Session::get("user_level");
+      $section = Session::get("user_section");
+      $group = Session::get("user_group");
       $this->_schedule->_init_week();
-      $data = $this->scheduleModel->getSchedule($level, $section, $group);
+      if (Session::isProf()) {
+         $data = $this->scheduleModel->getScheduleProf(Session::get('user_id'));
+      } else {
+         $data = $this->scheduleModel->getSchedule($level, $section, $group);
+      }
+
       $data = $this->_schedule->arrange_schedule_week($data);
       $response = [
          "page_title" => "Planning",

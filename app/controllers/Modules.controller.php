@@ -25,12 +25,12 @@ class Modules extends Controller {
       ];
       if (Session::isProf()) {
          $object = $this->modulesModel->getProfModules(Session::get("user_id"));
-         $response['data'] = $object;
+
       } else {
          $object = $this->modulesModel->getModules($_SESSION['user_level'], $_SESSION['user_section'], $_SESSION['user_group']);
-         $this->_module->setModule($object);
-         $response['data'] = $this->_module->arrange_rows();
       }
+      $this->_module->setModule($object);
+      $response['data'] = $this->_module->arrange_rows();
       $this->view("modules/index", $response);
    }
 

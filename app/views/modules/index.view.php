@@ -31,8 +31,14 @@ if ($data["status"] == OK) {
                                    <h3>
                                       <?= $response->title ?>
                                    </h3>
-                                   <ul class="list-unstyled reset-margin description">
-                                       <li>Enseignant de cours<span class="pull-right">
+                                   <ul class="list-unstyled reset-margin description"
+                                      <?php if (Session::isProf()) echo 'style="margin-bottom: 50px !important;"'?>>
+                                      <?php if (Session::isProf()): ?>
+                                          <li>Level<span class="pull-right">
+                                                  <?=\App\Classes\Helper::levelToString($response->level, "")?>
+                                        </span></li>
+                                      <?php else: ?>
+                                          <li>Enseignant de cours<span class="pull-right">
                                         <?php
                                         if (isset($response->course_prof)) {
                                            echo $response->course_prof;
@@ -40,7 +46,7 @@ if ($data["status"] == OK) {
                                            echo "No Course";
                                         }
                                         ?></span></li>
-                                       <li>Enseignant de TD<span class="pull-right">
+                                          <li>Enseignant de TD<span class="pull-right">
                                         <?php
                                         if (isset($response->td_prof)) {
                                            echo $response->td_prof;
@@ -48,7 +54,7 @@ if ($data["status"] == OK) {
                                            echo "No TD";
                                         }
                                         ?></span></li>
-                                       <li>Enseignant de TP<span class="pull-right">
+                                          <li>Enseignant de TP<span class="pull-right">
                                         <?php
                                         if (isset($response->tp_prof)) {
                                            echo $response->tp_prof;
@@ -56,6 +62,7 @@ if ($data["status"] == OK) {
                                            echo "No TP";
                                         }
                                         ?></span></li>
+                                      <?php endif; ?>
                                        <li>Coefficient<span class="number pull-right">
                                         <?= $response->coefficient ?>
                                         </span></li>

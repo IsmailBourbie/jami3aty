@@ -33,7 +33,7 @@ class Module {
             $this->_module[$i]['course_prof'] = $this->_module[$i]["fullName"];
             $sortArray[count($sortArray)] = $this->_module[$i];
             $i += 1;
-         } elseif ($this->_module[$i]["type"] == "1") {
+         } else {
             if ($this->_module[$i]['td'] == 1) {
                $this->_module[$i]['td_prof'] = $this->_module[$i]["fullName"];
             }
