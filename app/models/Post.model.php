@@ -9,6 +9,7 @@ class Post {
 
    public function getAllPosts($destination) {
       $pattern = "/^[1-9]{1,2}[.][0-9][.][0-9]{1,2}$/";
+      $_id_student = $destination['_id_student'];
       if (empty($destination["level"])) {
          $destination["level"] = Session::get('user_level');
          $destination["section"] = Session::get('user_section');
@@ -16,7 +17,7 @@ class Post {
       }
       $destination = $destination['level'] . "." . $destination['section'] . "." . $destination['group'];
       if (!preg_match($pattern, $destination)) return false;
-      $this->db->query("SELECT post.*, concat(professor.degree, '. ',
+      $this->db->query("SELECT DISTINCT post.*, concat(professor.degree, '. ',
                                                   professor.first_name, ' ',
                                                    professor.last_name ) as fullName,
                                    subject.title , saved_notification.saved
@@ -24,13 +25,15 @@ class Post {
                                        on professor._id_professor = post._id_professor 
                                        AND post.destination = :destination) 
                             INNER JOIN subject ON post._id_subject = subject._id_subject) 
-                            INNER JOIN saved_notification ON post._id_post = saved_notification._id_post");
+                            INNER JOIN saved_notification ON post._id_post = saved_notification._id_post
+                            WHERE saved_notification._id_student = :_id_student");
       $this->db->bind(":destination", $destination);
+      $this->db->bind(":_id_student", $_id_student);
       return \App\Classes\Helper::addColumnDateParsed($this->db->getAll());
    }
 
    public function getAllPostsProf($id_professor) {
-      $this->db->query('SELECT post.*, subject.title 
+      $this->db->query('SELECT DISTINCT post.*, subject.title 
                             FROM post  INNER JOIN subject 
                                            ON post._id_subject = subject._id_subject 
                                               WHERE _id_professor = :id_professor');
@@ -93,7 +96,35 @@ class Post {
       $this->db->bind(':file', $data['path_file']);
 
       if ($this->db->execute())
+         return $this->db->lastInsertId();
+      return false;
+   }
+
+   public function insertTrace($id_post) {
+      $this->db->query('INSERT INTO trace VALUES(
+                            null, :id_post,"ADD", UNIX_TIMESTAMP())');
+      $this->db->bind(':id_post', $id_post);
+      if ($this->db->execute())
          return true;
       return false;
+   }
+
+   public function insertNotification($id_student, $id_post) {
+      $this->db->query('INSERT INTO saved_notification VALUES(
+                            :id_post, :id_student, 0, 0)');
+      $this->db->bind(':id_post', $id_post);
+      $this->db->bind(':id_student', $id_student);
+      if ($this->db->execute())
+         return true;
+      return false;
+   }
+
+   public function usersInterested($data) {
+      $this->db->query('SELECT _id_student FROM student 
+                            WHERE `level` = :level AND `section`= :section AND `group` = :group');
+      $this->db->bind(':level', $data['level']);
+      $this->db->bind(':section', $data['section']);
+      $this->db->bind(':group', $data['group']);
+      return $this->db->getAll();
    }
 }

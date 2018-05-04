@@ -9,7 +9,7 @@ class Module {
    }
 
    public function getModules($level, $section, $group) {
-      $this->db->query("SELECT subject.*, 
+      $this->db->query("SELECT DISTINCT subject.*, 
                                    assignment.type, 
                                    concat(professor.degree , '. ' , 
                                    professor.first_name , ' ', 

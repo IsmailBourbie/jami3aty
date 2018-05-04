@@ -94,8 +94,6 @@ $(document).ready(function () {
         if (isProf) {
             return;
         }
-        alert("test");
-        return;
         var status = null,
             mySave = $(this);
         $.ajax({

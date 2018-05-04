@@ -36,9 +36,9 @@ class Session {
    }
 
    public static function isProf() {
-      if (isset($_SESSION['user_level']))
-         return false;
-      return true;
+      if (isset($_SESSION['user_degree']))
+         return true;
+      return false;
    }
 
    public

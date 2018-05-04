@@ -3,6 +3,8 @@ use App\Classes\Helper;
 
 class Posts extends Controller {
    private $post_model;
+   private $saved_notif_model;
+   private $users_model;
    private $request;
 
    public function __construct($request) {
@@ -31,6 +33,7 @@ class Posts extends Controller {
          "level"   => filter_var($this->request->get('level'), FILTER_SANITIZE_NUMBER_INT),
          "section" => filter_var($this->request->get("section"), FILTER_SANITIZE_NUMBER_INT),
          "group"   => filter_var($this->request->get('group'), FILTER_SANITIZE_NUMBER_INT),
+         "_id_student"   => filter_var($this->request->get('_id_student'), FILTER_SANITIZE_NUMBER_INT),
       ];
       // check the response from model
       if (!$this->post_model->getAllPosts($post_data)) {
@@ -106,11 +109,20 @@ class Posts extends Controller {
          if ($d === false) die("invalid " . array_search($d, $data));
       }
       // if you are here so all $data is valid
-      $response_status = $this->post_model->addNewPost($data);
-      if (!$response_status)
+      $post_id = $this->post_model->addNewPost($data);
+      if ($post_id === false) {
          $response['status'] = 300;
-      $this->view('api/json', $response);
+         $this->view('api/json', $response);
+         return;
+      }
+      $this->post_model->insertTrace($post_id);
+      $users_intersted = $this->post_model->usersInterested($data);
 
+      // notif all users
+      for ($i = 0; $i < count($users_intersted); $i++) {
+         $this->post_model->insertNotification($users_intersted[$i]->_id_student,$post_id);
+      }
+      $this->view('api/json', $response);
    }
 
    public function profInfo() {
@@ -123,7 +135,8 @@ class Posts extends Controller {
       $id_professor = filter_var($this->request->get('id_professor'), FILTER_VALIDATE_INT);
       if ($id_professor === false) die("invalid id");
       $response['data'] = $this->post_model->getprofInfo($id_professor);
-      $response['data'] = Helper::arrangePInfo(Helper::obj_arr($response['data']));
+      if (empty($this->request->get("ajax")))
+         $response['data'] = Helper::arrangePInfo(Helper::obj_arr($response['data']));
       $this->view('api/json', $response);
    }
 }

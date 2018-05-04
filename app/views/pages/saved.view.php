@@ -15,7 +15,7 @@ $responses = $data["data"];
                <?php foreach ($responses as $response): ?>
                    <div class="saved_mold">
                        <div class="left">
-                           <a href="#" class='header'>
+                           <a href="<?=URL_ROOT?>posts/get/<?=$response->_id_post?>" class='header'>
                                <div class="icon">
                                    <i class="fa fa-bookmark fa-3x"></i>
                                </div>

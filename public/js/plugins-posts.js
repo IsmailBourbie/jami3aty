@@ -4,6 +4,7 @@ $(document).ready(function () {
     "use strict";
     var site_host = 'http://' + location.host + "/jami3aty/",
         count_posts = 0,
+        user_id = Number($('#_user_id').text()),
         isProf = false;
 
     if ($('body').attr("data-type") == 0) {
@@ -57,6 +58,7 @@ $(document).ready(function () {
             url: site_host + "posts/all",
             type: "post",
             data: {
+                _id_student: user_id,
                 ajax: true
             },
             dataType: "json",
@@ -146,10 +148,8 @@ $(document).ready(function () {
 
     // check for student or Prof
     if (isProf) {
-        console.log(isProf);
         getProfPosts();
     } else {
-        console.log("he");
         getStdPosts();
     }
 

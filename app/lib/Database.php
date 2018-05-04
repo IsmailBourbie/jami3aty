@@ -62,7 +62,10 @@ class Database {
     public function execute() {
         return $this->stmt->execute();
     }
-
+    // return the last id inserted
+   public function lastInsertId() {
+       return $this->db->lastInsertId();
+   }
     // get Result as Array of objects
     public function getAll() {
         $this->execute();

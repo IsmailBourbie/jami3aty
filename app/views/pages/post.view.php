@@ -16,7 +16,7 @@ $responses = $data["data"];
                         <div class="row publication_head reset-margin">
                             <div class="col-xs-10 course_info">
                                 <div class="teacher_logo">
-                                    <span>O</span>
+                                    <i class="fa fa-user fa-3x"></i>
                                 </div>
                                 <div class="module_teacher">
                                     <h3>
