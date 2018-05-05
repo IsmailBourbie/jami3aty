@@ -112,28 +112,25 @@ require_once APP_ROOT . '/views/inc/css_inc.php'; ?>
                                 <div class="row data text-center">
                                     <div class="col-md-4">
                                         <select class="level">
-                                          <option disabled selected hidden="hidden">level</option>
+                                          <option disabled selected hidden="hidden">Module</option>
                                        </select>
                                     </div>
                                     <div class="col-md-4">
-                                        <select class="section">
-                                          <option disabled selected hidden="hidden">section</option>
-                                          <option>section1</option>
-                                          <option>section2</option>
+                                        <select class="section" disabled>
+                                          <option disabled selected hidden="hidden">Section</option>
                                        </select>
                                     </div>
                                     <div class="col-md-4">
-                                        <select class="group">
-                                          <option disabled selected hidden="hidden">group</option>
-                                          <option>group1</option>
-                                          <option>group2</option>
+                                        <select class="group" disabled>
+                                          <option disabled selected hidden="hidden">Group</option>
                                        </select>
                                     </div>
                                     <div class="col-md-12">
                                         <select class="Type">
                                           <option disabled selected hidden="hidden">Type du publication</option>
-                                          <option>type1</option>
-                                          <option>type2</option>
+                                          <option value="1">Consultation</option>
+                                          <option value="2">Affichage</option>
+                                          <option value="3">Notes</option>
                                        </select>
                                     </div>
                                 </div>
@@ -142,7 +139,7 @@ require_once APP_ROOT . '/views/inc/css_inc.php'; ?>
                                 </div>
                             </form>
                         </div>
-                        <!--                                       <div class="loader"></div>-->
+                        <div class="loader"></div>
                     </div>
                 </div>
             </div>
