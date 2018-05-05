@@ -89,7 +89,8 @@ class Posts extends Controller {
    }
 
    public function addPost() {
-      if ($_SERVER["REQUEST_METHOD"] != "POST") Helper::redirect("");
+      if ($_SERVER['REQUEST_METHOD'] == "GET"  || !Session::isLoggedIn())
+         Helper::redirect("");
       $response = [
          'page_title' => "Mes Publication",
          'status'     => OK,
@@ -104,6 +105,8 @@ class Posts extends Controller {
          'type'         => filter_var($this->request->get('type'), FILTER_VALIDATE_INT),
          'path_file'    => "path/test.pdf",
       ];
+      if ($data['id_professor'] === false)
+         $data['id_professor'] = Session::get("user_id");
       if (empty($data['text_post'])) die('invalid text');
       foreach ($data as $d) {
          if ($d === false) die("invalid " . array_search($d, $data));
@@ -117,12 +120,11 @@ class Posts extends Controller {
       }
       $this->post_model->insertTrace($post_id);
       $users_intersted = $this->post_model->usersInterested($data);
-
       // notif all users
       for ($i = 0; $i < count($users_intersted); $i++) {
          $this->post_model->insertNotification($users_intersted[$i]->_id_student,$post_id);
       }
-      $this->view('api/json', $response);
+      $this->view('', $response);
    }
 
    public function profInfo() {

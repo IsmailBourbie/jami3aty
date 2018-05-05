@@ -15,15 +15,12 @@ DROP TABLE IF EXISTS subject;
 DROP TABLE IF EXISTS student;
 DROP TABLE IF EXISTS professor;
 
--- creating the tables
 
 CREATE TABLE student(
     _id_student INTEGER PRIMARY KEY,
     first_name VARCHAR(20) NOT NULL, 
     last_name VARCHAR(20) NOT NULL,
     date_of_birth DATE NOT NULL,
-  --  first_name_ar  VARCHAR(20) NOT NULL, 
-  --  last_name_ar VARCHAR(20) NOT NULL,
     bac_average FLOAT NOT NULL,
     email VARCHAR(100),
     `password` VARCHAR(100) ,
@@ -46,10 +43,8 @@ CREATE TABLE professor (
     first_name VARCHAR(20) NOT NULL, 
     last_name VARCHAR(20) NOT NULL,
     degree VARCHAR(10),
-   -- first_name_ar VARCHAR(20) NOT NULL, 
-   -- last_name_ar VARCHAR(20) NOT NULL,
     email VARCHAR(100),
-    password VARCHAR(100)
+    `password` VARCHAR(100)
 );
 
 CREATE TABLE mail(
@@ -88,7 +83,7 @@ CREATE TABLE assignment(
   _id_professor INTEGER NOT NULL,
   `group`       INTEGER NOT NULL,
   section       INTEGER NOT NULL,
-  `type`          INTEGER NOT NULL,
+  `type`        INTEGER NOT NULL,
   FOREIGN KEY (_id_professor) REFERENCES professor(_id_professor),
   FOREIGN KEY (_id_subject) REFERENCES subject(_id_subject)
 );
@@ -111,7 +106,7 @@ CREATE TABLE post(
     destination VARCHAR(20) NOT NULL,
     text_post VARCHAR(500) NOT NULL,
     path_file VARCHAR(100),
-    date_post INTEGER(11) NOT NULL,
+    `date` INTEGER(11) NOT NULL,
     FOREIGN KEY (_id_professor) REFERENCES professor(_id_professor),
     FOREIGN KEY (_id_subject) REFERENCES subject(_id_subject)
 );
@@ -122,7 +117,7 @@ CREATE TABLE trace(
     _id_trace INTEGER PRIMARY KEY AUTO_INCREMENT,
     _id_post INTEGER NOT NULL ,
     operation VARCHAR(255) NOT NULL,
-    date_operation INTEGER(11) NOT NULL,
+    `date` INTEGER(11) NOT NULL,
     FOREIGN KEY (_id_post) REFERENCES post(_id_post)
 );
 CREATE TABLE saved_notification(
@@ -139,7 +134,7 @@ CREATE TABLE comments(
     _id_comments INTEGER PRIMARY KEY AUTO_INCREMENT,
     _id_post INTEGER NOT NULL,
     _id_person INTEGER NOT NULL,
-    date_comment INTEGER(11) NOT NULL,
+    `date` INTEGER(11) NOT NULL,
     text_comment VARCHAR(150) NOT NULL,
     name_person VARCHAR (255) NOT NULL,
     FOREIGN KEY (_id_post) REFERENCES post(_id_post)
@@ -156,7 +151,7 @@ CREATE TABLE schedule(
 
 CREATE TABLE exam_schedule(
     _id_exam INTEGER PRIMARY KEY AUTO_INCREMENT,
-    level INTEGER NOT NULL ,
+    `level` INTEGER NOT NULL ,
     place VARCHAR(100) NOT NULL,
     type ENUM('EXAM','RATTRAPAGE'),
     _id_subject INTEGER NOT NULL,
@@ -172,20 +167,18 @@ CREATE TABLE surveillance(
 );
 
 -- start inserting the tuples
-INSERT INTO student VALUE (10101010,'Charfaoui', 'Younes', '1997-04-16', 13.85, NULL, NULL, 6, 2, 0, 0,0,NULL);
+INSERT INTO student VALUE (10101010,'Charfaoui', 'Younes', '1997-04-16', 13.85, 'mxcsyounes@gmail.com', '$2y$10$/i.TvQWEZyEnPLszcEgcSeUtSxk8W.yE0EdHkFexQ1ccGd0IxV..S', 6, 2, 0, 0,0,NULL);
 INSERT INTO student VALUE (10101012,'Bourbie', 'Ismail', '1995-02-16', 13.85, NULL, NULL, 6, 2, 0, 0,0,NULL);
 INSERT INTO student VALUE (10101013,'Bouras', 'Mohamed el amine', '1996-08-15', 13.85, NULL, NULL, 6, 1, 0, 0,0,NULL);
-INSERT INTO student VALUE (10101014,'Zidane', 'Souhila', '1998-09-20', 13.85, NULL, NULL, 6, 3, 0, 0,0,NULL);
 INSERT INTO student VALUE (10101015,'Zegai', 'Houari', '1996-11-17', 13.85, NULL, NULL, 6, 3, 0, 0,0,NULL);
-INSERT INTO student VALUE (10101016,'Maden', 'Malika', '1998-10-17', 13.85, NULL, NULL, 6, 3, 0, 0,0,NULL);
-INSERT INTO student VALUE (10101017,'Taif', 'Mohamed Amine', '1994-11-07', 13.85, NULL, NULL, 6, 3, 0, 0,0,NULL);
-INSERT INTO student VALUE (10101018,'Asoune', 'Ismail', '1997-04-08', 13.85, NULL, NULL, 6, 1, 0, 0,0,NULL);
-INSERT INTO student VALUE (10101019,'Azazen', 'Khaled walid', '1995-06-12', 13.85, NULL, NULL, 6, 1, 0, 0,0,NULL);
-INSERT INTO student VALUE (10101020,'Baya', 'Redouane', '1997-04-08', 13.85, NULL, NULL, 6, 1, 0, 0,0,NULL);
-INSERT INTO student VALUE (10101021,'Doulami', 'Mohamed tawfiq', '1995-06-21', 13.85, NULL, NULL, 6, 2, 0, 0,0,NULL);
+INSERT INTO student VALUE (10101017,'Taif', 'Mohamed Amine', '1994-11-07', 13.85, NULL, NULL, 4, 5, 0, 0,0,NULL);
+INSERT INTO student VALUE (10101018,'Asoune', 'Ismail', '1997-04-08', 13.85, NULL, NULL, 4, 1, 0, 0,0,NULL);
+INSERT INTO student VALUE (10101019,'Azazen', 'Khaled walid', '1995-06-12', 13.85, NULL, NULL, 4, 4, 0, 0,0,NULL);
+INSERT INTO student VALUE (10101020,'Baya', 'Redouane', '1997-04-08', 13.85, 'bayaredouane@gmail.com', '$2y$10$j6BUGp6FkU9oi/QicBSpMuAzZzhjIe.zDu1fZ0kptOvQEZ/XqPz0K', 4, 3, 0, 0,0,NULL);
+INSERT INTO student VALUE (10101021,'Doulami', 'Mohamed tawfiq', '1995-06-21', 13.85, NULL, NULL, 4, 2, 0, 0,0,NULL);
 
 
-INSERT INTO professor VALUES (NULL ,'Ouared','Abdelkader','Phd','ouared@aek.com','ouaredaek');
+INSERT INTO professor VALUES (NULL ,'Ouared','Abdelkader','Phd','ouaredaek@gmail.com','$2y$10$Vkj8wJv8aY4x1fby4YGZQudk1cX9QpJs5CXcWz7R35G.LRli75Z.i');
 INSERT INTO professor VALUES (NULL ,'Bekki','Khathir','Dr','bekki@khathir.com','ouaredaek');
 INSERT INTO professor VALUES (NULL ,'Chikhaoui','Ahmed','Pr','chikhaoui@ahmed.com','ouaredaek');
 INSERT INTO professor VALUES (NULL ,'Dahmani','Youcef','Dr','dahmani@youcef.com','ouaredaek');
@@ -586,106 +579,59 @@ INSERT INTO schedule VALUES (NULL, 156, 'Salle 13', 3, 2);
 INSERT INTO schedule VALUES (NULL, 157, 'Salle 7', 3, 1);
 
 
-insert into post VALUES (null,1,44,1,'6.0.3','The bung hole hails with faith, taste the lighthouse until it sings.',null,UNIX_TIMESTAMP());
-insert into post VALUES (null,2,43,2,'6.0.3','Animaliss sunt torquiss de altus tata. Persuadere hic ducunt ad alter historia.',null,UNIX_TIMESTAMP());
-insert into post VALUES (null,3,42,3,'6.0.2','Detrius, urbs, et diatria. Emeritis, varius assimilatios satis demitto de fatalis, gratis armarium.',null,UNIX_TIMESTAMP());
-insert into post VALUES (null,4,41,4,'6.0.2','Bursas favere in alta muta! Planeta de rusticus genetrix, anhelare extum.',null,UNIX_TIMESTAMP());
-insert into post VALUES (null,5,40,5,'6.0.0','Lumens sunt cursuss de placidus resistentia. Regius adelphis superbe talems triticum est.',null,UNIX_TIMESTAMP());
-insert into post VALUES (null,6,24,6,'4.0.1','When one remembers intuition and joy, one is able to handle dimension.',null,UNIX_TIMESTAMP());
-insert into post VALUES (null,7,25,7,'4.0.2','Try covering the emeri\'s essence bok choys with clammy iced tea and gold tequila, roasted.',null,UNIX_TIMESTAMP());
-insert into post VALUES (null,8,26,8,'4.0.3','The biscuit eater fears with courage, fire the pacific ocean until it sings.',null,UNIX_TIMESTAMP());
-insert into post VALUES (null,9,27,9,'4.0.4','Cum orexis favere, omnes ollaes imitari fortis, velox poetaes. Est placidus barcas, cesaris.',null,UNIX_TIMESTAMP());
-insert into post VALUES (null,10,28,10,'4.0.5','The plank crushes with treasure, endure the seychelles before it laughs.',null,UNIX_TIMESTAMP());
-insert into post VALUES (null,11,29,11,'4.0.1','Modification at the solar system was the sensor of nuclear flux, experienced to a lunar vogon.',null,UNIX_TIMESTAMP());
-insert into post VALUES (null,12,30,12,'4.0.1','Future at the center was the ionic cannon of devastation, fighted to a colorful admiral.',null,UNIX_TIMESTAMP());
-insert into post VALUES (null,13,31,13,'4.0.2','Steak can be seasoned with squeezed quinoa, also try soaking the chili with ice water.',null,UNIX_TIMESTAMP());
+insert into post VALUES (null,4,44,1,'6.0.3','The bung hole hails with faith, taste the lighthouse until it sings.',null,UNIX_TIMESTAMP());
+insert into post VALUES (null,5,43,1,'6.0.3','Animaliss sunt torquiss de altus tata. Persuadere hic ducunt ad alter historia.',null,UNIX_TIMESTAMP());
+insert into post VALUES (null,4,42,1,'6.0.2','Detrius, urbs, et diatria. Emeritis, varius assimilatios satis demitto de fatalis, gratis armarium.',null,UNIX_TIMESTAMP());
+insert into post VALUES (null,5,41,2,'6.0.2','Bursas favere in alta muta! Planeta de rusticus genetrix, anhelare extum.',null,UNIX_TIMESTAMP());
+insert into post VALUES (null,4,40,3,'6.0.1','Lumens sunt cursuss de placidus resistentia. Regius adelphis superbe talems triticum est.',null,UNIX_TIMESTAMP());
+insert into post VALUES (null,21,31,2,'4.0.3','The biscuit eater fears with courage, fire the pacific ocean until it sings.',null,UNIX_TIMESTAMP());
+insert into post VALUES (null,26,24,1,'4.0.3','Cum orexis favere, omnes ollaes imitari fortis, velox poetaes. Est placidus barcas, cesaris.',null,UNIX_TIMESTAMP());
+insert into post VALUES (null,13,27,3,'4.0.3','Modification at the solar system was the sensor of nuclear flux, experienced to a lunar vogon.',null,UNIX_TIMESTAMP());
+insert into post VALUES (null,27,25,3,'4.0.3','Steak can be seasoned with squeezed quinoa, also try soaking the chili with ice water.',null,UNIX_TIMESTAMP());
 
-INSERT saved_notification VALUES (1, 10101010, 1, 0);
-INSERT saved_notification VALUES (2, 10101010, 1, 1);
 INSERT saved_notification VALUES (3, 10101010, 1, 0);
 INSERT saved_notification VALUES (4, 10101010, 1, 1);
-INSERT saved_notification VALUES (5, 10101010, 1, 1);
-INSERT saved_notification VALUES (6, 10101010, 1, 0);
-INSERT saved_notification VALUES (7, 10101010, 1, 1);
+INSERT saved_notification VALUES (5, 10101013, 1, 0);
+INSERT saved_notification VALUES (3, 10101012, 1, 1);
+INSERT saved_notification VALUES (4, 10101012, 1, 1);
+INSERT saved_notification VALUES (1, 10101015, 1, 0);
+INSERT saved_notification VALUES (6, 10101020, 1, 0);
+INSERT saved_notification VALUES (7, 10101020, 1, 1);
+INSERT saved_notification VALUES (8, 10101020, 1, 0);
+INSERT saved_notification VALUES (9, 10101020, 1, 1);
 
-INSERT INTO comments VALUES (null,1, 10101010, UNIX_TIMESTAMP(), 'Cur lanista peregrinatione?','Younes Charfaoui');
-INSERT INTO comments VALUES (null,2, 10101010, UNIX_TIMESTAMP(), 'Power, madness, and yellow fever?','Younes Charfaoui');
-INSERT INTO comments VALUES (null,3, 10101010, UNIX_TIMESTAMP(), 'Planets fly with mineral?','Younes Charfaoui');
-INSERT INTO comments VALUES (null,4, 10101010, UNIX_TIMESTAMP(), 'The saint visualizes?','Younes Charfaoui');
-INSERT INTO comments VALUES (null,5, 10101010, UNIX_TIMESTAMP(), 'Cur abaculus ortum?','Younes Charfaoui');
-INSERT INTO comments VALUES (null,6, 10101010, UNIX_TIMESTAMP(), 'Cur cannabis peregrinationes?','Younes Charfaoui');
-INSERT INTO comments VALUES (null,7, 10101010, UNIX_TIMESTAMP(), 'With ghees drink ice water?','Younes Charfaoui');
-INSERT INTO comments VALUES (null,8, 10101010, UNIX_TIMESTAMP(), 'The ego understands?','Younes Charfaoui');
-INSERT INTO comments VALUES (null,9, 10101010, UNIX_TIMESTAMP(), 'Never endure a fish?','Younes Charfaoui');
-INSERT INTO comments VALUES (null,10, 10101010, UNIX_TIMESTAMP(), 'With blueberries drink triple sec?','Younes Charfaoui');
-INSERT INTO comments VALUES (null,11, 10101010, UNIX_TIMESTAMP(), 'The sun knows?','Younes Charfaoui');
-INSERT INTO comments VALUES (null,12, 10101010, UNIX_TIMESTAMP(), 'The monkey fears?','Younes Charfaoui');
-INSERT INTO comments VALUES (null,13, 10101010, UNIX_TIMESTAMP(), 'Cur aonides credere?','Younes Charfaoui');
-INSERT INTO comments VALUES (null,1, 10101012, UNIX_TIMESTAMP(), 'Cur lanista peregrinatione?','Ismail Bourbie');
-INSERT INTO comments VALUES (null,2, 10101012,UNIX_TIMESTAMP(), 'Power, madness, and yellow fever?','Ismail Bourbie');
+
+INSERT INTO comments VALUES (null,3, 10101010, UNIX_TIMESTAMP(), 'Cur lanista peregrinatione?','Younes Charfaoui');
+INSERT INTO comments VALUES (null,4, 10101010, UNIX_TIMESTAMP(), 'Power, madness, and yellow fever?','Younes Charfaoui');
+
+
 INSERT INTO comments VALUES (null,3, 10101012,UNIX_TIMESTAMP(), 'Planets fly with mineral?','Ismail Bourbie');
 INSERT INTO comments VALUES (null,4, 10101012,UNIX_TIMESTAMP(), 'The saint visualizes?','Ismail Bourbie');
-INSERT INTO comments VALUES (null,5, 10101012,UNIX_TIMESTAMP(), 'Cur abaculus ortum?','Ismail Bourbie');
-INSERT INTO comments VALUES (null,6, 10101012,UNIX_TIMESTAMP(), 'Cur cannabis peregrinationes?','Ismail Bourbie');
-INSERT INTO comments VALUES (null,7, 10101012,UNIX_TIMESTAMP(), 'With ghees drink ice water?','Ismail Bourbie');
-INSERT INTO comments VALUES (null,8, 10101012,UNIX_TIMESTAMP(), 'The ego understands?','Ismail Bourbie');
-INSERT INTO comments VALUES (null,9, 10101012,UNIX_TIMESTAMP(), 'Never endure a fish?','Ismail Bourbie');
-INSERT INTO comments VALUES (null,10, 10101012, UNIX_TIMESTAMP(), 'With blueberries drink triple sec?','Ismail Bourbie''Ismail Bourbie');
-INSERT INTO comments VALUES (null,11, 10101012, UNIX_TIMESTAMP(), 'The sun knows?','Ismail Bourbie');
-INSERT INTO comments VALUES (null,12, 10101012, UNIX_TIMESTAMP(), 'The monkey fears?','Ismail Bourbie');
-INSERT INTO comments VALUES (null,13, 10101012, UNIX_TIMESTAMP(), 'Cur aonides credere?','Ismail Bourbie');
-
-
-INSERT INTO mail VALUES(null,1,10101010,'Message One' , 'Subject 1',UNIX_TIMESTAMP(),1);
-INSERT INTO mail VALUES(null,2,10101010,'Message One' , 'Subject 1',UNIX_TIMESTAMP(),1);
-INSERT INTO mail VALUES(null,3,10101010,'Message One' , 'Subject 1',UNIX_TIMESTAMP(),1);
-INSERT INTO mail VALUES(null,4,10101010,'Message One' , 'Subject 1',UNIX_TIMESTAMP(),1);
-INSERT INTO mail VALUES(null,5,10101010,'Message One' , 'Subject 1',UNIX_TIMESTAMP(),1);
-INSERT INTO mail VALUES(null,6,10101010,'Message One' , 'Subject 1',UNIX_TIMESTAMP(),1);
-INSERT INTO mail VALUES(null,7,10101010,'Message One' , 'Subject 1',UNIX_TIMESTAMP(),1);
-INSERT INTO mail VALUES(null,8,10101010,'Message One' , 'Subject 1',UNIX_TIMESTAMP(),1);
-INSERT INTO mail VALUES(null,9,10101010,'Message One' , 'Subject 1',UNIX_TIMESTAMP(),1);
-INSERT INTO mail VALUES(null,10,10101010,'Message One' , 'Subject 1',UNIX_TIMESTAMP(),1);
-
-
-INSERT INTO mail VALUES(null,1,10101012,'Message One' , 'Subject 1',UNIX_TIMESTAMP(),1);
-INSERT INTO mail VALUES(null,2,10101012,'Message One' , 'Subject 1',UNIX_TIMESTAMP(),1);
-INSERT INTO mail VALUES(null,3,10101012,'Message One' , 'Subject 1',UNIX_TIMESTAMP(),1);
-INSERT INTO mail VALUES(null,4,10101012,'Message One' , 'Subject 1',UNIX_TIMESTAMP(),1);
-INSERT INTO mail VALUES(null,5,10101012,'Message One' , 'Subject 1',UNIX_TIMESTAMP(),1);
-INSERT INTO mail VALUES(null,6,10101012,'Message One' , 'Subject 1',UNIX_TIMESTAMP(),1);
-INSERT INTO mail VALUES(null,7,10101012,'Message One' , 'Subject 1',UNIX_TIMESTAMP(),1);
-INSERT INTO mail VALUES(null,8,10101012,'Message One' , 'Subject 1',UNIX_TIMESTAMP(),1);
-INSERT INTO mail VALUES(null,9,10101012,'Message One' , 'Subject 1',UNIX_TIMESTAMP(),1);
-INSERT INTO mail VALUES(null,10,10101012,'Message One' , 'Subject 1',UNIX_TIMESTAMP(),1);
 
 
 
-INSERT INTO mail VALUES(null,1,10101013,'Message One' , 'Subject 1',UNIX_TIMESTAMP(),1);
-INSERT INTO mail VALUES(null,2,10101013,'Message One' , 'Subject 1',UNIX_TIMESTAMP(),1);
-INSERT INTO mail VALUES(null,3,10101013,'Message One' , 'Subject 1',UNIX_TIMESTAMP(),1);
-INSERT INTO mail VALUES(null,4,10101013,'Message One' , 'Subject 1',UNIX_TIMESTAMP(),1);
-INSERT INTO mail VALUES(null,5,10101013,'Message One' , 'Subject 1',UNIX_TIMESTAMP(),1);
-INSERT INTO mail VALUES(null,6,10101013,'Message One' , 'Subject 1',UNIX_TIMESTAMP(),1);
-INSERT INTO mail VALUES(null,7,10101013,'Message One' , 'Subject 1',UNIX_TIMESTAMP(),1);
-INSERT INTO mail VALUES(null,8,10101013,'Message One' , 'Subject 1',UNIX_TIMESTAMP(),1);
-INSERT INTO mail VALUES(null,9,10101013,'Message One' , 'Subject 1',UNIX_TIMESTAMP(),1);
-INSERT INTO mail VALUES(null,10,10101013,'Message One' , 'Subject 1',UNIX_TIMESTAMP(),1);
-
-INSERT INTO mail VALUES(null,1,10101014,'Message Four' , 'Subject 4',UNIX_TIMESTAMP(),1);
-INSERT INTO mail VALUES(null,2,10101014,'Message Four' , 'Subject 4',UNIX_TIMESTAMP(),0);
-INSERT INTO mail VALUES(null,3,10101014,'Message Four' , 'Subject 4',UNIX_TIMESTAMP(),1);
-INSERT INTO mail VALUES(null,4,10101014,'Message Four' , 'Subject 4',UNIX_TIMESTAMP(),1);
-INSERT INTO mail VALUES(null,5,10101014,'Message Four' , 'Subject 4',UNIX_TIMESTAMP(),0);
-INSERT INTO mail VALUES(null,6,10101014,'Message Four' , 'Subject 4',UNIX_TIMESTAMP(),0);
-INSERT INTO mail VALUES(null,7,10101014,'Message Four' , 'Subject 4',UNIX_TIMESTAMP(),1);
-INSERT INTO mail VALUES(null,8,10101014,'Message Four' , 'Subject 4',UNIX_TIMESTAMP(),0);
-INSERT INTO mail VALUES(null,9,10101014,'Message Four' , 'Subject 4',UNIX_TIMESTAMP(),1);
-INSERT INTO mail VALUES(null,10,10101014,'Message Four' , 'Subject 4',UNIX_TIMESTAMP(),0);
+INSERT INTO mail VALUES(null,18,10101010,'Hello sir i need some information about the meeting' , 'Metting',UNIX_TIMESTAMP(),0);
+INSERT INTO mail VALUES(null,5,10101010,'Hello sir i need some information concern the theme' , 'Need information',UNIX_TIMESTAMP(),0);
+INSERT INTO mail VALUES(null,4,10101010,'Hello sir, i think that i have a problem with my mark of TD' , 'Problem in paper',UNIX_TIMESTAMP(),1);
+INSERT INTO mail VALUES(null,5,10101010,'Hello again sir, somthing went wrong wi the android application.' , 'Android Problem',UNIX_TIMESTAMP(),1);
+INSERT INTO mail VALUES(null,5,10101010,'Hi sir, does the mark that you display is official , i thnik tha I have an error' , 'Mark incorrect',UNIX_TIMESTAMP(),1);
+INSERT INTO mail VALUES(null,18,10101010,'Hi sir, i did not get the material' , 'Course Thing',UNIX_TIMESTAMP(),1);
+INSERT INTO mail VALUES(null,4,10101010,'Hello world example' , 'Hello world',UNIX_TIMESTAMP(),0);
+INSERT INTO mail VALUES(null,18,10101012,'Are the td good sir ?' , 'TD problem',UNIX_TIMESTAMP(),1);
+INSERT INTO mail VALUES(null,4,10101012,'Hello world , we need a title' , 'Theme Title',UNIX_TIMESTAMP(),1);
+INSERT INTO mail VALUES(null,5,10101012,'The code is in the github platform' , 'Code source',UNIX_TIMESTAMP(),0);
 
 
- INSERT marks values(40,10101012,18,18,20);
- INSERT marks values(41,10101012,null,null,20);
- INSERT marks values(42,10101012,19,null,20);
- INSERT marks values(43,10101012,20,null,20);
- INSERT marks values(44,10101012,18,null,20);
+
+ INSERT marks values(40,10101010,18,18,20);
+ INSERT marks values(41,10101010,null,null,20);
+ INSERT marks values(42,10101010,19,null,20);
+ INSERT marks values(43,10101010,20,null,20);
+ INSERT marks values(44,10101010,18,null,20);
+ 
+ INSERT marks values(40,10101012,15,13,10);
+ INSERT marks values(41,10101012,null,null,17);
+ INSERT marks values(42,10101012,19,null,10);
+ INSERT marks values(43,10101012,20,null,14);
+ INSERT marks values(44,10101012,18,null,15);
+ 

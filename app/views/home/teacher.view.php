@@ -105,28 +105,29 @@ require_once APP_ROOT . '/views/inc/css_inc.php'; ?>
                     </div>
                     <div class="col-lg-8 col-md-12 main" id="main-posts">
                         <div class="new-post" id="add-post">
-                            <form>
+                            <form class="add" action="<?=URL_ROOT?>posts/addpost" method="post">
                                 <div class="row text-pub">
-                                    <textarea class="autosize" placeholder="Publier quelque chose..."></textarea>
+                                    <textarea class="autosize" name="text_post" placeholder="Publier quelque chose..."></textarea>
                                 </div>
                                 <div class="row data text-center">
                                     <div class="col-md-4">
-                                        <select class="level">
+                                        <select class="level" name="level">
                                           <option disabled selected hidden="hidden">Module</option>
                                        </select>
+                                       <input id="id-subject" type="hidden" value="" name="id_subject">
                                     </div>
                                     <div class="col-md-4">
-                                        <select class="section" disabled>
+                                        <select class="section" name="section" disabled>
                                           <option disabled selected hidden="hidden">Section</option>
                                        </select>
                                     </div>
                                     <div class="col-md-4">
-                                        <select class="group" disabled>
+                                        <select class="group" name="group" disabled>
                                           <option disabled selected hidden="hidden">Group</option>
                                        </select>
                                     </div>
                                     <div class="col-md-12">
-                                        <select class="Type">
+                                        <select class="Type" name="type">
                                           <option disabled selected hidden="hidden">Type du publication</option>
                                           <option value="1">Consultation</option>
                                           <option value="2">Affichage</option>
@@ -135,7 +136,7 @@ require_once APP_ROOT . '/views/inc/css_inc.php'; ?>
                                     </div>
                                 </div>
                                 <div class="footer text-right">
-                                    <input class="publier-btn" type="button" value="Publier">
+                                    <input class="publier-btn" type="submit" name="submit" value="Publier">
                                 </div>
                             </form>
                         </div>

@@ -23,7 +23,7 @@ $(document).ready(function () {
                 data = response.data;
                 console.log(data);
                 for (i; i < data.length; i += 1) {
-                    levelSelect.append('<option value="' + data[i]._id_subject + '">' +
+                    levelSelect.append('<option value="' + data[i].level + '">' +
                         data[i].title + '</option>');
                 }
             }
@@ -31,8 +31,6 @@ $(document).ready(function () {
     }
     $('.text-pub textarea').focus(function () {
         $(this).parent().siblings().slideDown();
-        $(this).parents("form").addClass('infocus');
-
         getDataProf();
     });
     $("html").click(function (e) {
@@ -42,7 +40,6 @@ $(document).ready(function () {
         if ($(this).find('#add-post form .data').css("display") !== "none") {
             $(this).find('#add-post form .data').slideUp();
             $(this).find('#add-post form .footer').slideUp();
-            $(this).find('#add-post form').removeClass('infocus');
         }
     });
     levelSelect.change(function () {
@@ -52,6 +49,7 @@ $(document).ready(function () {
             sectionElem = data[levelIndex].section,
             sectionName = Object.keys(sectionElem);
         sectionSelect.empty().append('<option disabled selected hidden="hidden">Section</option>');
+        $(this).siblings("input").val(data[levelIndex]._id_subject);
         sectionSelect.removeAttr('disabled');
         for (i; i < sectionName.length; i += 1) {
             sectionVal = sectionName[i] == "0" ? "Promo" : 'Section ' + sectionName[i];
@@ -70,4 +68,41 @@ $(document).ready(function () {
         }
 
     });
+
+    // validate Form
+
+    $('form.add').submit(function (e) {
+        var select = $('select'),
+            textarea = $(this).find('textarea'),
+            i = 0;
+        if (textarea.val().trim() == 0) {
+            e.preventDefault();
+            textarea.parent().css("border-color", "#d91f2d");
+            textarea.focus();
+            return;
+        }
+        for (i; i < select.length; i += 1) {
+            if (select.eq(i).val() == null) {
+                e.preventDefault();
+                select.eq(i).css("background", "#d91f2d");
+                select.eq(i).focus();
+                return;
+            }
+        }
+    });
+
+
+    // make style in chagne select
+    $('select').change(function () {
+        $(this).css("background", "#46bfbe");
+    });
+    
+    $('.add textarea').blur(function () {
+       $(this).parent().css('border-color', "#ccc");
+    });
+
+
+
+
+
 });
