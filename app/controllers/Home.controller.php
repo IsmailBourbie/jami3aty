@@ -18,17 +18,14 @@ class Home extends Controller {
    }
 
    public function index($args = "") {
+      $my_day = $this->my_day();
+      $response = [
+         "page_title" => __CLASS__,
+         "my_day"     => $my_day
+      ];
       if (Session::isProf()) {
-         $response = [
-            "page_title" => __CLASS__
-         ];
          $this->view("home/teacher", $response);
       } else {
-         $my_day = $this->my_day();
-         $response = [
-            "page_title" => __CLASS__,
-            "my_day"     => $my_day
-         ];
          $this->view("home/index", $response);
       }
    }
@@ -37,7 +34,11 @@ class Home extends Controller {
    private function my_day() {
       $schedule = new Schedule();
       $schedule->_init_day();
-      $my_day = $this->schedule_model->getScheduleByDay($this->_today);
+      if (Session::isProf()) {
+         $my_day = $this->schedule_model->getScheduleProfByDay($this->_today);
+      } else {
+         $my_day = $this->schedule_model->getScheduleByDay($this->_today);
+      }
       $my_day = $schedule->arrange_schedule_day($my_day);
       return $my_day;
    }

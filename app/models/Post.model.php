@@ -26,7 +26,8 @@ class Post {
                                        AND post.destination = :destination) 
                             INNER JOIN subject ON post._id_subject = subject._id_subject) 
                             INNER JOIN saved_notification ON post._id_post = saved_notification._id_post
-                            WHERE saved_notification._id_student = :_id_student");
+                            WHERE saved_notification._id_student = :_id_student
+                            ORDER BY post.date DESC");
       $this->db->bind(":destination", $destination);
       $this->db->bind(":_id_student", $_id_student);
       return \App\Classes\Helper::addColumnDateParsed($this->db->getAll());
@@ -36,7 +37,8 @@ class Post {
       $this->db->query('SELECT DISTINCT post.*, subject.title 
                             FROM post  INNER JOIN subject 
                                            ON post._id_subject = subject._id_subject 
-                                              WHERE _id_professor = :id_professor');
+                                              WHERE _id_professor = :id_professor
+                                              ORDER BY post.date DESC');
       $this->db->bind(':id_professor', $id_professor);
       return \App\Classes\Helper::addColumnDateParsed($this->db->getAll());
    }

@@ -36,7 +36,7 @@ class Mails extends Controller {
             return;
          }
       }
-      if (!Session::isProf())
+      if (!Session::isProf() && empty($this->request->get('ajax')))
          $type = 2;
       $response['data'] = $this->mail_model->allMails($id, $type);
 

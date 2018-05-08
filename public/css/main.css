@@ -52,7 +52,7 @@ form .error {
     .main .aside-right {
         z-index: 1000;
         top: 70px !important;
-        right: 3.2% !important;
+        right: 10px !important;
     }
 }
 
@@ -95,7 +95,7 @@ nav .items_icons .page-title {
 }
 
 nav .items_icons .page-title span {
-    font-size: 22px;
+    font-size: 21.8px;
     margin-left: 10px;
 }
 
@@ -346,13 +346,14 @@ nav .list_items a .info .subject span.time {
 .aside-left .my_data a p {
     font-size: 18px;
     color: #d91f2d;
-    /*Orange #f7b972*/
 }
 
 .aside-left .my_data a h3 {
     font-weight: bold;
     font-size: 20px;
-    color: #46bfbe
+    color: #46bfbe;
+    max-height: 45px;
+    overflow-y: hidden;
 }
 
 .aside-left .my_data h4 {
@@ -441,6 +442,12 @@ nav .list_items a .info .subject span.time {
     margin: 5px 0;
     font-weight: bolder;
 }
+.main .aside-right .ma_journee .well li div.activeTime {
+    border-left: 2px solid #d91f2d;
+}
+.main .aside-right .ma_journee .well li div.activeTime > span {
+    color: #46bfbe;
+}
 
 .main .aside-right .ma_journee .well li span.course_name,
 .main .aside-right .ma_journee .well li span.course_type {
@@ -450,13 +457,13 @@ nav .list_items a .info .subject span.time {
 
 .main .aside-right .ma_journee .well li span.course_type,
 .main .aside-right .ma_journee .well li span.course_place {
-    font-size: 16px;
+    font-size: 14px;
     color: #71767b;
 }
 
 .main .aside-right .ma_journee .well li span.course_name {
     display: block;
-    font-size: 18px
+    font-size: 16px
 }
 
 .aside-content .btn-default:hover,
@@ -736,7 +743,8 @@ span.separitor {
     position: fixed;
     top: 90px;
     right: 1%;
-    box-shadow: 2px 4px 8px 0 rgba(46, 61, 73, .2)
+    box-shadow: 2px 4px 8px 0 rgba(46, 61, 73, .2);
+    border-radius: 6px;
 }
 
 /*** Aside right style End ***/
@@ -1309,6 +1317,7 @@ span.separitor {
         background-color: transparent;
         box-shadow: unset;
         width: 100%;
+        z-index: 1000;
     }
 
     .main .aside-right .ma_journee .well {
@@ -1321,6 +1330,7 @@ span.separitor {
 
     .main .main {
         margin: 0;
+        padding-top: 80px;
     }
 }
 
@@ -1403,6 +1413,9 @@ span.separitor {
 @media (max-width: 415px) {
     .content .posts article.publication_mold {
         width: 95%;
+    }
+    nav .items_icons .list_items .navbar-nav > li > a {
+        padding: 10px;
     }
 }
 

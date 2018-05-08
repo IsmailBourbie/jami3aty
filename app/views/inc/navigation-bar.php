@@ -3,13 +3,12 @@
         <a>
             <div class="user_img">
                 <i class="fa fa-user"></i>
-                <!--                <span class="glyphicon glyphicon-user" aria-hidden="true"></span>-->
-
             </div>
             <div class="user_info">
                    <span class="student_id" id="_user_id"><?= Session::get("user_id") ?></span>
                 <h3>
-                   <?= Session::get('user_fullname') ?>
+                   <?php if (Session::isProf()) echo Session::get('user_degree') . '. ';
+                       echo Session::get('user_fullname'); ?>
                 </h3>
                 <p class="lead">
                    <?= Session::get('user_branch') ?>
@@ -52,13 +51,6 @@
                             </h4>
                         </a>
                     </li>
-                    <li id="notes">
-                        <a href="<?= URL_ROOT ?>marks">
-                            <h4>
-                                <i class="fa fa-calculator"></i> Notes
-                            </h4>
-                        </a>
-                    </li>
                     <li id="planning">
                         <a href="<?= URL_ROOT ?>schedules">
                             <h4>
@@ -66,10 +58,11 @@
                             </h4>
                         </a>
                     </li>
-                    <li id="évènements">
-                        <a href="<?= URL_ROOT ?>events">
+                    <?php if (!Session::isProf()):?>
+                    <li id="notes">
+                        <a href="<?= URL_ROOT ?>marks">
                             <h4>
-                                <i class="fa fa-bullhorn"></i> Évènements
+                                <i class="fa fa-calculator"></i> Notes
                             </h4>
                         </a>
                     </li>
@@ -80,6 +73,7 @@
                             </h4>
                         </a>
                     </li>
+                    <?php endif;?>
                     <li id="aide">
                         <a href="<?= URL_ROOT ?>help">
                             <h4>

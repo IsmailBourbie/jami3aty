@@ -1,7 +1,6 @@
 <?php
 require_once APP_ROOT . '/views/inc/css_inc.php';
 require_once APP_ROOT . '/views/inc/header.php';
-$responses = $data["data"];
 ?>
     <?php require_once APP_ROOT . '/views/inc/header.php'; ?>
     <div class="row reset-margin">
