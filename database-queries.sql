@@ -167,14 +167,14 @@ CREATE TABLE surveillance(
 );
 
 -- start inserting the tuples
-INSERT INTO student VALUE (10101010,'Charfaoui', 'Younes', '1997-04-16', 13.85, 'mxcsyounes@gmail.com', '$2y$10$/i.TvQWEZyEnPLszcEgcSeUtSxk8W.yE0EdHkFexQ1ccGd0IxV..S', 6, 2, 0, 0,0,NULL);
+INSERT INTO student VALUE (10101010,'Charfaoui', 'Younes', '1997-04-16', 13.85, 'mxcsyounes@gmail.com', '$2y$10$/i.TvQWEZyEnPLszcEgcSeUtSxk8W.yE0EdHkFexQ1ccGd0IxV..S', 6, 2, 0, 1,1,NULL);
 INSERT INTO student VALUE (10101012,'Bourbie', 'Ismail', '1995-02-16', 13.85, NULL, NULL, 6, 2, 0, 0,0,NULL);
 INSERT INTO student VALUE (10101013,'Bouras', 'Mohamed el amine', '1996-08-15', 13.85, NULL, NULL, 6, 1, 0, 0,0,NULL);
 INSERT INTO student VALUE (10101015,'Zegai', 'Houari', '1996-11-17', 13.85, NULL, NULL, 6, 3, 0, 0,0,NULL);
 INSERT INTO student VALUE (10101017,'Taif', 'Mohamed Amine', '1994-11-07', 13.85, NULL, NULL, 4, 5, 0, 0,0,NULL);
 INSERT INTO student VALUE (10101018,'Asoune', 'Ismail', '1997-04-08', 13.85, NULL, NULL, 4, 1, 0, 0,0,NULL);
 INSERT INTO student VALUE (10101019,'Azazen', 'Khaled walid', '1995-06-12', 13.85, NULL, NULL, 4, 4, 0, 0,0,NULL);
-INSERT INTO student VALUE (10101020,'Baya', 'Redouane', '1997-04-08', 13.85, 'bayaredouane@gmail.com', '$2y$10$j6BUGp6FkU9oi/QicBSpMuAzZzhjIe.zDu1fZ0kptOvQEZ/XqPz0K', 4, 3, 0, 0,0,NULL);
+INSERT INTO student VALUE (10101020,'Baya', 'Redouane', '1997-04-08', 13.85, 'bayaredouane@gmail.com', '$2y$10$j6BUGp6FkU9oi/QicBSpMuAzZzhjIe.zDu1fZ0kptOvQEZ/XqPz0K', 4, 3, 0, 1,1,NULL);
 INSERT INTO student VALUE (10101021,'Doulami', 'Mohamed tawfiq', '1995-06-21', 13.85, NULL, NULL, 4, 2, 0, 0,0,NULL);
 
 

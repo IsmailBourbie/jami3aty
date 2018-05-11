@@ -166,7 +166,7 @@ $(document).ready(function () {
                     current_comment.siblings('.student_data').children(".student_comment")
                         .text(text_edited);
                     current_comment.siblings('.student_data').children(".time_comment")
-                        .text("now");
+                        .text("À l'instant");
 
                 }
             });

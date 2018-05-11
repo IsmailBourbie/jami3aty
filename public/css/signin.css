@@ -46,24 +46,26 @@ form .alert-success {
     padding-right: 0px;
     height: 100%;
     background: #FFFFFF;
+    border-radius: 0 6px 6px 0;
 }
 
 .container .row .right .error_form {
-    color: #C00;
+    color: #bb3b53;
     position: absolute;
     left: 10%;
+    top: 8px;
     width: 80%;
     padding: 10px;
     text-align: center;
-    border: 1px solid #c00;
-    background: rgba(255, 0, 0, .3);
-    border-top: none;
-    border-radius: 0px 0px 10px 10px;
+    border: 1px solid #f192a4;
+    background: rgba(221, 16, 55, 0.19);
+    border-radius: 6px;
 }
 
 .container .row form {
     min-height: 100%;
     max-height: 100%;
+    border-radius: 0 6px 6px 0;
 }
 
 /*
@@ -155,6 +157,10 @@ form .alert-success {
     width: 100%;
     overflow: hidden;
     height: 100%;
+}
+
+.container .row .left .carousel {
+    border-radius: 6px 0 0 6px;
 }
 
 .container .row .left .carousel-indicators li {

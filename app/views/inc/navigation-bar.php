@@ -20,7 +20,7 @@
         <div class="collapse in" id="my_data">
             <div class="well">
                 <ul class="list-unstyled">
-                    <li id="home">
+                    <li id="acueil">
                         <a href="<?= URL_ROOT ?>home">
                             <h4>
                                 <i class="fa fa-home"></i> Acueil

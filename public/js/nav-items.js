@@ -132,7 +132,6 @@ $(document).ready(function () {
             dataType: "json",
             success: function (response) {
                 max_mails = response.data.length <= max_mails ? response.data.length : max_mails;
-                console.log(response);
 
                 for (count_mails; count_mails < max_mails; count_mails += 1) {
                     if (isProf) {

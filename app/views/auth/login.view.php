@@ -23,13 +23,13 @@
     <div class="row">
         <!--Slider side Start-->
         <div class="col-md-5 col-md-offset-1 left">
-            <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+            <div id="carousel-login" class="carousel slide" data-ride="carousel">
                 <!-- Indicators of carousel -->
                 <ol class="carousel-indicators">
-                    <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
-                    <li data-target="#carousel-example-generic" data-slide-to="1"></li>
-                    <li data-target="#carousel-example-generic" data-slide-to="2"></li>
-                    <li data-target="#carousel-example-generic" data-slide-to="3"></li>
+                    <li data-target="#carousel-login" data-slide-to="0" class="active"></li>
+                    <li data-target="#carousel-login" data-slide-to="1"></li>
+                    <li data-target="#carousel-login" data-slide-to="2"></li>
+                    <li data-target="#carousel-login" data-slide-to="3"></li>
                 </ol>
 
                 <!-- Wrapper for slides -->

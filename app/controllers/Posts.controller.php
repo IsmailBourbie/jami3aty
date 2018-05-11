@@ -89,7 +89,7 @@ class Posts extends Controller {
    }
 
    public function addPost() {
-      if ($_SERVER['REQUEST_METHOD'] == "GET"  || !Session::isLoggedIn())
+      if ($_SERVER['REQUEST_METHOD'] == "GET"  && !Session::isLoggedIn())
          Helper::redirect("");
       $response = [
          'page_title' => "Mes Publication",

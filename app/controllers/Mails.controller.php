@@ -28,7 +28,7 @@ class Mails extends Controller {
       $id = filter_var($this->request->get("id"), FILTER_VALIDATE_INT);
       $type = filter_var($this->request->get("type"), FILTER_VALIDATE_INT);
       if ($id === false || $type === false) {
-         $type = 1;
+         $type = 2;
          $id = Session::get('user_id');
          if (empty($id)) {
             $response['status'] = ERR_EMAIL;
@@ -36,8 +36,8 @@ class Mails extends Controller {
             return;
          }
       }
-      if (!Session::isProf() && empty($this->request->get('ajax')))
-         $type = 2;
+      if (Session::isProf())
+         $type = 1;
       $response['data'] = $this->mail_model->allMails($id, $type);
 
       $this->view("mails/index", $response);

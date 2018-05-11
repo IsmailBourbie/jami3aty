@@ -41,14 +41,14 @@ class Auth extends Controller {
       $identity = $this->authentication->findUserByEmail($data["email"]);
       if (empty($identity)) {
          $response['status'] = INVALID_EMAIL;
-         $response['message'] = "err email";
+         $response['message'] = "L’e-mail entré ne correspond à aucun compte.";
          $this->view("auth/login", $response);
          return;
       }
       $user = $this->authentication->getUser($identity, $data["password"]);
       if (!$user) {
          $response['status'] = INVALID_PASS;
-         $response['message'] = "err password";
+         $response['message'] = "Le mot de passe entré est incorrect.";
          $this->view("auth/login", $response);
          return;
       }
@@ -88,7 +88,7 @@ class Auth extends Controller {
       if (empty($data['card_num'])) {
          // student's id doesn't exist
          $response["status"] = NUM_CARD_N_EXIST;
-         $response["message"] = "this not user exist or already activated";
+         $response["message"] = "Cet utilisateur n'existe pas ou déjà activé";
          $this->view("auth/login", $response);
          return;
       }
@@ -96,7 +96,7 @@ class Auth extends Controller {
       if (empty($data['average'])) {
          // student's average doesn't exist
          $response["status"] = AVERAGE_N_EXIST;
-         $response["message"] = "this average not exist";
+         $response["message"] = "Cette moyenne est incorrect";
          $this->view("auth/login", $response);
          return;
       }
@@ -104,7 +104,7 @@ class Auth extends Controller {
       if (!empty($email)) {
          // student's email exist exist
          $response["status"] = EMAIL_N_EXIST;
-         $response["message"] = "This Email exist try another one";
+         $response["message"] = "Cet e-mail deja existe, essayez-en un autre";
          $this->view("auth/login", $response);
          return;
       }
@@ -114,7 +114,7 @@ class Auth extends Controller {
          die("something wrong with add user");
       if (!$this->authentication->addUser($data))
          die("something wrong with Mailing the token");
-      Session::flash('register_success', "Success! you must confirm your email");
+      Session::flash('register_success', "Succès! vous devez confirmer votre email");
       $this->view("", $response);
    }
 
@@ -144,13 +144,13 @@ class Auth extends Controller {
          if (empty($email)) {
             // this email not exist or invalid
             $response['status'] = EMAIL_N_EXIST;
-            $response['message'] = "This Email invalid or not exist";
+            $response['message'] = "Cet e-mail invalide ou n'existe pas";
             $this->view("users/confirm", $response);
             return;
          }
          if (!$this->authentication->updateToken($email)) die("Emailing Error try later");
          $_SESSION['isConfirmed'] = 1;
-         Session::flash('confirm_email_send', 'Check your email');
+         Session::flash('confirm_email_send', 'Verifier votre email');
          Helper::redirect('auth/confirmation');
          return;
       }

@@ -20,7 +20,7 @@ class Home extends Controller {
    public function index($args = "") {
       $my_day = $this->my_day();
       $response = [
-         "page_title" => __CLASS__,
+         "page_title" => "Acueil",
          "my_day"     => $my_day
       ];
       if (Session::isProf()) {
