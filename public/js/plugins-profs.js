@@ -21,7 +21,6 @@ $(document).ready(function () {
             success: function (response) {
                 var destination = {};
                 data = response.data;
-                console.log(data);
                 for (i; i < data.length; i += 1) {
                     levelSelect.append('<option value="' + data[i].level + '">' +
                         data[i].title + '</option>');
@@ -34,6 +33,7 @@ $(document).ready(function () {
         getDataProf();
     });
     $("html").click(function (e) {
+        // if click anywhere except the form of new pub sow hide the form 
         if ($(e.target).closest('#add-post').length) {
             return;
         }
@@ -48,10 +48,15 @@ $(document).ready(function () {
             sectionVal,
             sectionElem = data[levelIndex].section,
             sectionName = Object.keys(sectionElem);
+        // empty the select section html and append the title
         sectionSelect.empty().append('<option disabled selected hidden="hidden">Section</option>');
         $(this).siblings("input").val(data[levelIndex]._id_subject);
+        // make section select enabled
         sectionSelect.removeAttr('disabled');
+        // sort the array
+        sectionName = sectionName.sort();
         for (i; i < sectionName.length; i += 1) {
+            // Check if the there is promo or sections
             sectionVal = sectionName[i] == "0" ? "Promo" : 'Section ' + sectionName[i];
             sectionSelect.append('<option value="' + sectionName[i] + '">' + sectionVal + '</option>');
         }
@@ -59,12 +64,19 @@ $(document).ready(function () {
     sectionSelect.change(function () {
         var sectionIndex = Number(this.value, 10),
             levelIndex = levelSelect[0].selectedIndex - 1,
+            groupVal,
             i = 0,
             groupElem = data[levelIndex].section[sectionIndex];
+        // empty the select group html and append the title
         groupSelect.empty().append('<option disabled selected hidden="hidden">Group</option>');
+        // make group select enabled
         groupSelect.removeAttr('disabled');
+        // Sort the array 
+        groupElem = groupElem.sort();
         for (i; i < groupElem.length; i += 1) {
-            groupSelect.append('<option value="' + groupElem[i] + '">Group ' + groupElem[i] + '</option>');
+            // Check if the there is all groups
+            groupVal = groupElem[i] == "0" ? "Tous les groupes" : 'Group ' + groupElem[i];
+            groupSelect.append('<option value="' + groupElem[i] + '">' + groupVal + '</option>');
         }
 
     });

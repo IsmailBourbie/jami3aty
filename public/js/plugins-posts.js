@@ -65,7 +65,8 @@ $(document).ready(function () {
             success: function (response) {
                 posts_length = response.data.length;
                 if (posts_length === 0) {
-                    // there is no posts so hide the first mold
+                    // ther is no posts
+                    $('#main-posts > .loader').hide();
                     alert("There is no Posts");
                     return;
                 }
@@ -114,7 +115,8 @@ $(document).ready(function () {
             success: function (response) {
                 posts_length = response.data.length;
                 if (posts_length === 0) {
-                    // there is no posts so hide the first mold
+                    // ther is no posts
+                    $('#main-posts > .loader').hide();
                     alert("There is no Posts");
                     return;
                 }

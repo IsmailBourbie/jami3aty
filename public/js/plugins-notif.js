@@ -34,7 +34,6 @@ $(document).ready(function () {
             dataType: "json",
             success: function (response) {
                 notifs_length = response.data.length;
-                console.log(response.data);
                 for (count_notifs; count_notifs < notifs_length; count_notifs += 1) {
                     notif_layout.children(".loader").before(createNotifMoldView());
                     notif_layout.children(".notif_mold").last()
