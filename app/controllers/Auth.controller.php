@@ -22,7 +22,6 @@ class Auth extends Controller {
    public function login() {
       if (Session::isLoggedIn()) Helper::redirect("");
       if ($_SERVER['REQUEST_METHOD'] != "POST") {
-         // URL Request
          $response = [
             'page_title' => ucfirst(__FUNCTION__),
             'status'     => OK,
@@ -31,8 +30,9 @@ class Auth extends Controller {
          $this->view('auth/login', $response);
       }
       $data = [
-         "email"    => $this->validateEmail($this->request->get("email")),
-         "password" => $this->validatePassword($this->request->get("password")),
+         "email"       => $this->validateEmail($this->request->get("email")),
+         "password"    => $this->validatePassword($this->request->get("password")),
+         "remember_me" => filter_var($this->request->get('remember_me'), FILTER_SANITIZE_STRING),
       ];
       $response = [
          'page_title' => "Authentication",
@@ -52,10 +52,12 @@ class Auth extends Controller {
          $this->view("auth/login", $response);
          return;
       }
-      if (isset($user->bac_average)) {
-         $this->createSessionStudent($user);
-      } else {
-         $this->createSessionProf($user);
+      if (empty($this->request->get("ajax"))) {
+         if (isset($user->bac_average)) {
+            $this->createSessionStudent($user);
+         } else {
+            $this->createSessionProf($user);
+         }
       }
       $response["data"] = $user;
       $this->view("", $response);
@@ -174,6 +176,7 @@ class Auth extends Controller {
          $_SESSION["isConfirmed"] = $user->isConfirmed;
       }
    }
+
    private function createSessionProf($user) {
       if (empty($this->request->get("ajax"))) {
          $_SESSION["user_id"] = $user->_id_professor;

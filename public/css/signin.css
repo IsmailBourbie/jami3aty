@@ -86,15 +86,6 @@ form .alert-success {
     background: transparent;
 }
 
-.container .form-login .input-group:last-of-type {
-    font-size: 13px;
-    color: #636b6f;
-    border: none;
-    margin-top: 5px;
-    margin-bottom: 20px;
-    margin-left: 10px;
-}
-
 .container .feild-input input.form-control {
     padding-top: 20px;
     padding-bottom: 20px;

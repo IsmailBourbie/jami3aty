@@ -2,6 +2,8 @@
 
 trait Valid {
    public function validateEmail($email) {
+      if (filter_var($email, FILTER_VALIDATE_EMAIL) == false)
+         return "";
       return filter_var($email, FILTER_VALIDATE_EMAIL);
    }
 

@@ -7,6 +7,7 @@
        <?= $data['page_title'] ?>
     </title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link rel="icon" href="<?= URL_ROOT ?>images/ic_launcher-web.png">
     <link rel="stylesheet" href="<?= URL_ROOT ?>/css/bootstrap.min.css">
     <link rel="stylesheet" href="<?= URL_ROOT ?>/css/font-awesome.min.css">
     <link rel="stylesheet" href="<?= URL_ROOT ?>/css/signin.css">
@@ -96,19 +97,16 @@
                     <div class='error'></div>
                     <!--Password input Start-->
                     <div class="input-group required">
-                            <span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-lock"
-                                                                                    aria-hidden="true"></span></span>
+                                <span class="input-group-addon" id="basic-addon1">
+                               <span class="glyphicon glyphicon-lock" aria-hidden="true"></span></span>
                         <input type="password" data="password" name="password" class="form-control"
-                               placeholder="Mot de passe">
+                               placeholder="Mot de passe" autocomplete="new-password">
                         <span class="glyphicon glyphicon-eye-open custom-icon"></span>
                     </div>
                     <!--Password input End-->
                     <div class='error'></div>
                     <!--Remember me input Start-->
-                    <div class="input-group">
-                        <input id="remember_me" type="checkbox" name="remember_me">
-                        <label for="remember_me">Se souvenir de moi</label>
-                    </div>
+                    <div class="input-group"></div>
                     <!--Remember me input End-->
 
                     <!--Button Sign in-->
@@ -162,8 +160,8 @@
 
                     <!-- Password Start -->
                     <div class="input-group required">
-                            <span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-lock"
-                                                                                    aria-hidden="true"></span></span>
+                                <span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-lock"
+                                                                                        aria-hidden="true"></span></span>
                         <input type="password" data="password" class="form-control" placeholder="Mot de passe"
                                name="password">
                         <span class="glyphicon glyphicon-eye-open custom-icon"></span>
