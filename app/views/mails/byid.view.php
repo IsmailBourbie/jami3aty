@@ -49,8 +49,8 @@ if ($mail->sender == 1) {
                                     </div>
                                 </div>
                                 <div class="modal-footer">
-                                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-                                    <button type="button" id="send-reply-btn" class="btn btn-primary">Send</button>
+                                    <button type="button" class="btn btn-danger" data-dismiss="modal">Fermer</button>
+                                    <button type="button" id="send-reply-btn" class="btn btn-primary">Envoyer</button>
                                 </div>
                             </div>
                         </div>
@@ -90,7 +90,7 @@ if ($mail->sender == 1) {
                     </div>
                     <div class="footer" data-target="<?=$mail->_id_mail?>">
                         <button id="reply-message" class="btn btn-primary pull-right" data-toggle="modal" data-target=".sendMessageModal">
-                        repley
+                        Répondre
                     </button>
                     </div>
                 </div>
