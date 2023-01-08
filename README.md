@@ -37,7 +37,7 @@ git clone https://github.com/IsmailBourbie/jami3aty.git
 ```
 2. Move the project to the **htdocs** folder.
 3. Run Xampp, and start Apache and MySQL.
-4. Open [localhost/jami3aty](/localhost/jami3aty) in the browser.
+4. Open [localhost/jami3aty](http://localhost/jami3aty/) in the browser.
 
 ## Contributing :bulb:
 
