@@ -4,7 +4,7 @@
 
 A simple platform for school students and teachers to help them with everyday tasks. For example: checking the last posts from teachers, managing lesson plans, facilitating communication between students and teachers, visualizing students' marks, etc.
 
-
+![jami3aty](https://user-images.githubusercontent.com/32592422/211198947-83b2a1cb-fcca-4c57-91b1-fe6a996aa51c.png)
 
 > PS: The quality of the code in this project is Horrible because it's my first big project
 
@@ -37,7 +37,7 @@ git clone https://github.com/IsmailBourbie/jami3aty.git
 ```
 2. Move the project to the **htdocs** folder.
 3. Run Xampp, and start Apache and MySQL.
-4. Open [localhost/jami3aty](localhost/jami3aty) in the browser.
+4. Open [localhost/jami3aty](/localhost/jami3aty) in the browser.
 
 ## Contributing :bulb:
 
