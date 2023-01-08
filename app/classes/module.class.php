@@ -51,7 +51,7 @@ class Module {
    }
 
 
-   private final function checkProf($object, $next_object) {
+   private function checkProf($object, $next_object) {
       switch ($next_object['type']) {
          case 1:
             $object["course_prof"] = $next_object["fullName"];

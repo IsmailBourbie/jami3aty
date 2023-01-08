@@ -15,20 +15,22 @@ class Post {
          $destination["section"] = Session::get('user_section');
          $destination["group"] = Session::get('user_group');
       }
-      $destination = $destination['level'] . "." . $destination['section'] . "." . $destination['group'];
-      if (!preg_match($pattern, $destination)) return false;
+      $destinationTo = $destination['level'] . "." . $destination['section'] . "." . $destination['group'];
+      $destinationAll = $destination['level'] . "." . $destination['section'] . ".0";
+      if (!preg_match($pattern, $destinationTo)) return false;
       $this->db->query("SELECT DISTINCT post.*, concat(professor.degree, '. ',
                                                   professor.first_name, ' ',
                                                    professor.last_name ) as fullName,
                                    subject.title , saved_notification.saved
                             FROM ((post INNER JOIN professor 
                                        on professor._id_professor = post._id_professor 
-                                       AND post.destination = :destination) 
+                                       AND (post.destination = :destination OR post.destination = :destinationAll)) 
                             INNER JOIN subject ON post._id_subject = subject._id_subject) 
                             INNER JOIN saved_notification ON post._id_post = saved_notification._id_post
                             WHERE saved_notification._id_student = :_id_student
                             ORDER BY post.date DESC");
-      $this->db->bind(":destination", $destination);
+      $this->db->bind(":destination", $destinationTo);
+      $this->db->bind(":destinationAll", $destinationAll);
       $this->db->bind(":_id_student", $_id_student);
       return \App\Classes\Helper::addColumnDateParsed($this->db->getAll());
    }
@@ -127,6 +129,13 @@ class Post {
       $this->db->bind(':level', $data['level']);
       $this->db->bind(':section', $data['section']);
       $this->db->bind(':group', $data['group']);
+      return $this->db->getAll();
+   }
+   public function usersInterestedAll($data) {
+      $this->db->query('SELECT _id_student FROM student 
+                            WHERE `level` = :level AND `section`= :section');
+      $this->db->bind(':level', $data['level']);
+      $this->db->bind(':section', $data['section']);
       return $this->db->getAll();
    }
 }

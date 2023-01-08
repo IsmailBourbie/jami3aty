@@ -30,10 +30,10 @@ class Posts extends Controller {
       ];
       // sanitize data from post request
       $post_data = [
-         "level"   => filter_var($this->request->get('level'), FILTER_SANITIZE_NUMBER_INT),
-         "section" => filter_var($this->request->get("section"), FILTER_SANITIZE_NUMBER_INT),
-         "group"   => filter_var($this->request->get('group'), FILTER_SANITIZE_NUMBER_INT),
-         "_id_student"   => filter_var($this->request->get('_id_student'), FILTER_SANITIZE_NUMBER_INT),
+         "level"       => filter_var($this->request->get('level'), FILTER_SANITIZE_NUMBER_INT),
+         "section"     => filter_var($this->request->get("section"), FILTER_SANITIZE_NUMBER_INT),
+         "group"       => filter_var($this->request->get('group'), FILTER_SANITIZE_NUMBER_INT),
+         "_id_student" => filter_var($this->request->get('_id_student'), FILTER_SANITIZE_NUMBER_INT),
       ];
       // check the response from model
       if (!$this->post_model->getAllPosts($post_data)) {
@@ -89,7 +89,7 @@ class Posts extends Controller {
    }
 
    public function addPost() {
-      if ($_SERVER['REQUEST_METHOD'] == "GET"  && !Session::isLoggedIn())
+      if ($_SERVER['REQUEST_METHOD'] == "GET" && !Session::isLoggedIn())
          Helper::redirect("");
       $response = [
          'page_title' => "Mes Publication",
@@ -119,10 +119,15 @@ class Posts extends Controller {
          return;
       }
       $this->post_model->insertTrace($post_id);
-      $users_intersted = $this->post_model->usersInterested($data);
+      if ($data['group'] == 0) {
+         $users_intersted = $this->post_model->usersInterestedAll($data);
+      } else {
+         $users_intersted = $this->post_model->usersInterested($data);
+      }
+
       // notif all users
       for ($i = 0; $i < count($users_intersted); $i++) {
-         $this->post_model->insertNotification($users_intersted[$i]->_id_student,$post_id);
+         $this->post_model->insertNotification($users_intersted[$i]->_id_student, $post_id);
       }
       $this->view('', $response);
    }

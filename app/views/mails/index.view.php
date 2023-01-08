@@ -53,8 +53,8 @@ $sender_status = "up";
                                 </div>
                             </div>
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-                                <button type="button" id="send-message-btn" class="btn btn-primary">Send</button>
+                                <button type="button" class="btn btn-danger" data-dismiss="modal">Fermer</button>
+                                <button type="button" id="send-message-btn" class="btn btn-primary">Envoyer</button>
                             </div>
                         </div>
                     </div>
